@@ -49,4 +49,9 @@ public class DemoControllerTest {
 	}
 	
 	private static final Long TESTE_VALUE = 10L;
+
+	private void teste2(){
+		//É possivel colocar ordem
+	}
+
 }

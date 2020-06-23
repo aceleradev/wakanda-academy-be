@@ -1,6 +1,6 @@
-# springboot-archetype-web
+# aceleradev-api
 
-Minimal Spring Boot sample app.
+api de cadastro de usuarios.
 
 ## Getting Started
 
