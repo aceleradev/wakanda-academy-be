@@ -1,24 +1,26 @@
 package com.aceleradev.api.service;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-import at.favre.lib.crypto.bcrypt.BCryptFormatter;
-import at.favre.lib.crypto.bcrypt.BCryptParser;
-import at.favre.lib.crypto.bkdf.PasswordHasher;
+import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
+
 import com.aceleradev.api.controller.dto.UserCreationFormDto;
 import com.aceleradev.api.domain.model.User;
 import com.aceleradev.api.repository.UserRepository;
 import com.aceleradev.api.service.contract.UserService;
-import org.slf4j.Logger;
-import org.springframework.stereotype.Service;
+import com.aceleradev.api.service.factory.UserFactory;
+
+import at.favre.lib.crypto.bkdf.PasswordHasher;
 
 @Service
 public class UserServiceJpa implements UserService {
 
     private UserRepository repository;
     private PasswordHasher hasher;
+	private UserFactory factory;
 
-    public UserServiceJpa(UserRepository repository) {
+    public UserServiceJpa(UserRepository repository, UserFactory factory) {
         this.repository = repository;
+		this.factory = factory;
         this.hasher = null;
     }
     //FIXME: retirar log

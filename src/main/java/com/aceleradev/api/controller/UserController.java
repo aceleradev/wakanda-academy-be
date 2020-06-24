@@ -1,22 +1,21 @@
 package com.aceleradev.api.controller;
 
-import com.aceleradev.api.controller.dto.UserCreatedDto;
-import com.aceleradev.api.controller.dto.UserCreationFormDto;
-import com.aceleradev.api.domain.model.User;
-import com.aceleradev.api.repository.UserRepository;
-import com.aceleradev.api.service.contract.UserService;
+import java.net.URI;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
+import com.aceleradev.api.controller.dto.UserCreatedDto;
+import com.aceleradev.api.controller.dto.UserCreationFormDto;
+import com.aceleradev.api.domain.model.User;
+import com.aceleradev.api.service.contract.UserService;
 
 @Controller
 public class UserController {
