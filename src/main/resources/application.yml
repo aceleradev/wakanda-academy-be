@@ -1,4 +1,4 @@
-server:  servlet:    context-path: /wakanda/app/v1
+server:  servlet:    context-path: /wakanda/app/v1/user
 spring:
   datasource:
     url: ${WAKANDA_DB_URL}

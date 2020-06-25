@@ -27,7 +27,7 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/")
     public ResponseEntity<UserCreatedDto> userCreation(@RequestBody @Valid UserCreationFormDto dto,
                                                             UriComponentsBuilder uriBuilder) throws Exception {
         log.info("Initialing userCreation method");
