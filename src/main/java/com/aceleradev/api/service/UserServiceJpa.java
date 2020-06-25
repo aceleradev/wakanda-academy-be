@@ -34,7 +34,7 @@ public class UserServiceJpa implements UserService {
 	private void createUser(UserCreationFormDto dto, User user) throws EntityExistsException {
 		try {
 			logger.info("saving User on database");
-        	this.repository.save(user);
+	    	this.repository.save(user);
 		} catch (ConstraintViolationException | DataIntegrityViolationException e) {
 			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", dto.getEmail()));
 		}
