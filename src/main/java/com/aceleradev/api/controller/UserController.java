@@ -29,11 +29,11 @@ public class UserController {
 
     @PostMapping(value = "/user")
     public ResponseEntity<UserCreatedDto> userCreation(@RequestBody @Valid UserCreationFormDto dto,
-                                                            UriComponentsBuilder uriBuilder){
+                                                            UriComponentsBuilder uriBuilder) throws Exception {
         log.info("Initialing userCreation method");
-        User user=service.create(dto,log);
+        User user = this.service.create(dto);
         log.info("generating uri return code 201");
-        URI uri=uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
+        URI uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         log.info("returning uri and user's created info");
         return ResponseEntity.created(uri).body(new UserCreatedDto(user));
     }

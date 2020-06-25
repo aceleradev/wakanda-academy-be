@@ -12,6 +12,7 @@ import org.springframework.web.servlet.resource.HttpResource;
 import com.aceleradev.api.domain.ApiErrorResponse;
 import com.aceleradev.api.exception.ApiException;
 import com.aceleradev.api.exception.BusinessException;
+import com.aceleradev.api.exception.EntityExistsException;
 import com.aceleradev.api.exception.NotFoundException;
 
 @RestControllerAdvice
@@ -39,6 +40,12 @@ public class ApiControllerAdivice {
     public ResponseEntity<ApiErrorResponse> handleBusinessException(BusinessException ex) {
         ApiErrorResponse apiErrorResponse = this.apiErrorResponseExceptionExtractor.getApiResponse(ex, HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrorResponse);
+    }
+    
+    @ExceptionHandler(EntityExistsException.class)
+    public ResponseEntity<ApiErrorResponse> handleEntityExistsException(EntityExistsException ex) {
+    	ApiErrorResponse apiErrorResponse = this.apiErrorResponseExceptionExtractor.getApiResponse(ex, EntityExistsException.ENTITY_EXISTS_STATUS_CODE);
+    	return ResponseEntity.status(EntityExistsException.ENTITY_EXISTS_STATUS_CODE).body(apiErrorResponse);
     }
 
     @ExceptionHandler(Exception.class)

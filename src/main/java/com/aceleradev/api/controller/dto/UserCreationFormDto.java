@@ -1,7 +1,5 @@
 package com.aceleradev.api.controller.dto;
 
-import com.aceleradev.api.domain.model.Credential;
-import com.aceleradev.api.domain.model.User;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,12 +36,6 @@ public class UserCreationFormDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public User generateUser() {
-        return new User(this.getName(),
-                new Credential(this.getPassword(),
-                        this.getEmail()));
     }
 
 }

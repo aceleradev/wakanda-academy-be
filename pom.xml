@@ -38,18 +38,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>at.favre.lib</groupId>
-			<artifactId>bcrypt</artifactId>
-			<version>0.9.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>at.favre.lib</groupId>
-			<artifactId>bkdf</artifactId>
-			<version>0.5.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${swagger2.version}</version>

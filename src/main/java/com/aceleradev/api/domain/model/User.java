@@ -36,9 +36,11 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @JsonIgnore
     public String getEmail() {
         return this.credential.getEmail();
     }
+    
+    
 }
