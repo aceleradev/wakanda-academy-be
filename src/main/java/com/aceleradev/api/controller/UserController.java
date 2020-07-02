@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.aceleradev.api.controller.dto.UserCreatedDto;
@@ -18,7 +17,7 @@ import com.aceleradev.api.controller.dto.UserCreationFormDto;
 import com.aceleradev.api.domain.model.User;
 import com.aceleradev.api.service.contract.UserService;
 
-@Controller
+@Controller("/user")
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -28,7 +27,7 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping("create")
+    @PostMapping
     public ResponseEntity<UserCreatedDto> userCreation(@RequestBody @Valid UserCreationFormDto dto,
                                                             UriComponentsBuilder uriBuilder) throws Exception {
         log.info("Initialing userCreation method");
