@@ -52,7 +52,7 @@ public class DemoControllerTest {
 
 	private void teste2(){
 		//É possivel colocar ordem
-		//Rodrigo Beker
+		//Mirian Luz
 	}
 
 }
