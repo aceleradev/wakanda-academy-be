@@ -2,15 +2,15 @@ package com.aceleradev.api.domain.model;
 
 import java.util.List;
 
-public class Wankander {
+public class Wakander {
 	private String code;
 	private User user;
-	private List<WankerTribe> tribes;
+	private List<WakanderTribe> tribes;
 	
-	public Wankander() {
+	public Wakander() {
 	}
 
-	public Wankander(User user) {
+	public Wakander(User user) {
 		this.user = user;
 	}
 
@@ -30,11 +30,11 @@ public class Wankander {
 		this.user = user;
 	}
 
-	public List<WankerTribe> getTribes() {
+	public List<WakanderTribe> getTribes() {
 		return tribes;
 	}
 
-	public void setTribes(List<WankerTribe> tribes) {
+	public void setTribes(List<WakanderTribe> tribes) {
 		this.tribes = tribes;
 	}
 }
