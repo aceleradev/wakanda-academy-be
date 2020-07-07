@@ -7,20 +7,20 @@ public class Tribe {
 	private String code;
 	private String name;
 	private String description;
-	private String url;
+	private String iconURL;
 	private Tribe dependent;
 	private List<Skill> skills;
-	
+
 	public Tribe() {
 	}
 
-	public Tribe(Long id, String code, String name, String description, String url, Tribe dependent,
+	public Tribe(Long id, String code, String name, String description, String iconURL, Tribe dependent,
 			List<Skill> skills) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
 		this.description = description;
-		this.url = url;
+		this.iconURL = iconURL;
 		this.dependent = dependent;
 		this.skills = skills;
 	}
@@ -57,12 +57,12 @@ public class Tribe {
 		this.description = description;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getIconURL() {
+		return iconURL;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setIconURL(String iconURL) {
+		this.iconURL = iconURL;
 	}
 
 	public Tribe getDependent() {
