@@ -7,20 +7,17 @@ public class Skill {
 	private String code;
 	private String name;
 	private String description;
-	private Float difficulty;
 	private Tribe tribe;
 	private List<Lesson> lessons;
-	
+
 	public Skill() {
 	}
 
-	public Skill(Long id, String code, String name, String description, Float difficulty, Tribe tribe,
-			List<Lesson> lessons) {
+	public Skill(Long id, String code, String name, String description, Tribe tribe, List<Lesson> lessons) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
 		this.description = description;
-		this.difficulty = difficulty;
 		this.tribe = tribe;
 		this.lessons = lessons;
 	}
@@ -55,14 +52,6 @@ public class Skill {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Float getDifficulty() {
-		return difficulty;
-	}
-
-	public void setDifficulty(Float difficulty) {
-		this.difficulty = difficulty;
 	}
 
 	public Tribe getTribe() {
