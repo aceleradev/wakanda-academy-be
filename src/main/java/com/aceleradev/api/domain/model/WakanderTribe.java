@@ -9,13 +9,13 @@ public class WakanderTribe {
 	private List<WakanderTribeSkill> wakanderTribeSkills;
 	private LocalDateTime statedAt;
 	private LocalDateTime endedAt;
-	private StatusTribe status;
+	private Status status;
 	
 	public WakanderTribe() {
 	}
 
 	public WakanderTribe(Wakander wankander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills,
-			LocalDateTime statedAt, LocalDateTime endedAt, StatusTribe status) {
+			LocalDateTime statedAt, LocalDateTime endedAt, Status status) {
 		this.wankander = wankander;
 		this.tribe = tribe;
 		this.wakanderTribeSkills = wakanderTribeSkills;
@@ -64,11 +64,11 @@ public class WakanderTribe {
 		this.endedAt = endedAt;
 	}
 
-	public StatusTribe getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusTribe status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 }
