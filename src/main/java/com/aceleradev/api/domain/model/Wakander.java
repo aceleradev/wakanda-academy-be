@@ -6,7 +6,7 @@ public class Wakander {
 	private String code;
 	private User user;
 	private List<WakanderTribe> tribes;
-	
+
 	public Wakander() {
 	}
 
@@ -37,4 +37,18 @@ public class Wakander {
 	public void setTribes(List<WakanderTribe> tribes) {
 		this.tribes = tribes;
 	}
+
+	public String getName() {
+		return this.user.getName();
+	}
+
+	public String getEmail() {
+		return this.user.getEmail();
+	}
+
+	@Override
+	public String toString() {
+		return "Wakander [code=" + code + ", name=" + user.getName() + ", email=" + user.getEmail() + "]";
+	}
+
 }
