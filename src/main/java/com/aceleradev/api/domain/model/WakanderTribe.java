@@ -3,12 +3,37 @@ package com.aceleradev.api.domain.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.aceleradev.api.domain.model.ids.WakanderTribeId;
+
+@Entity
+@Table(name = "wakander_tribes")
+@IdClass(WakanderTribeId.class)
 public class WakanderTribe {
+	
+	@Id @ManyToOne
+	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
 	private Wakander wankander;
+	
+	@Id @ManyToOne
+	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
+	
 	private List<WakanderTribeSkill> wakanderTribeSkills;
+	
+	@Column(name = "started_at")
 	private LocalDateTime statedAt;
+	
+	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
+	
 	private Status status;
 	
 	public WakanderTribe() {
@@ -71,4 +96,35 @@ public class WakanderTribe {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
+		result = prime * result + ((wankander == null) ? 0 : wankander.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WakanderTribe other = (WakanderTribe) obj;
+		if (tribe == null) {
+			if (other.tribe != null)
+				return false;
+		} else if (!tribe.equals(other.tribe))
+			return false;
+		if (wankander == null) {
+			if (other.wankander != null)
+				return false;
+		} else if (!wankander.equals(other.wankander))
+			return false;
+		return true;
+	}
+	
 }
