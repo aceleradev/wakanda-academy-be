@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.aceleradev.api.domain.model.Wakander;
-import com.aceleradev.api.service.WakandaService;
+import com.aceleradev.api.service.WakanderService;
 
 @Controller("/wakander")
 public class WakanderController {
 	
 	private static final Logger log = LoggerFactory.getLogger(WakanderController.class);
 
-	private WakandaService wakandaService;
+	private WakanderService wakandaService;
 
-	public WakanderController(WakandaService wakandaService) {
+	public WakanderController(WakanderService wakandaService) {
 		this.wakandaService = wakandaService;
 	}
 	
