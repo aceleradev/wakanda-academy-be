@@ -2,11 +2,36 @@ package com.aceleradev.api.domain.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+
 public class WakanderTribeSkillLesson {
+	
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({
+		@JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
+		@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id"),
+		@JoinColumn(name = "tribe_id", referencedColumnName = "skill_id")
+	})
 	private WakanderTribeSkill wakanderTribeSkill;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Lesson lesson;
+	
+	@Column(name = "started_at")
 	private LocalDateTime startedAt;
+	
+	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
+	
+	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
 	public WakanderTribeSkillLesson() {
