@@ -27,16 +27,16 @@ public class UserServiceJpa implements UserService {
     @Override
     public User create(UserCreationFormDto dto) throws Exception {
         User user = dto.converter(passwordEncrypter);
-        this.createUser(dto, user);
+        saveUser(user);
         return user;
     }
 
-	private void createUser(UserCreationFormDto dto, User user) throws EntityExistsException {
+	private void saveUser(User user) throws EntityExistsException {
 		try {
 			logger.info("saving User on database");
 	    	this.repository.save(user);
 		} catch (ConstraintViolationException | DataIntegrityViolationException e) {
-			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", dto.getEmail()));
+			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", user.getEmail()));
 		}
 	}
 }
