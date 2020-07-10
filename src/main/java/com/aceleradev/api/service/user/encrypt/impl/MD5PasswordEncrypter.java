@@ -1,4 +1,4 @@
-package com.aceleradev.api.service.encrypt.impl;
+package com.aceleradev.api.service.user.encrypt.impl;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.springframework.stereotype.Service;
 
-import com.aceleradev.api.service.encrypt.PasswordEncrypter;
+import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
 
 @Service
 public class MD5PasswordEncrypter implements PasswordEncrypter {

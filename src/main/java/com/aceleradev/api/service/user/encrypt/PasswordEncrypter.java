@@ -1,4 +1,4 @@
-package com.aceleradev.api.service.encrypt;
+package com.aceleradev.api.service.user.encrypt;
 
 import java.security.NoSuchAlgorithmException;
 

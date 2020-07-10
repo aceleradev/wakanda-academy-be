@@ -1,4 +1,4 @@
-package com.aceleradev.api.service;
+package com.aceleradev.api.repository;
 
 import java.util.Optional;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aceleradev.api.controller.dto.WakanderProfileDTO;
 import com.aceleradev.api.domain.model.Wakander;
 import com.aceleradev.api.exception.NotFoundException;
-import com.aceleradev.api.service.WakanderService;
+import com.aceleradev.api.service.wakander.WakanderService;
 
 @RestController
 @RequestMapping("/wakander")

@@ -1,10 +1,11 @@
-package com.aceleradev.api.service;
+package com.aceleradev.api.service.wakander;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.aceleradev.api.domain.model.Wakander;
+import com.aceleradev.api.repository.WakanderRepository;
 
 @Service
 public class WakanderJPAService implements WakanderService {

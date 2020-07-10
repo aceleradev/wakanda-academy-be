@@ -1,4 +1,4 @@
-package com.aceleradev.api.service;
+package com.aceleradev.api.service.user;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,8 +10,7 @@ import com.aceleradev.api.controller.dto.UserCreationFormDto;
 import com.aceleradev.api.domain.model.User;
 import com.aceleradev.api.exception.EntityExistsException;
 import com.aceleradev.api.repository.UserRepository;
-import com.aceleradev.api.service.contract.UserService;
-import com.aceleradev.api.service.encrypt.PasswordEncrypter;
+import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
 
 @Service
 public class UserServiceJpa implements UserService {

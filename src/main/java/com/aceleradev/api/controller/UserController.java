@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.aceleradev.api.controller.dto.UserCreatedDto;
 import com.aceleradev.api.controller.dto.UserCreationFormDto;
 import com.aceleradev.api.domain.model.User;
-import com.aceleradev.api.service.contract.UserService;
+import com.aceleradev.api.service.user.UserService;
 
 @Controller("/user")
 public class UserController {

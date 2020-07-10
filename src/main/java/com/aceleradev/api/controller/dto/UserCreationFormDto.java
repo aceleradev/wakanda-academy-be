@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.aceleradev.api.domain.model.Credential;
 import com.aceleradev.api.domain.model.Wakander;
-import com.aceleradev.api.service.encrypt.PasswordEncrypter;
+import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
 
 public class UserCreationFormDto {
 	private static final Logger logger = LogManager.getLogger(UserCreationFormDto.class);
