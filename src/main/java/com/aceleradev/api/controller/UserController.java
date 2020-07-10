@@ -10,29 +10,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.aceleradev.api.controller.dto.UserCreatedDto;
 import com.aceleradev.api.controller.dto.UserCreationFormDto;
 import com.aceleradev.api.domain.model.User;
-import com.aceleradev.api.service.contract.UserService;
+import com.aceleradev.api.service.user.UserService;
 
-@Controller
+@Controller("/user")
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
-    private UserService service;
+    private UserService userService;
 
     public UserController(UserService service) {
-        this.service = service;
+        this.userService = service;
     }
 
-    @PostMapping("create")
+    @PostMapping
     public ResponseEntity<UserCreatedDto> userCreation(@RequestBody @Valid UserCreationFormDto dto,
                                                             UriComponentsBuilder uriBuilder) throws Exception {
         log.info("Initialing userCreation method");
-        User user = this.service.create(dto);
+        User user = this.userService.create(dto);
         log.info("generating uri return code 201");
         URI uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         log.info("returning uri and user's created info");
