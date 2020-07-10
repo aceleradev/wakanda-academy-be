@@ -11,22 +11,22 @@ import com.aceleradev.api.domain.model.User;
 import com.aceleradev.api.exception.EntityExistsException;
 import com.aceleradev.api.repository.UserRepository;
 import com.aceleradev.api.service.contract.UserService;
-import com.aceleradev.api.service.factory.UserFactory;
+import com.aceleradev.api.service.encrypt.PasswordEncrypter;
 
 @Service
 public class UserServiceJpa implements UserService {
-
+    private static final Logger logger = LogManager.getLogger(UserServiceJpa.class);
     private UserRepository repository;
-	private UserFactory factory;
+    private PasswordEncrypter passwordEncrypter;
 
-    public UserServiceJpa(UserRepository repository, UserFactory factory) {
+    public UserServiceJpa(UserRepository repository,PasswordEncrypter passwordEncrypter) {
         this.repository = repository;
-		this.factory = factory;
+		this.passwordEncrypter = passwordEncrypter;
     }
 
     @Override
     public User create(UserCreationFormDto dto) throws Exception {
-        User user = this.factory.createUser(dto);
+        User user = dto.converter(passwordEncrypter);
         this.createUser(dto, user);
         return user;
     }
@@ -39,6 +39,4 @@ public class UserServiceJpa implements UserService {
 			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", dto.getEmail()));
 		}
 	}
-    
-    private static final Logger logger = LogManager.getLogger(UserServiceJpa.class); 
 }

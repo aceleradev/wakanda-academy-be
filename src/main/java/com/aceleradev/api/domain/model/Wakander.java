@@ -2,16 +2,21 @@ package com.aceleradev.api.domain.model;
 
 import java.util.List;
 
-public class Wakander {
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+@Entity
+public class Wakander extends User {
 	private String code;
-	private User user;
+	@Transient
 	private List<WakanderTribe> tribes;
 
 	public Wakander() {
 	}
 
-	public Wakander(User user) {
-		this.user = user;
+	public Wakander(String code,String name, Credential credential) {
+        super(name, credential);
+		this.code = code;
 	}
 
 	public String getCode() {
@@ -22,14 +27,6 @@ public class Wakander {
 		this.code = code;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public List<WakanderTribe> getTribes() {
 		return tribes;
 	}
@@ -38,17 +35,9 @@ public class Wakander {
 		this.tribes = tribes;
 	}
 
-	public String getName() {
-		return this.user.getName();
-	}
-
-	public String getEmail() {
-		return this.user.getEmail();
-	}
-
 	@Override
 	public String toString() {
-		return "Wakander [code=" + code + ", name=" + user.getName() + ", email=" + user.getEmail() + "]";
+		return "Wakander [code=" + code + ", name=" + getName() + ", email=" + getEmail() + "]";
 	}
 
 }
