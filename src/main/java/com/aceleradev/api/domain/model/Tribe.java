@@ -2,13 +2,31 @@ package com.aceleradev.api.domain.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Tribe {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(length = 60, unique = true)
 	private String code;
+	@Column(length = 60, unique = true)
 	private String name;
+	@Column(length = 60, unique = true)
 	private String description;
+	@Column(length = 60, unique = true)
 	private String iconURL;
 	private Tribe dependent;
+	
+	@ManyToMany
 	private List<Skill> skills;
 
 	public Tribe() {
