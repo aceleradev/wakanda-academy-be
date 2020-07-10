@@ -2,11 +2,13 @@ package com.aceleradev.api.domain.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 @Entity
 public class Wakander extends User {
+	@Column(unique = true)
 	private String code;
 	@Transient
 	private List<WakanderTribe> tribes;

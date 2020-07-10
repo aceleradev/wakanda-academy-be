@@ -1,4 +1,4 @@
-package com.aceleradev.api.controller;
+package com.aceleradev.api.controller.dto;
 
 import com.aceleradev.api.domain.model.Wakander;
 

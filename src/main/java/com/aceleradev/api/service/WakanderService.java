@@ -1,7 +1,9 @@
 package com.aceleradev.api.service;
 
+import java.util.Optional;
+
 import com.aceleradev.api.domain.model.Wakander;
 
 public interface WakanderService {
-	Wakander findWakanderByCode(String wankanderCode);
+	Optional<Wakander> findWakanderByCode(String wankanderCode);
 }
