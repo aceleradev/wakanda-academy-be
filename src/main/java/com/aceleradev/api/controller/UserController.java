@@ -21,17 +21,17 @@ import com.aceleradev.api.service.contract.UserService;
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
-    private UserService service;
+    private UserService userService;
 
     public UserController(UserService service) {
-        this.service = service;
+        this.userService = service;
     }
 
     @PostMapping
     public ResponseEntity<UserCreatedDto> userCreation(@RequestBody @Valid UserCreationFormDto dto,
                                                             UriComponentsBuilder uriBuilder) throws Exception {
         log.info("Initialing userCreation method");
-        User user = this.service.create(dto);
+        User user = this.userService.create(dto);
         log.info("generating uri return code 201");
         URI uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         log.info("returning uri and user's created info");
