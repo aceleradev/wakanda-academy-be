@@ -13,32 +13,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lessons")
 public class Lesson {
-	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(length = 40, unique = true)
+	@Column(length = 60, unique = true)
 	private String code;
-	
+	@Column(length = 120, nullable = false)
+	private String name;
 	private String link;
-	
 	private Float difficulty;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "skill_id", referencedColumnName = "id")
 	private Skill skill;
-
-	public Lesson() {
-	}
-
-	public Lesson(Long id, String code, String link, Float difficulty, Skill skill) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.link = link;
-		this.difficulty = difficulty;
-		this.skill = skill;
-	}
 
 	public Long getId() {
 		return id;
@@ -54,6 +41,14 @@ public class Lesson {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLink() {

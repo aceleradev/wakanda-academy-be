@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,12 +21,13 @@ public class Tribe {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(length = 40, unique = true)
+	@Column(length = 60, unique = true)
 	private String code;
 	
-	@Column(nullable = false)
+	@Column(length = 120, nullable = false)
 	private String name;
 	
+	@Lob
 	private String description;
 	
 	@Column(name = "icon_url")
@@ -38,24 +40,9 @@ public class Tribe {
 	@OneToMany(mappedBy = "tribe")
 	private List<Skill> skills;
 
-	public Tribe() {
-	}
-
-	public Tribe(Long id, String code, String name, String description, String iconURL, Tribe dependent,
-			List<Skill> skills) {
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.description = description;
-		this.iconURL = iconURL;
-		this.dependent = dependent;
-		this.skills = skills;
-	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -63,7 +50,6 @@ public class Tribe {
 	public String getCode() {
 		return code;
 	}
-
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -71,7 +57,6 @@ public class Tribe {
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -79,7 +64,6 @@ public class Tribe {
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -87,7 +71,6 @@ public class Tribe {
 	public String getIconURL() {
 		return iconURL;
 	}
-
 	public void setIconURL(String iconURL) {
 		this.iconURL = iconURL;
 	}
@@ -95,7 +78,6 @@ public class Tribe {
 	public Tribe getDependent() {
 		return dependent;
 	}
-
 	public void setDependent(Tribe dependent) {
 		this.dependent = dependent;
 	}
@@ -103,7 +85,6 @@ public class Tribe {
 	public List<Skill> getSkills() {
 		return skills;
 	}
-
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}

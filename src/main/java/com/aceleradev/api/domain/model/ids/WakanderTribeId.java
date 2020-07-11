@@ -6,7 +6,6 @@ import com.aceleradev.api.domain.model.Tribe;
 import com.aceleradev.api.domain.model.Wakander;
 
 public class WakanderTribeId implements Serializable {
-	
 	private Wakander wakander;
 	private Tribe tribe;
 	

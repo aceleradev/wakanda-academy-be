@@ -51,17 +51,6 @@ public class WakanderTribeSkill {
 	public WakanderTribeSkill() {
 	}
 
-	public WakanderTribeSkill(WakanderTribe wakanderTribe, Skill skill,
-			List<WakanderTribeSkillLesson> wakanderTribeSkillLessons, LocalDateTime startedAt, LocalDateTime endedAt,
-			Status status) {
-		this.wakanderTribe = wakanderTribe;
-		this.skill = skill;
-		this.wakanderTribeSkillLessons = wakanderTribeSkillLessons;
-		this.startedAt = startedAt;
-		this.endedAt = endedAt;
-		this.status = status;
-	}
-
 	public WakanderTribe getWakanderTribe() {
 		return wakanderTribe;
 	}

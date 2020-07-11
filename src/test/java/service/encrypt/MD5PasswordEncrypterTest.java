@@ -7,8 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.aceleradev.api.service.encrypt.PasswordEncrypter;
-import com.aceleradev.api.service.encrypt.impl.MD5PasswordEncrypter;
+import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
+import com.aceleradev.api.service.user.encrypt.impl.MD5PasswordEncrypter;
 
 public class MD5PasswordEncrypterTest {
 	

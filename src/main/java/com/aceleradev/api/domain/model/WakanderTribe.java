@@ -32,32 +32,20 @@ public class WakanderTribe {
 	
 	@OneToMany(mappedBy = "wakanderTribe")
 	private List<WakanderTribeSkill> wakanderTribeSkills;
-	
+
 	@Column(name = "started_at")
 	private LocalDateTime statedAt;
-	
+
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
-	
-	public WakanderTribe() {
-	}
-
-	public WakanderTribe(Wakander wakander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills,
-			LocalDateTime statedAt, LocalDateTime endedAt, Status status) {
-		this.wakander = wakander;
-		this.tribe = tribe;
-		this.wakanderTribeSkills = wakanderTribeSkills;
-		this.statedAt = statedAt;
-		this.endedAt = endedAt;
-		this.status = status;
-	}
 
 	public Wakander getWakander() {
 		return wakander;
 	}
+
 	public void setWakander(Wakander wakander) {
 		this.wakander = wakander;
 	}
@@ -110,6 +98,7 @@ public class WakanderTribe {
 		result = prime * result + ((wakander == null) ? 0 : wakander.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -131,5 +120,4 @@ public class WakanderTribe {
 			return false;
 		return true;
 	}
-	
 }
