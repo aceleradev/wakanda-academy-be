@@ -5,10 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.aceleradev.api.domain.model.ids.WakanderTribeId;
@@ -18,14 +22,15 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeId;
 @IdClass(WakanderTribeId.class)
 public class WakanderTribe {
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
-	private Wakander wankander;
+	private Wakander wakander;
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
 	
+	@OneToMany(mappedBy = "wakanderTribe")
 	private List<WakanderTribeSkill> wakanderTribeSkills;
 	
 	@Column(name = "started_at")
@@ -34,14 +39,15 @@ public class WakanderTribe {
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
 	
+	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 	
 	public WakanderTribe() {
 	}
 
-	public WakanderTribe(Wakander wankander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills,
+	public WakanderTribe(Wakander wakander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills,
 			LocalDateTime statedAt, LocalDateTime endedAt, Status status) {
-		this.wankander = wankander;
+		this.wakander = wakander;
 		this.tribe = tribe;
 		this.wakanderTribeSkills = wakanderTribeSkills;
 		this.statedAt = statedAt;
@@ -49,12 +55,11 @@ public class WakanderTribe {
 		this.status = status;
 	}
 
-	public Wakander getWankander() {
-		return wankander;
+	public Wakander getWakander() {
+		return wakander;
 	}
-
-	public void setWankander(Wakander wankander) {
-		this.wankander = wankander;
+	public void setWakander(Wakander wakander) {
+		this.wakander = wakander;
 	}
 
 	public Tribe getTribe() {
@@ -102,7 +107,7 @@ public class WakanderTribe {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
-		result = prime * result + ((wankander == null) ? 0 : wankander.hashCode());
+		result = prime * result + ((wakander == null) ? 0 : wakander.hashCode());
 		return result;
 	}
 	@Override
@@ -119,10 +124,10 @@ public class WakanderTribe {
 				return false;
 		} else if (!tribe.equals(other.tribe))
 			return false;
-		if (wankander == null) {
-			if (other.wankander != null)
+		if (wakander == null) {
+			if (other.wakander != null)
 				return false;
-		} else if (!wankander.equals(other.wankander))
+		} else if (!wakander.equals(other.wakander))
 			return false;
 		return true;
 	}

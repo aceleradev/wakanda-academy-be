@@ -2,13 +2,40 @@ package com.aceleradev.api.domain.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tribes")
 public class Tribe {
+
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(length = 40, unique = true)
 	private String code;
+	
+	@Column(nullable = false)
 	private String name;
+	
 	private String description;
+	
+	@Column(name = "icon_url")
 	private String iconURL;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "dependent_id", referencedColumnName = "id")
 	private Tribe dependent;
+	
+	@OneToMany(mappedBy = "tribe")
 	private List<Skill> skills;
 
 	public Tribe() {

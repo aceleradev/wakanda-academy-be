@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,16 +14,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "wakanders")
 public class Wakander {
-	
-	@Column(length = 60, unique = true)
+
+	@Column(length = 40, unique = true)
 	private String code;
 	
-	@Id
+	@Id @Column(name = "user_id")
+	private Long id;
+	
 	@OneToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@MapsId
 	private User user;
 	
-	@OneToMany(mappedBy = "wankander")
+	@OneToMany(mappedBy = "wakander")
 	private List<WakanderTribe> tribes;
 	
 	public Wakander() {
@@ -31,11 +35,17 @@ public class Wakander {
 	public Wakander(User user) {
 		this.user = user;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getCode() {
 		return code;
 	}
-
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -60,7 +70,7 @@ public class Wakander {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 	@Override
@@ -72,12 +82,12 @@ public class Wakander {
 		if (getClass() != obj.getClass())
 			return false;
 		Wakander other = (Wakander) obj;
-		if (user == null) {
-			if (other.user != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-	
+
 }

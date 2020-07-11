@@ -13,7 +13,7 @@ spring:
       max-lifetime: ${DATASOURCE_MAX_LIFETIME:1000}      auto-commit: true
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: ${DDL_AUTO:none}
     show-sql: false
     properties:
       hibernate:

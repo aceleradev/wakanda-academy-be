@@ -36,7 +36,7 @@ public class WakanderTribeSkill {
 	@JoinColumn(name = "skill_id", referencedColumnName = "id")
 	private Skill skill;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "wakanderTribeSkill")
 	private List<WakanderTribeSkillLesson> wakanderTribeSkillLessons;
 	
 	@Column(name = "started_at")
