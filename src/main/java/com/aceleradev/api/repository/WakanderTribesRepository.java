@@ -1,16 +1,16 @@
 package com.aceleradev.api.repository;
 
-import com.aceleradev.api.domain.model.Tribe;
-import com.aceleradev.api.domain.model.WakanderTribe;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.aceleradev.api.domain.model.WakanderTribe;
 
 public interface WakanderTribesRepository extends JpaRepository<WakanderTribe,Long> {
 
-    @Query("SELECT wktribe.tribe FROM WakanderTribe wktribe join wktribe.wakander wk WHERE wk.code=:wakanderCode")
-    List<Tribe> listUnlockedTribes(@Param("wakanderCode") String wakanderCode);
+    @Query("SELECT wktribe FROM WakanderTribe wktribe join wktribe.wakander wk WHERE wk.code=:wakanderCode")
+    List<WakanderTribe> listUnlockedTribes(@Param("wakanderCode") String wakanderCode);
 
 }
