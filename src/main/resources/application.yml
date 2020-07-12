@@ -17,7 +17,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: ${DDL_AUTO:none}
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true

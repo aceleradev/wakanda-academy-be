@@ -2,11 +2,9 @@ package com.aceleradev.api.controller.dto;
 
 import com.aceleradev.api.domain.model.Status;
 import com.aceleradev.api.domain.model.Tribe;
+import com.aceleradev.api.domain.model.WakanderTribe;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-public class TribeDTO {
+public class WakanderTribeDTO {
 
     private String tribeCode;
     private String name;
@@ -14,13 +12,14 @@ public class TribeDTO {
     private String iconUrl;
     private Status status;
 
-    public TribeDTO() {}
+    public WakanderTribeDTO() {}
 
-    public TribeDTO(Tribe tribe) {
-        this.tribeCode=tribe.getCode();
-        this.name=tribe.getName();
-        this.description=tribe.getDescription();
-        this.iconUrl=tribe.getIconURL();
+    public WakanderTribeDTO(WakanderTribe wktribe) {
+        this.tribeCode=wktribe.getTribe().getCode();
+        this.name=wktribe.getTribe().getName();
+        this.description=wktribe.getTribe().getDescription();
+        this.iconUrl=wktribe.getTribe().getIconURL();
+        this.status=wktribe.getStatus();
     }
 
     public String getTribeCode() {

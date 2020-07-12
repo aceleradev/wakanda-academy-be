@@ -1,7 +1,7 @@
 package com.aceleradev.api.controller;
 
 import com.aceleradev.api.controller.contract.ListTribesWakandaController;
-import com.aceleradev.api.controller.dto.TribeDTO;
+import com.aceleradev.api.controller.dto.WakanderTribeDTO;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
 import org.slf4j.Logger;
@@ -26,9 +26,9 @@ public class ListTribesWakanderControllerImpl implements ListTribesWakandaContro
     }
 
     @GetMapping
-    public ResponseEntity<List<TribeDTO>> listTribes(@RequestParam String wakanderCode) {
+    public ResponseEntity<List<WakanderTribeDTO>> listTribes(@RequestParam String wakanderCode) {
         log.info("Starting listTribes in WakanderTribesServiceImpl");
-        List<TribeDTO> tribes=wakanderTribesService.listTribes(wakanderCode);
+        List<WakanderTribeDTO> tribes=wakanderTribesService.listTribes(wakanderCode);
         log.info("returning tribes of wakander {}",wakanderCode);
         return ResponseEntity.ok(tribes);
     }
