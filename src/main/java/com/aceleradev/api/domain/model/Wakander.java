@@ -4,13 +4,19 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "wakanders")
+@PrimaryKeyJoinColumn(name="user_id")
 public class Wakander extends User {
-	@Column(unique = true)
+
+	@Column(length = 40, unique = true)
 	private String code;
-	@Transient
+	
+	@OneToMany(mappedBy = "wakander")
 	private List<WakanderTribe> tribes;
 
 	public Wakander() {
@@ -24,7 +30,6 @@ public class Wakander extends User {
 	public String getCode() {
 		return code;
 	}
-
 	public void setCode(String code) {
 		this.code = code;
 	}
