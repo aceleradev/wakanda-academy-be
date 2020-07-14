@@ -42,7 +42,19 @@ public class WakanderTribe {
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
-	public Wakander getWakander() {
+    public WakanderTribe() {
+    }
+
+    public WakanderTribe(Wakander wakander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills, LocalDateTime statedAt, LocalDateTime endedAt, Status status) {
+        this.wakander = wakander;
+        this.tribe = tribe;
+        this.wakanderTribeSkills = wakanderTribeSkills;
+        this.statedAt = statedAt;
+        this.endedAt = endedAt;
+        this.status = status;
+    }
+
+    public Wakander getWakander() {
 		return wakander;
 	}
 

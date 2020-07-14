@@ -29,6 +29,9 @@ public class ListTribesWakanderControllerImpl implements ListTribesWakandaContro
     public ResponseEntity<List<WakanderTribeDTO>> listTribes(@RequestParam String wakanderCode) {
         log.info("Starting listTribes in WakanderTribesServiceImpl");
         List<WakanderTribeDTO> tribes=wakanderTribesService.listTribes(wakanderCode);
+        if(tribes.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
         log.info("returning tribes of wakander {}",wakanderCode);
         return ResponseEntity.ok(tribes);
     }
