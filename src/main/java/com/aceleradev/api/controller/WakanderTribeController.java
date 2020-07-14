@@ -1,6 +1,6 @@
 package com.aceleradev.api.controller;
 
-import com.aceleradev.api.controller.contract.ListTribesWakandaController;
+import com.aceleradev.api.controller.contract.WakanderTribeAPI;
 import com.aceleradev.api.controller.dto.WakanderTribeDTO;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/listTribes")
-public class ListTribesWakanderControllerImpl implements ListTribesWakandaController {
+@RequestMapping("/wakandertribe")
+public class WakanderTribeController implements WakanderTribeAPI {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
     private WakanderTribesService wakanderTribesService;
 
-    public ListTribesWakanderControllerImpl(WakanderTribesService wakanderTribesService) {
+    public WakanderTribeController(WakanderTribesService wakanderTribesService) {
         this.wakanderTribesService = wakanderTribesService;
     }
 

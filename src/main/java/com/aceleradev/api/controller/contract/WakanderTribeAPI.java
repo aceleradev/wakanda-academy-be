@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface ListTribesWakandaController {
+public interface WakanderTribeAPI {
 
     ResponseEntity<List<WakanderTribeDTO>> listTribes(String wakanderCode);
 
