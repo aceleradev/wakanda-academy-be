@@ -1,7 +1,7 @@
 package com.aceleradev.api.controller;
 
 import com.aceleradev.api.controller.dto.WakanderTribeDTO;
-import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
+import com.aceleradev.api.service.wakander.tribes.WakanderTribeService;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +18,9 @@ import java.util.List;
 public class WakanderTribeController implements WakanderTribeAPI {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
-    private WakanderTribesService wakanderTribesService;
+    private WakanderTribeService wakanderTribesService;
 
-    public WakanderTribeController(WakanderTribesService wakanderTribesService) {
+    public WakanderTribeController(WakanderTribeService wakanderTribesService) {
         this.wakanderTribesService = wakanderTribesService;
     }
 

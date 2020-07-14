@@ -10,5 +10,5 @@ import java.util.List;
 public interface WakanderTribeAPI {
 	ResponseEntity<List<WakanderTribeDTO>> listTribes(String wakanderCode);
 
-	WakanderTribeDetailDTO findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode, String tribeCode);
+	ResponseEntity<WakanderTribeDetailDTO> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode, String tribeCode);
 }

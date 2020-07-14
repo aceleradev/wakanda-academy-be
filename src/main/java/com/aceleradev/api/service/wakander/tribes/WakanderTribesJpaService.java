@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class WakanderTribesJpaService implements WakanderTribesService {
+public class WakanderTribesJpaService implements WakanderTribeService {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
     private WakanderTribesRepository wkTribesRepository;
