@@ -1,6 +1,5 @@
 package com.aceleradev.api.controller;
 
-import com.aceleradev.api.controller.contract.WakanderTribeAPI;
 import com.aceleradev.api.controller.dto.WakanderTribeDTO;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
