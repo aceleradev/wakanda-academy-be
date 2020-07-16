@@ -102,5 +102,5 @@ public class WakanderTribeSkillLesson {
 		this.status = Status.DOING;
 		this.startedAt = LocalDateTime.now();
 	}
-
+	
 }
