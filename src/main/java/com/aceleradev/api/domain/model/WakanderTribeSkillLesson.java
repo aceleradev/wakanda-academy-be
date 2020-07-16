@@ -20,27 +20,25 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeSkillLessonId;
 @Table(name = "wakander_tribe_skill_lessons")
 @IdClass(WakanderTribeSkillLessonId.class)
 public class WakanderTribeSkillLesson {
-	
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-		@JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
-		@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id"),
-		@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
-	})
+	@JoinColumns({ @JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
+			@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id"),
+			@JoinColumn(name = "skill_id", referencedColumnName = "skill_id") })
 	private WakanderTribeSkill wakanderTribeSkill;
-	
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "lesson_id", referencedColumnName = "id")
 	private Lesson lesson;
-	
+
 	@Column(name = "started_at")
 	private LocalDateTime startedAt;
-	
+
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
@@ -94,4 +92,15 @@ public class WakanderTribeSkillLesson {
 	public String getLessonName() {
 		return this.lesson.getName();
 	}
+
+	public void endsLesson() {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+	}
+
+	public void startsLesson() {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+	}
+
 }
