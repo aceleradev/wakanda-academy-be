@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/wakandertribe")
-public class WakanderTribeController {
+public class WakanderTribeController implements WakanderTribeAPI{
 
 	private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
 	private WakanderTribeService wakanderTribesService;
