@@ -1,4 +1,4 @@
-package com.aceleradev.api.service.wakander.tribes.skill.lesson;
+package com.aceleradev.api.service.wakandertribesskilllesson;
 
 import org.springframework.stereotype.Service;
 
