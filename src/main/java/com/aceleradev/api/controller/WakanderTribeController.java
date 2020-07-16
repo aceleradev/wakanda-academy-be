@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/wakandertribe")
-public class WakanderTribeController implements WakanderTribeAPI {
+public class WakanderTribeController {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
     private WakanderTribeService wakanderTribesService;
@@ -41,12 +41,14 @@ public class WakanderTribeController implements WakanderTribeAPI {
     @GetMapping("/{wakanderCode}/{tribeCode}")
 	public ResponseEntity<WakanderTribeDetailDTO> findWakanderTribeDetailByWakanderCodeAndTribeCode(@PathVariable String wakanderCode,
 			@PathVariable String tribeCode) {
+    	 log.info("Starting findWakanderTribeDetailByWakanderCodeAndTribeCode in WakanderTribesService");
 		Optional<WakanderTribe> wakanderTribeDetail = wakanderTribesService.findWakanderTribeDetailByWakanderCodeAndTribeCode(wakanderCode,tribeCode);
 		
 		if(wakanderTribeDetail.isPresent()) {
-			
+			log.info("returning WakanderTribeDetailDTO {}",wakanderCode);
 			return ResponseEntity.ok(new WakanderTribeDetailDTO(wakanderTribeDetail.get()));
 		}else {
+			
 			return ResponseEntity.notFound().build();
 		}
 	}

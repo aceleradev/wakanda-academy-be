@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,5 +37,6 @@ public class WakanderTribesJpaService implements WakanderTribeService {
             return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
         }
     }
+
 
 }
