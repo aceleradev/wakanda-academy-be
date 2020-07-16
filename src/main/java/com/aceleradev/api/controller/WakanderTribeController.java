@@ -38,7 +38,7 @@ public class WakanderTribeController {
         return ResponseEntity.ok(tribes);
     }
 
-    @GetMapping("/{wakanderCode}/{tribeCode}")
+    @GetMapping("/wakandercode/{wakanderCode}/tribecode/{tribeCode}")
 	public ResponseEntity<WakanderTribeDetailDTO> findWakanderTribeDetailByWakanderCodeAndTribeCode(@PathVariable String wakanderCode,
 			@PathVariable String tribeCode) {
     	 log.info("Starting findWakanderTribeDetailByWakanderCodeAndTribeCode in WakanderTribesService");
