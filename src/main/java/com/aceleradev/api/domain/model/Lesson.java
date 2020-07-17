@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Lesson {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(length = 60, unique = true)
 	private String code;
