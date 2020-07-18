@@ -2,34 +2,41 @@ package com.aceleradev.api.domain.model.ids;
 
 import java.io.Serializable;
 
-import com.aceleradev.api.domain.model.Lesson;
-import com.aceleradev.api.domain.model.WakanderTribeSkill;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class WakanderTribeSkillLessonId implements Serializable {
 
-	private WakanderTribeSkill wakanderTribeSkill;
-	private Lesson lesson;
+	private WakanderTribeSkillId wakanderTribeSkillId;
+	private Long lessonId;
 	
-	public WakanderTribeSkill getWakanderTribeSkill() {
-		return wakanderTribeSkill;
-	}
-	public void setWakanderTribeSkill(WakanderTribeSkill wakanderTribeSkill) {
-		this.wakanderTribeSkill = wakanderTribeSkill;
+	public WakanderTribeSkillLessonId() {}
+	
+	public WakanderTribeSkillLessonId(WakanderTribeSkillId wakanderTribeSkillId, Long lessonId) {
+		this.wakanderTribeSkillId = wakanderTribeSkillId;
+		this.lessonId = lessonId;
 	}
 
-	public Lesson getLesson() {
-		return lesson;
+	public WakanderTribeSkillId getWakanderTribeSkillId() {
+		return wakanderTribeSkillId;
 	}
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
+	public void setWakanderTribeSkillId(WakanderTribeSkillId wakanderTribeSkillId) {
+		this.wakanderTribeSkillId = wakanderTribeSkillId;
+	}
+
+	public Long getLessonId() {
+		return lessonId;
+	}
+	public void setLessonId(Long lessonId) {
+		this.lessonId = lessonId;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((lesson == null) ? 0 : lesson.hashCode());
-		result = prime * result + ((wakanderTribeSkill == null) ? 0 : wakanderTribeSkill.hashCode());
+		result = prime * result + ((lessonId == null) ? 0 : lessonId.hashCode());
+		result = prime * result + ((wakanderTribeSkillId == null) ? 0 : wakanderTribeSkillId.hashCode());
 		return result;
 	}
 	@Override
@@ -41,15 +48,15 @@ public class WakanderTribeSkillLessonId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		WakanderTribeSkillLessonId other = (WakanderTribeSkillLessonId) obj;
-		if (lesson == null) {
-			if (other.lesson != null)
+		if (lessonId == null) {
+			if (other.lessonId != null)
 				return false;
-		} else if (!lesson.equals(other.lesson))
+		} else if (!lessonId.equals(other.lessonId))
 			return false;
-		if (wakanderTribeSkill == null) {
-			if (other.wakanderTribeSkill != null)
+		if (wakanderTribeSkillId == null) {
+			if (other.wakanderTribeSkillId != null)
 				return false;
-		} else if (!wakanderTribeSkill.equals(other.wakanderTribeSkill))
+		} else if (!wakanderTribeSkillId.equals(other.wakanderTribeSkillId))
 			return false;
 		return true;
 	}
