@@ -5,6 +5,13 @@ import java.io.Serializable;
 public class WakanderTribeId implements Serializable {
 	private Long wakanderId;
 	private Long tribeId;
+	
+	public WakanderTribeId() {}
+
+	public WakanderTribeId(Long wakanderId, Long tribeId) {
+		this.wakanderId = wakanderId;
+		this.tribeId = tribeId;
+	}
 
 	public Long getWakanderId() {
 		return wakanderId;

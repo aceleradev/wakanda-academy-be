@@ -2,6 +2,7 @@ package com.aceleradev.api.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,11 +30,13 @@ public class WakanderTribe {
 	@Id
 	@Column(name = "tribe_id", insertable = false, updatable = false)
 	private Long tribeId;
-
+	
+	@MapsId("wakanderId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
 	private Wakander wakander;
 
+	@MapsId("tribeId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
@@ -53,8 +57,8 @@ public class WakanderTribe {
 	}
 
 	public WakanderTribe(Wakander wakander, Tribe tribe, Status status) {
-		this.wakander = wakander;
-		this.tribe = tribe;
+		this.setWakander(wakander);
+		this.setTribe(tribe);
 		this.status = status;
 	}
 
@@ -79,6 +83,9 @@ public class WakanderTribe {
 	}
 
 	public void setWakander(Wakander wakander) {
+		Optional.ofNullable(wakander)
+				.map(Wakander::getId)
+				.ifPresent(this::setWakanderId);
 		this.wakander = wakander;
 	}
 
@@ -87,6 +94,9 @@ public class WakanderTribe {
 	}
 
 	public void setTribe(Tribe tribe) {
+		Optional.ofNullable(tribe)
+				.map(Tribe::getId)
+				.ifPresent(this::setTribeId);
 		this.tribe = tribe;
 	}
 
