@@ -2,35 +2,42 @@ package com.aceleradev.api.domain.model.ids;
 
 import java.io.Serializable;
 
-import com.aceleradev.api.domain.model.Tribe;
-import com.aceleradev.api.domain.model.Wakander;
-
 public class WakanderTribeId implements Serializable {
-	private Wakander wakander;
-	private Tribe tribe;
+	private Long wakanderId;
+	private Long tribeId;
 	
-	public Wakander getWakander() {
-		return wakander;
+	public WakanderTribeId() {}
+
+	public WakanderTribeId(Long wakanderId, Long tribeId) {
+		this.wakanderId = wakanderId;
+		this.tribeId = tribeId;
 	}
-	public void setWakander(Wakander wakander) {
-		this.wakander = wakander;
+
+	public Long getWakanderId() {
+		return wakanderId;
 	}
-	
-	public Tribe getTribe() {
-		return tribe;
+
+	public void setWakanderId(Long wakanderId) {
+		this.wakanderId = wakanderId;
 	}
-	public void setTribe(Tribe tribe) {
-		this.tribe = tribe;
+
+	public Long getTribeId() {
+		return tribeId;
 	}
-	
+
+	public void setTribeId(Long tribeId) {
+		this.tribeId = tribeId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
-		result = prime * result + ((wakander == null) ? 0 : wakander.hashCode());
+		result = prime * result + ((tribeId == null) ? 0 : tribeId.hashCode());
+		result = prime * result + ((wakanderId == null) ? 0 : wakanderId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -40,18 +47,18 @@ public class WakanderTribeId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		WakanderTribeId other = (WakanderTribeId) obj;
-		if (tribe == null) {
-			if (other.tribe != null)
+		if (tribeId == null) {
+			if (other.tribeId != null)
 				return false;
-		} else if (!tribe.equals(other.tribe))
+		} else if (!tribeId.equals(other.tribeId))
 			return false;
-		if (wakander == null) {
-			if (other.wakander != null)
+		if (wakanderId == null) {
+			if (other.wakanderId != null)
 				return false;
-		} else if (!wakander.equals(other.wakander))
+		} else if (!wakanderId.equals(other.wakanderId))
 			return false;
 		return true;
 	}
-	
+
 	private static final long serialVersionUID = 1L;
 }

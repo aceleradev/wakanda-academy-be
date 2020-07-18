@@ -8,7 +8,7 @@ import javax.validation.constraints.Email;
 public class Credential {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 60, nullable = false)
     private String password;
