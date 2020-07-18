@@ -1,6 +1,5 @@
 package com.aceleradev.api.domain.model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -72,8 +71,6 @@ public class Wakander extends User {
 
 	private WakanderTribe buildWakanderTribe(Tribe tribe) {
 		WakanderTribe wakanderTribe = new WakanderTribe(this, tribe, Status.TODO);
-		wakanderTribe.setEndedAt(LocalDateTime.now());
-		wakanderTribe.setStatedAt(LocalDateTime.now());
 		return wakanderTribe;
 	}
 
