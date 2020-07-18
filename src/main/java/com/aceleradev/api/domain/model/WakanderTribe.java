@@ -21,13 +21,18 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeId;
 @Table(name = "wakander_tribes")
 @IdClass(WakanderTribeId.class)
 public class WakanderTribe {
+	@Id
+	@Column(name = "wakander_user_id", insertable = false, updatable = false)
+	private Long wakanderId;
 
 	@Id
+	@Column(name = "tribe_id", insertable = false, updatable = false)
+	private Long tribeId;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
 	private Wakander wakander;
 
-	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
@@ -51,6 +56,22 @@ public class WakanderTribe {
 		this.wakander = wakander;
 		this.tribe = tribe;
 		this.status = status;
+	}
+
+	public Long getWakanderId() {
+		return wakanderId;
+	}
+
+	public void setWakanderId(Long wakanderId) {
+		this.wakanderId = wakanderId;
+	}
+
+	public Long getTribeId() {
+		return tribeId;
+	}
+
+	public void setTribeId(Long tribeId) {
+		this.tribeId = tribeId;
 	}
 
 	public Wakander getWakander() {
@@ -105,8 +126,8 @@ public class WakanderTribe {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
-		result = prime * result + ((wakander == null) ? 0 : wakander.hashCode());
+		result = prime * result + ((tribeId == null) ? 0 : tribeId.hashCode());
+		result = prime * result + ((wakanderId == null) ? 0 : wakanderId.hashCode());
 		return result;
 	}
 
@@ -119,16 +140,17 @@ public class WakanderTribe {
 		if (getClass() != obj.getClass())
 			return false;
 		WakanderTribe other = (WakanderTribe) obj;
-		if (tribe == null) {
-			if (other.tribe != null)
+		if (tribeId == null) {
+			if (other.tribeId != null)
 				return false;
-		} else if (!tribe.equals(other.tribe))
+		} else if (!tribeId.equals(other.tribeId))
 			return false;
-		if (wakander == null) {
-			if (other.wakander != null)
+		if (wakanderId == null) {
+			if (other.wakanderId != null)
 				return false;
-		} else if (!wakander.equals(other.wakander))
+		} else if (!wakanderId.equals(other.wakanderId))
 			return false;
 		return true;
 	}
+
 }
