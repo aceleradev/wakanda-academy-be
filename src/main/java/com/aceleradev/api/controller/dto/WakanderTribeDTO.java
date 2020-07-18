@@ -1,7 +1,6 @@
 package com.aceleradev.api.controller.dto;
 
 import com.aceleradev.api.domain.model.Status;
-import com.aceleradev.api.domain.model.Tribe;
 import com.aceleradev.api.domain.model.WakanderTribe;
 
 public class WakanderTribeDTO {

@@ -2,34 +2,34 @@ package com.aceleradev.api.domain.model.ids;
 
 import java.io.Serializable;
 
-import com.aceleradev.api.domain.model.Skill;
-import com.aceleradev.api.domain.model.WakanderTribe;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class WakanderTribeSkillId implements Serializable {
 	
-	private WakanderTribe wakanderTribe;
-	private Skill skill;
+	private WakanderTribeId wakanderTribeId;
+	private Long skillId;
 	
-	public WakanderTribe getWakanderTribe() {
-		return wakanderTribe;
+	public WakanderTribeId getWakanderTribeId() {
+		return wakanderTribeId;
 	}
-	public void setWakanderTribe(WakanderTribe wakanderTribe) {
-		this.wakanderTribe = wakanderTribe;
-	}
-
-	public Skill getSkill() {
-		return skill;
-	}
-	public void setSkill(Skill skill) {
-		this.skill = skill;
+	public void setWakanderTribeId(WakanderTribeId wakanderTribeId) {
+		this.wakanderTribeId = wakanderTribeId;
 	}
 
+	public Long getSkillId() {
+		return skillId;
+	}
+	public void setSkillId(Long skillId) {
+		this.skillId = skillId;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((skill == null) ? 0 : skill.hashCode());
-		result = prime * result + ((wakanderTribe == null) ? 0 : wakanderTribe.hashCode());
+		result = prime * result + ((skillId == null) ? 0 : skillId.hashCode());
+		result = prime * result + ((wakanderTribeId == null) ? 0 : wakanderTribeId.hashCode());
 		return result;
 	}
 	@Override
@@ -41,15 +41,15 @@ public class WakanderTribeSkillId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		WakanderTribeSkillId other = (WakanderTribeSkillId) obj;
-		if (skill == null) {
-			if (other.skill != null)
+		if (skillId == null) {
+			if (other.skillId != null)
 				return false;
-		} else if (!skill.equals(other.skill))
+		} else if (!skillId.equals(other.skillId))
 			return false;
-		if (wakanderTribe == null) {
-			if (other.wakanderTribe != null)
+		if (wakanderTribeId == null) {
+			if (other.wakanderTribeId != null)
 				return false;
-		} else if (!wakanderTribe.equals(other.wakanderTribe))
+		} else if (!wakanderTribeId.equals(other.wakanderTribeId))
 			return false;
 		return true;
 	}

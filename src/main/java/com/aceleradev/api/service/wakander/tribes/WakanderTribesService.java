@@ -1,9 +1,8 @@
 package com.aceleradev.api.service.wakander.tribes;
 
-import com.aceleradev.api.controller.dto.WakanderTribeDTO;
-import com.aceleradev.api.domain.model.WakanderTribe;
-
 import java.util.List;
+
+import com.aceleradev.api.controller.dto.WakanderTribeDTO;
 
 public interface WakanderTribesService {
 
