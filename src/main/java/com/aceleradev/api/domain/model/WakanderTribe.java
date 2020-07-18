@@ -21,15 +21,17 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeId;
 @Table(name = "wakander_tribes")
 @IdClass(WakanderTribeId.class)
 public class WakanderTribe {
-	
-	@Id @ManyToOne(fetch = FetchType.LAZY)
+
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
 	private Wakander wakander;
-	
-	@Id @ManyToOne(fetch = FetchType.LAZY)
+
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
-	
+
 	@OneToMany(mappedBy = "wakanderTribe")
 	private List<WakanderTribeSkill> wakanderTribeSkills;
 
@@ -38,23 +40,20 @@ public class WakanderTribe {
 
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
-    public WakanderTribe() {
-    }
+	public WakanderTribe() {
+	}
 
-    public WakanderTribe(Wakander wakander, Tribe tribe, List<WakanderTribeSkill> wakanderTribeSkills, LocalDateTime statedAt, LocalDateTime endedAt, Status status) {
-        this.wakander = wakander;
-        this.tribe = tribe;
-        this.wakanderTribeSkills = wakanderTribeSkills;
-        this.statedAt = statedAt;
-        this.endedAt = endedAt;
-        this.status = status;
-    }
+	public WakanderTribe(Wakander wakander, Tribe tribe, Status status) {
+		this.wakander = wakander;
+		this.tribe = tribe;
+		this.status = status;
+	}
 
-    public Wakander getWakander() {
+	public Wakander getWakander() {
 		return wakander;
 	}
 

@@ -74,4 +74,12 @@ public class Journey {
 	public void setStandard(Boolean standard) {
 		this.standard = standard;
 	}
+
+	public List<JourneyTribe> getTribes() {
+		return tribes;
+	}
+
+	public void setTribes(List<JourneyTribe> tribes) {
+		this.tribes = tribes;
+	}
 }

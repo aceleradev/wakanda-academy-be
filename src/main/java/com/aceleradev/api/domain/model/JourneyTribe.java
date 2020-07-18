@@ -16,12 +16,12 @@ import com.aceleradev.api.domain.model.ids.JourneyTribeId;
 @IdClass(JourneyTribeId.class)
 public class JourneyTribe {
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "journey_id", referencedColumnName = "id")
 	private Journey journey;
 
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
 
