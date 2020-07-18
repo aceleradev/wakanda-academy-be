@@ -43,7 +43,10 @@ public class WakanderTribeSkillLesson {
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
-
+	
+	@Column(name = "unlocked_content", columnDefinition = "DEFAULT 0")
+	private boolean unlockedContent;
+	
 	public WakanderTribeSkillLesson() {
 	}
 
@@ -86,4 +89,12 @@ public class WakanderTribeSkillLesson {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	public boolean isUnlockedContent() {
+		return unlockedContent;
+	}
+	public void setUnlockedContent(boolean unlockedContent) {
+		this.unlockedContent = unlockedContent;
+	}
+	
 }

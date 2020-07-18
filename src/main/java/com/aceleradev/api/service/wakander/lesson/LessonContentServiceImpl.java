@@ -4,11 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.aceleradev.api.domain.model.Status;
-import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
 import com.aceleradev.api.repository.WakanderTribeSkillLessonRepository;
-import com.aceleradev.api.service.googleDrive.DriverService;
-import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
+import com.aceleradev.api.service.driver.DriverService;
 
 @Service
 public class LessonContentServiceImpl implements LessonContentService {
@@ -24,14 +21,11 @@ public class LessonContentServiceImpl implements LessonContentService {
 	}
 
 	@Override
-	public void unlockWakanderTribeSkillLessonContent(String wakanderCode, String tribeCode, String skillCode,
-			String lessonCode) {
+	public void unlockWakanderTribeSkillLessonContent(String wakanderCode, String tribeCode, String skillCode, String lessonCode) {
 		log.info("Starting unlockWakanderTribeSkillLessonContent in LessonContentServiceImpl");
-		WakanderTribeSkillLesson lesson = wakanderTribeSkillLessonRepository.UnlockeContent(wakanderCode);
+		this.wakanderTribeSkillLessonRepository.unlockContent(wakanderCode, tribeCode, skillCode, lessonCode);
 		log.info("loking for lesson");
-		lesson.setStatus(Status.DOING);
-		driverService.unlockDrive();
-		wakanderTribeSkillLessonRepository.save(lesson);
+		driverService.unlockContent();
 
 	}
 
