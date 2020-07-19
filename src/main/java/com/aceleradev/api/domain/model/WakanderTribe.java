@@ -132,4 +132,8 @@ public class WakanderTribe {
 			return false;
 		return true;
 	}
+
+	public String getNameTribe() {
+		return this.tribe.getName();
+	}
 }

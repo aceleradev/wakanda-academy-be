@@ -12,48 +12,24 @@ import com.aceleradev.api.domain.model.WakanderTribe;
 import com.aceleradev.api.domain.model.WakanderTribeSkill;
 
 public class WakanderTribeDetailDTO {
-	
-	private String wakander;
-	private Tribe tribe;
+
+	private String nameTribe;
 	private List<WakanderTribeSkillDto> wakanderTribeSkills;
-	private LocalDateTime statedAt;
-	private LocalDateTime endedAt;
-	private Status status;
-	
+
 	public WakanderTribeDetailDTO(WakanderTribe wakanderTribe) {
-		this.wakander = wakanderTribe.getWakander().getCode();
-		this.tribe = wakanderTribe.getTribe();
-		this.wakanderTribeSkills = new ArrayList<>();
-		this.wakanderTribeSkills.addAll(wakanderTribe.getWakanderTribeSkills().stream().map(WakanderTribeSkillDto::new).collect(Collectors.toList()));
-		this.statedAt = wakanderTribe.getStatedAt();
-		this.endedAt = wakanderTribe.getEndedAt();
-		this.status = wakanderTribe.getStatus(); 
+		this.nameTribe = wakanderTribe.getNameTribe();
+		this.wakanderTribeSkills = WakanderTribeSkillDto.convert(wakanderTribe.getWakanderTribeSkills());
+
+	}
+	
+
+	public String getNameTribe() {
+		return nameTribe;
 	}
 
-	public String getWakander() {
-		return wakander;
-	}
-
-	public Tribe getTribe() {
-		return tribe;
-	}
 
 	public List<WakanderTribeSkillDto> getWakanderTribeSkills() {
 		return wakanderTribeSkills;
 	}
-
-	public LocalDateTime getStatedAt() {
-		return statedAt;
-	}
-
-	public LocalDateTime getEndedAt() {
-		return endedAt;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-	
-	
 
 }

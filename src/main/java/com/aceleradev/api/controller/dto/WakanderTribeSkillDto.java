@@ -12,41 +12,20 @@ import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
 
 public class WakanderTribeSkillDto {
 
-	private Skill skill;
+	private String skillCode;
+	private String skillName;
+	private Status skillStatus;
 	private List<WakanderTribeSkillLessonDto> wakanderTribeSkillLessons;
-	private LocalDateTime startedAt;
-	private LocalDateTime endedAt;
-	
-	
+
 	public WakanderTribeSkillDto(WakanderTribeSkill wakanderTribeSkill) {
-		
-		this.skill = wakanderTribeSkill.getSkill();
-//		this.wakanderTribeSkillLessons = new ArrayList<>();
-//		this.wakanderTribeSkillLessons.addAll(wakanderTribeSkill.getWakanderTribeSkillLessons().stream().map(WakanderTribeSkillLessonDto::new).collect(Collectors.toList()));
-		this.startedAt = wakanderTribeSkill.getStartedAt();
-		this.endedAt = wakanderTribeSkill.getEndedAt();
+		this.skillCode = wakanderTribeSkill.getSkillCode();
+		this.skillName = wakanderTribeSkill.getSkillName();
+		this.wakanderTribeSkillLessons = WakanderTribeSkillLessonDto.convert(wakanderTribeSkill.getWakanderTribeSkillLessons());
 	}
 
+	public static List<WakanderTribeSkillDto> convert(List<WakanderTribeSkill> wakanderTribeSkills) {
+		return wakanderTribeSkills.stream().map(WakanderTribeSkillDto::new).collect(Collectors.toList());
 
-	public Skill getSkill() {
-		return skill;
 	}
 
-
-	public List<WakanderTribeSkillLessonDto> getWakanderTribeSkillLessons() {
-		return wakanderTribeSkillLessons;
-	}
-
-
-	public LocalDateTime getStartedAt() {
-		return startedAt;
-	}
-
-
-	public LocalDateTime getEndedAt() {
-		return endedAt;
-	}
-	
-
-	
 }

@@ -1,36 +1,36 @@
 package com.aceleradev.api.controller.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.aceleradev.api.domain.model.Lesson;
 import com.aceleradev.api.domain.model.Status;
 import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
 
-public abstract class WakanderTribeSkillLessonDto {
-	
-	private Lesson lesson;
-	private LocalDateTime startedAt;
-	private LocalDateTime endedAt;
+public class WakanderTribeSkillLessonDto {
+
+	private String lessonCode;
+	private String lessonName;
 	private Status status;
-	
+
 	public WakanderTribeSkillLessonDto(WakanderTribeSkillLesson wakanderTribeSkillLesson) {
-		
-		this.lesson = wakanderTribeSkillLesson.getLesson();
-		this.startedAt = wakanderTribeSkillLesson.getStartedAt();
-		this.endedAt = wakanderTribeSkillLesson.getEndedAt();
+
+		this.lessonCode = wakanderTribeSkillLesson.getLessonCode();
+		this.lessonName = wakanderTribeSkillLesson.getLessonName();
 		this.status = wakanderTribeSkillLesson.getStatus();
 	}
 
-	public Lesson getLesson() {
-		return lesson;
+	public static List<WakanderTribeSkillLessonDto> convert(List<WakanderTribeSkillLesson> wakanderTribeSkillLessons) {
+		return wakanderTribeSkillLessons.stream().map(WakanderTribeSkillLessonDto::new).collect(Collectors.toList());
 	}
 
-	public LocalDateTime getStartedAt() {
-		return startedAt;
+	public String getLessonCode() {
+		return lessonCode;
 	}
 
-	public LocalDateTime getEndedAt() {
-		return endedAt;
+	public String getLessonName() {
+		return lessonName;
 	}
 
 	public Status getStatus() {

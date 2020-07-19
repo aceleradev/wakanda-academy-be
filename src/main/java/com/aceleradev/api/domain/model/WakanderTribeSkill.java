@@ -22,29 +22,27 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeSkillId;
 @Table(name = "wakander_tribe_skills")
 @IdClass(WakanderTribeSkillId.class)
 public class WakanderTribeSkill {
-	
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-		@JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
-		@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id")
-	})
+	@JoinColumns({ @JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
+			@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id") })
 	private WakanderTribe wakanderTribe;
-	
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "skill_id", referencedColumnName = "id")
 	private Skill skill;
-	
+
 	@OneToMany(mappedBy = "wakanderTribeSkill")
 	private List<WakanderTribeSkillLesson> wakanderTribeSkillLessons;
-	
+
 	@Column(name = "started_at")
 	private LocalDateTime startedAt;
-	
+
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
@@ -107,6 +105,7 @@ public class WakanderTribeSkill {
 		result = prime * result + ((wakanderTribe == null) ? 0 : wakanderTribe.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -128,5 +127,15 @@ public class WakanderTribeSkill {
 			return false;
 		return true;
 	}
-	
+
+	public String getSkillCode() {
+
+		return this.skill.getCode();
+	}
+
+	public String getSkillName() {
+
+		return this.skill.getName();
+	}
+
 }
