@@ -116,4 +116,23 @@ public class WakanderTribeSkillLesson {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	public String getLessonCode() {
+		return this.lesson.getCode();
+	}
+
+	public String getLessonName() {
+		return this.lesson.getName();
+	}
+
+	public void endsLesson() {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+	}
+
+	public void startsLesson() {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+	}
+
 }
