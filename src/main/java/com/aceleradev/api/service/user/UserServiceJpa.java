@@ -32,19 +32,24 @@ public class UserServiceJpa implements UserService {
 	}
 
 	@Override
-	public User create(UserCreationFormDto dto) throws Exception {
-		Wakander wakanderUser = dto.converter(passwordEncrypter);
+	public User create(UserCreationFormDto userDTO) throws Exception {
+		logger.info("Starting UserService Create to User: {}",userDTO);
+		logger.info("Converting DTO to User");
+		Wakander wakanderUser = userDTO.converter(passwordEncrypter);
 		saveUser(wakanderUser);
+		logger.info("Seting Tribes of Standard Journey!");
 		wakanderUser.setTribes(journeyRepository, wakanderTribeService);
 		return wakanderUser;
 	}
 
 	private void saveUser(User user) throws EntityExistsException {
 		try {
-			logger.info("saving User on database");
+			logger.info("saving User {} on database", user.toString());
 			this.userRepository.save(user);
 		} catch (ConstraintViolationException | DataIntegrityViolationException e) {
-			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", user.getEmail()));
+			String messageErro = String.format("Usuario[email=%s] já cadastrado", user.getEmail());
+			logger.error(messageErro);
+			throw new EntityExistsException(messageErro);
 		}
 	}
 }

@@ -42,7 +42,7 @@ public class WakanderTribesJpaService implements WakanderTribesService {
 
 	@Override
 	public void saveAll(List<WakanderTribe> tribes) {
-		log.info("Saving the Wakander Tribes - cascade");
+		log.info("Saving the Wakander Tribes - in cascade");
 		wakanderTribeRepository.saveAll(tribes);
 		tribes.parallelStream()
 			.forEach(wk -> wakanderTribeSkillService.saveAllWakanderTribeSkill(wk));
