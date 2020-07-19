@@ -15,31 +15,35 @@ import com.aceleradev.api.repository.WakanderTribeRepository;
 @Service
 public class WakanderTribesJpaService implements WakanderTribesService {
 
-    private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
-    private WakanderTribeRepository wakanderTribeRepository;
+	private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
+	private WakanderTribeRepository wakanderTribeRepository;
+	private WakanderTribeSkillService wakanderTribeSkillService;
 
-    public WakanderTribesJpaService(WakanderTribeRepository wkTribesRepository) {
-        this.wakanderTribeRepository = wkTribesRepository;
-    }
+	public WakanderTribesJpaService(WakanderTribeRepository wakanderTribeRepository,
+			WakanderTribeSkillService wakanderTribeSkillService) {
+		this.wakanderTribeRepository = wakanderTribeRepository;
+		this.wakanderTribeSkillService = wakanderTribeSkillService;
+	}
 
-    @Override
-    public List<WakanderTribeDTO> listTribes(String wakanderCode) {
-        log.info("Starting listTribes in WakanderTribesJpaService");
-        log.info("searching for unlocked tribes");
-        List<WakanderTribe> wakanderTribes=wakanderTribeRepository.listUnlockedTribes(wakanderCode);
-        log.info("checking results");
-        if(wakanderTribes==null) {
-            log.info("no tribe was found");
-            return new ArrayList<WakanderTribeDTO>();
-        }else {
-            log.info("converting unchecked tribes to WakanderTribeDTO");
-            return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
-        }
-    }
+	@Override
+	public List<WakanderTribeDTO> listTribes(String wakanderCode) {
+		log.info("Starting listTribes in WakanderTribesJpaService");
+		log.info("searching for unlocked tribes");
+		List<WakanderTribe> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
+		log.info("checking results");
+		if (wakanderTribes == null) {
+			log.info("no tribe was found");
+			return new ArrayList<WakanderTribeDTO>();
+		} else {
+			log.info("converting unchecked tribes to WakanderTribeDTO");
+			return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
+		}
+	}
 
 	@Override
 	public void saveAll(List<WakanderTribe> tribes) {
+		log.info("Saving the Wakander Tribes - cascade");
 		wakanderTribeRepository.saveAll(tribes);
+		wakanderTribeSkillService.saveAllWakanderTribeSkill(tribes);
 	}
-
 }
