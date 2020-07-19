@@ -100,13 +100,11 @@ public class WakanderTribe {
 
 	public List<WakanderTribeSkill> getWakanderTribeSkills(SkillService skillService) {
 		List<Skill> skillsByTribe = skillService.findByTribe(this.tribe);
-		return skillsByTribe.parallelStream()
-				.map(s -> buildWakanderTribeSkill(s))
-				.collect(Collectors.toList());
+		return skillsByTribe.parallelStream().map(s -> buildWakanderTribeSkill(s)).collect(Collectors.toList());
 	}
 
 	private WakanderTribeSkill buildWakanderTribeSkill(Skill skill) {
-		return new WakanderTribeSkill(this, skill,Status.TODO);
+		return new WakanderTribeSkill(this, skill, Status.TODO);
 	}
 
 	public List<WakanderTribeSkill> getWakanderTribeSkills() {
@@ -172,4 +170,9 @@ public class WakanderTribe {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "WakanderTribe [wakander=" + wakander + ", tribe=" + tribe + ", statedAt=" + statedAt + ", endedAt="
+				+ endedAt + ", status=" + status + "]";
+	}
 }

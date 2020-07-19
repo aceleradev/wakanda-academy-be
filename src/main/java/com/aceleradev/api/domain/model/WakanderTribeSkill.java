@@ -27,11 +27,11 @@ import com.aceleradev.api.service.wakander.tribes.LessonService;
 @Entity
 @Table(name = "wakander_tribe_skills")
 public class WakanderTribeSkill {
-
 	@EmbeddedId
-	@AttributeOverrides({ @AttributeOverride(name = "skillId", column = @Column(name = "skill_id",insertable = false,updatable = false)),
-			@AttributeOverride(name = "wakanderTribeId.wakanderId", column = @Column(name = "wakander_user_id",insertable = false,updatable = false)),
-			@AttributeOverride(name = "wakanderTribeId.tribeId", column = @Column(name = "tribe_id",insertable = false,updatable = false)) })
+	@AttributeOverrides({
+			@AttributeOverride(name = "skillId", column = @Column(name = "skill_id", insertable = false, updatable = false)),
+			@AttributeOverride(name = "wakanderTribeId.wakanderId", column = @Column(name = "wakander_user_id", insertable = false, updatable = false)),
+			@AttributeOverride(name = "wakanderTribeId.tribeId", column = @Column(name = "tribe_id", insertable = false, updatable = false)) })
 	private WakanderTribeSkillId id;
 
 	@MapsId("wakanderTribeId")
@@ -99,13 +99,11 @@ public class WakanderTribeSkill {
 
 	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons(LessonService lessonService) {
 		List<Lesson> lessonsByTribe = lessonService.findBySkill(this.skill);
-		return lessonsByTribe.parallelStream()
-				.map(l -> buildWakanderTribeSkill(l))
-				.collect(Collectors.toList());
+		return lessonsByTribe.parallelStream().map(l -> buildWakanderTribeSkill(l)).collect(Collectors.toList());
 	}
 
 	private WakanderTribeSkillLesson buildWakanderTribeSkill(Lesson lesson) {
-		return new WakanderTribeSkillLesson(this, lesson,Status.TODO);
+		return new WakanderTribeSkillLesson(this, lesson, Status.TODO);
 	}
 
 	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons() {
@@ -171,4 +169,9 @@ public class WakanderTribeSkill {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "WakanderTribeSkill [wakanderTribe=" + wakanderTribe + ", skill=" + skill + ", startedAt=" + startedAt
+				+ ", endedAt=" + endedAt + ", status=" + status + "]";
+	}
 }

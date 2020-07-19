@@ -22,36 +22,32 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeSkillLessonId;
 @Entity
 @Table(name = "wakander_tribe_skill_lessons")
 public class WakanderTribeSkillLesson {
-	
 	@Id
 	@AttributeOverrides({
-		@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.wakanderId", column = @Column(name = "wakander_user_id")),
-		@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.tribeId", column = @Column(name = "tribe_id")),
-		@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.skillId", column = @Column(name = "skill_id")),
-		@AttributeOverride(name = "wakanderTribeSkillId.lessonId", column = @Column(name = "lesson_id")),
-	})
+			@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.wakanderId", column = @Column(name = "wakander_user_id")),
+			@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.tribeId", column = @Column(name = "tribe_id")),
+			@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.skillId", column = @Column(name = "skill_id")),
+			@AttributeOverride(name = "wakanderTribeSkillId.lessonId", column = @Column(name = "lesson_id")), })
 	private WakanderTribeSkillLessonId id;
-	
+
 	@MapsId("wakanderTribeSkillId")
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-		@JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
-		@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id"),
-		@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
-	})
+	@JoinColumns({ @JoinColumn(name = "wakander_user_id", referencedColumnName = "wakander_user_id"),
+			@JoinColumn(name = "tribe_id", referencedColumnName = "tribe_id"),
+			@JoinColumn(name = "skill_id", referencedColumnName = "skill_id") })
 	private WakanderTribeSkill wakanderTribeSkill;
-	
+
 	@MapsId("lessonId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "lesson_id", referencedColumnName = "id")
 	private Lesson lesson;
-	
+
 	@Column(name = "started_at")
 	private LocalDateTime startedAt;
-	
+
 	@Column(name = "ended_at")
 	private LocalDateTime endedAt;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 
@@ -67,20 +63,18 @@ public class WakanderTribeSkillLesson {
 	public WakanderTribeSkill getWakanderTribeSkill() {
 		return wakanderTribeSkill;
 	}
-	
+
 	public WakanderTribeSkillLessonId getId() {
 		return id;
 	}
+
 	public void setId(WakanderTribeSkillLessonId id) {
 		this.id = id;
 	}
 
 	public void setWakanderTribeSkill(WakanderTribeSkill wakanderTribeSkill) {
-		WakanderTribeSkillLessonId id = Optional.ofNullable(this.id)
-												.orElse(new WakanderTribeSkillLessonId());
-		Optional.ofNullable(wakanderTribeSkill)
-				.map(WakanderTribeSkill::getId)
-				.ifPresent(id::setWakanderTribeSkillId);
+		WakanderTribeSkillLessonId id = Optional.ofNullable(this.id).orElse(new WakanderTribeSkillLessonId());
+		Optional.ofNullable(wakanderTribeSkill).map(WakanderTribeSkill::getId).ifPresent(id::setWakanderTribeSkillId);
 		this.setId(id);
 		this.wakanderTribeSkill = wakanderTribeSkill;
 	}
@@ -90,11 +84,8 @@ public class WakanderTribeSkillLesson {
 	}
 
 	public void setLesson(Lesson lesson) {
-		WakanderTribeSkillLessonId id = Optional.ofNullable(this.id)
-												.orElse(new WakanderTribeSkillLessonId());
-		Optional.ofNullable(lesson)
-				.map(Lesson::getId)
-				.ifPresent(id::setLessonId);
+		WakanderTribeSkillLessonId id = Optional.ofNullable(this.id).orElse(new WakanderTribeSkillLessonId());
+		Optional.ofNullable(lesson).map(Lesson::getId).ifPresent(id::setLessonId);
 		this.setId(id);
 		this.lesson = lesson;
 	}
@@ -121,5 +112,48 @@ public class WakanderTribeSkillLesson {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lesson == null) ? 0 : lesson.hashCode());
+		result = prime * result + ((wakanderTribeSkill == null) ? 0 : wakanderTribeSkill.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WakanderTribeSkillLesson other = (WakanderTribeSkillLesson) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lesson == null) {
+			if (other.lesson != null)
+				return false;
+		} else if (!lesson.equals(other.lesson))
+			return false;
+		if (wakanderTribeSkill == null) {
+			if (other.wakanderTribeSkill != null)
+				return false;
+		} else if (!wakanderTribeSkill.equals(other.wakanderTribeSkill))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "WakanderTribeSkillLesson [wakanderTribeSkill=" + wakanderTribeSkill + ", lesson=" + lesson
+				+ ", startedAt=" + startedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
 	}
 }
