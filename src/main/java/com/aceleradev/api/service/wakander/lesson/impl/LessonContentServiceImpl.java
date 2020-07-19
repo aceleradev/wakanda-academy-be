@@ -30,6 +30,7 @@ public class LessonContentServiceImpl implements LessonContentService {
 		WakanderTribeSkillLesson wakanderTribeSkillLesson = this.wakanderTribeSkillLessonRepository
 																.findByCodes(wakanderCode, tribeCode, skillCode, lessonCode)
 																.orElseThrow(() -> new BusinessException(String.format("Não encontrado dados do Wakander com esses parametros[wakander=%s, tribe=%s, skill=%s, lesson=%s]", wakanderCode, tribeCode, skillCode, lessonCode)));
+		log.info("Starting lessonUnlock.unlockContent in LessonContentServiceImpl");
 		lessonUnlock.unlockContent(wakanderTribeSkillLesson);
 
 	}

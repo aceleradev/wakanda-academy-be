@@ -42,9 +42,10 @@ public class WakanderActionControllerImpl implements WakanderActionController {
 			log.info("trying unlockLessonContent in WakanderActionControllerImpl");
 			lessonContentService.unlockWakanderTribeSkillLessonContent(wakanderCode, tribeCode, skillCode, lessonCode);
 			log.info("unlockLessonContent returns ok");
-			return (ResponseEntity<?>) ResponseEntity.ok();
+			return ResponseEntity.ok().build();
 		} catch (Exception e) {
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			log.info(e.toString());
+			return  ResponseEntity.badRequest().build();
 		}
 	}
 
