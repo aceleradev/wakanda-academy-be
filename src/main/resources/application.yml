@@ -1,6 +1,10 @@
 server:
   servlet:
     context-path: /wakanda/app/v1
+app:
+  jwt:
+    key:
+      location: ${JWT_KEY_LOCATION}
 spring:
   datasource:
     url: ${WAKANDA_DB_URL}

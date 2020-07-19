@@ -47,4 +47,5 @@ public class UserServiceJpa implements UserService {
 			throw new EntityExistsException(String.format("Usuario[email=%s] já cadastrado", user.getEmail()));
 		}
 	}
+	
 }

@@ -6,8 +6,13 @@ public class UserCreatedDto {
 
     private String name;
     private String email;
+    
+    public UserCreatedDto(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
 
-    public UserCreatedDto(User user) {
+	public UserCreatedDto(User user) {
         this.name = user.getName();
         this.email = user.getEmail();
     }

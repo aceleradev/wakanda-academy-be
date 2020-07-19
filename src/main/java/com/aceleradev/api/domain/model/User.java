@@ -24,7 +24,8 @@ public class User {
     private Long id;
     @Column(length = 60, nullable = false)
     private String name;
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    
+    @JsonIgnore @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private Credential credential;
 
     public User() {}
@@ -54,6 +55,13 @@ public class User {
     public String getEmail() {
         return this.credential.getEmail();
     }
+
+	public Credential getCredential() {
+		return credential;
+	}
+	public void setCredential(Credential credential) {
+		this.credential = credential;
+	}
 
 	@Override
 	public int hashCode() {
