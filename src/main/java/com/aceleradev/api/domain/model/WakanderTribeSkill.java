@@ -3,6 +3,7 @@ package com.aceleradev.api.domain.model;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 
 import com.aceleradev.api.domain.model.ids.WakanderTribeId;
 import com.aceleradev.api.domain.model.ids.WakanderTribeSkillId;
+import com.aceleradev.api.service.wakander.tribes.LessonService;
 
 @Entity
 @Table(name = "wakander_tribe_skills")
@@ -59,8 +61,8 @@ public class WakanderTribeSkill {
 	}
 
 	public WakanderTribeSkill(WakanderTribe wakanderTribe, Skill skill, Status status) {
-		this.wakanderTribe = wakanderTribe;
-		this.skill = skill;
+		setWakanderTribe(wakanderTribe);
+		setSkill(skill);
 		this.status = status;
 	}
 
@@ -93,6 +95,17 @@ public class WakanderTribeSkill {
 		Optional.ofNullable(skill).map(Skill::getId).ifPresent(id::setSkillId);
 		this.setId(id);
 		this.skill = skill;
+	}
+
+	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons(LessonService lessonService) {
+		List<Lesson> lessonsByTribe = lessonService.findBySkill(this.skill);
+		return lessonsByTribe.parallelStream()
+				.map(l -> buildWakanderTribeSkill(l))
+				.collect(Collectors.toList());
+	}
+
+	private WakanderTribeSkillLesson buildWakanderTribeSkill(Lesson lesson) {
+		return new WakanderTribeSkillLesson(this, lesson,Status.TODO);
 	}
 
 	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons() {

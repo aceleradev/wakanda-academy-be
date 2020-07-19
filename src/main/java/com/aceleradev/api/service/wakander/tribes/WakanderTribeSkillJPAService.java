@@ -10,18 +10,24 @@ import com.aceleradev.api.repository.WakanderTribeSkillRepository;
 
 @Service
 public class WakanderTribeSkillJPAService implements WakanderTribeSkillService {
-	WakanderTribeSkillRepository wakanderTribeSkillRepository;
-	SkillService skillService;
+	private WakanderTribeSkillRepository wakanderTribeSkillRepository;
+	private SkillService skillService;
+	private WakanderTribeSkillLessonService wakanderTribeSkillLessonService;
+
 
 	public WakanderTribeSkillJPAService(WakanderTribeSkillRepository wakanderTribeSkillRepository,
-			SkillService skillService) {
+			SkillService skillService, WakanderTribeSkillLessonService wakanderTribeSkillLessonService) {
 		this.wakanderTribeSkillRepository = wakanderTribeSkillRepository;
 		this.skillService = skillService;
+		this.wakanderTribeSkillLessonService = wakanderTribeSkillLessonService;
 	}
+
 
 	@Override
 	public void saveAllWakanderTribeSkill(WakanderTribe wk) {
 		List<WakanderTribeSkill> wakanderTribeSkills = wk.getWakanderTribeSkills(skillService);
 		wakanderTribeSkillRepository.saveAll(wakanderTribeSkills);
+		wakanderTribeSkills.parallelStream()
+		.forEach(wts -> wakanderTribeSkillLessonService.saveAllWakanderTribeSkillLesson(wts));
 	}
 }

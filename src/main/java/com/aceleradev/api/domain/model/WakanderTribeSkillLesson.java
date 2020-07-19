@@ -58,6 +58,12 @@ public class WakanderTribeSkillLesson {
 	public WakanderTribeSkillLesson() {
 	}
 
+	public WakanderTribeSkillLesson(WakanderTribeSkill wakanderTribeSkill, Lesson lesson, Status status) {
+		setWakanderTribeSkill(wakanderTribeSkill);
+		setLesson(lesson);
+		this.status = status;
+	}
+
 	public WakanderTribeSkill getWakanderTribeSkill() {
 		return wakanderTribeSkill;
 	}
