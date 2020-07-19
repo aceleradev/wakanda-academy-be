@@ -3,6 +3,7 @@ package com.aceleradev.api.domain.model;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.aceleradev.api.domain.model.ids.WakanderTribeId;
+import com.aceleradev.api.service.wakander.tribes.SkillService;
 
 @Entity
 @Table(name = "wakander_tribes")
@@ -30,7 +32,7 @@ public class WakanderTribe {
 	@Id
 	@Column(name = "tribe_id", insertable = false, updatable = false)
 	private Long tribeId;
-	
+
 	@MapsId("wakanderId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "wakander_user_id", referencedColumnName = "user_id")
@@ -83,9 +85,7 @@ public class WakanderTribe {
 	}
 
 	public void setWakander(Wakander wakander) {
-		Optional.ofNullable(wakander)
-				.map(Wakander::getId)
-				.ifPresent(this::setWakanderId);
+		Optional.ofNullable(wakander).map(Wakander::getId).ifPresent(this::setWakanderId);
 		this.wakander = wakander;
 	}
 
@@ -94,10 +94,19 @@ public class WakanderTribe {
 	}
 
 	public void setTribe(Tribe tribe) {
-		Optional.ofNullable(tribe)
-				.map(Tribe::getId)
-				.ifPresent(this::setTribeId);
+		Optional.ofNullable(tribe).map(Tribe::getId).ifPresent(this::setTribeId);
 		this.tribe = tribe;
+	}
+
+	public List<WakanderTribeSkill> getWakanderTribeSkills(SkillService skillService) {
+		List<Skill> skillsByTribe = skillService.findByTribe(this.tribe);
+		return skillsByTribe.parallelStream()
+				.map(s -> buildWakanderTribeSkill(s))
+				.collect(Collectors.toList());
+	}
+
+	private WakanderTribeSkill buildWakanderTribeSkill(Skill skill) {
+		return new WakanderTribeSkill(this, skill,Status.TODO);
 	}
 
 	public List<WakanderTribeSkill> getWakanderTribeSkills() {
