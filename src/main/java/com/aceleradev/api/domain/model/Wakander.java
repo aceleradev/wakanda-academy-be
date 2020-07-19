@@ -1,12 +1,20 @@
 package com.aceleradev.api.domain.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.aceleradev.api.exception.ApiException;
+import com.aceleradev.api.repository.JourneyRepository;
+import com.aceleradev.api.repository.WakanderTribeRepository;
 
 @Entity
 @Table(name = "wakanders")
@@ -47,4 +55,31 @@ public class Wakander extends User {
 		return "Wakander [code=" + code + ", name=" + getName() + ", email=" + getEmail() + "]";
 	}
 
+	public void setTribes(JourneyRepository journeyRepository, WakanderTribeRepository wakanderTribeRepository) throws ApiException {
+		instanceTribes();
+		List<WakanderTribe> tribesStandard = extractStandardWakanderTribes(journeyRepository.findByStandardTrue());
+		this.tribes.addAll(tribesStandard);
+		wakanderTribeRepository.saveAll(this.tribes);
+	}
+
+	private List<WakanderTribe> extractStandardWakanderTribes(Optional<Journey> standardJourney) throws ApiException {
+		if(standardJourney.isPresent()) {
+			return standardJourney.get().getTribes().stream().map(jt -> buildWakanderTribe(jt.getTribe())).collect(Collectors.toList());
+		}else {
+			throw new ApiException((long) 500, "error getting standard list of tribes");
+		}
+	}
+
+	private WakanderTribe buildWakanderTribe(Tribe tribe) {
+		WakanderTribe wakanderTribe = new WakanderTribe(this, tribe, Status.TODO);
+		wakanderTribe.setEndedAt(LocalDateTime.now());
+		wakanderTribe.setStatedAt(LocalDateTime.now());
+		return wakanderTribe;
+	}
+
+	private void instanceTribes() {
+		if(this.tribes == null) {
+			this.tribes = new ArrayList<>();
+		}
+	}
 }

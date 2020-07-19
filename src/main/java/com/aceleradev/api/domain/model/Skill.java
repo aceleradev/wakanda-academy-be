@@ -17,29 +17,32 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "skills")
 public class Skill {
-	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(length = 60, unique = true)
 	private String code;
-	
+
 	@Column(nullable = false, length = 120)
 	private String name;
-	
+
 	@Lob
 	private String description;
-	
+
+	private Integer tribeSequence;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tribe_id", referencedColumnName = "id")
 	private Tribe tribe;
-	
+
 	@OneToMany(mappedBy = "skill")
 	private List<Lesson> lessons;
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -47,6 +50,7 @@ public class Skill {
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -54,6 +58,7 @@ public class Skill {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -61,6 +66,7 @@ public class Skill {
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -68,6 +74,7 @@ public class Skill {
 	public Tribe getTribe() {
 		return tribe;
 	}
+
 	public void setTribe(Tribe tribe) {
 		this.tribe = tribe;
 	}
@@ -75,13 +82,22 @@ public class Skill {
 	public List<Lesson> getLessons() {
 		return lessons;
 	}
+
 	public void setLessons(List<Lesson> lessons) {
 		this.lessons = lessons;
 	}
 
+	public Integer getTribeSequence() {
+		return tribeSequence;
+	}
+
+	public void setTribeSequence(Integer tribeSequence) {
+		this.tribeSequence = tribeSequence;
+	}
+
 	@Override
 	public String toString() {
-		return "Skill [code=" + code + ", name=" + name + ", tribe=" + tribe + "]";
+		return "Skill [code=" + code + ", name=" + name + ", tribeSequence=" + tribeSequence + ", tribe=" + tribe + "]";
 	}
 
 	@Override
@@ -90,8 +106,11 @@ public class Skill {
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
+		result = prime * result + ((tribeSequence == null) ? 0 : tribeSequence.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -110,6 +129,16 @@ public class Skill {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (tribe == null) {
+			if (other.tribe != null)
+				return false;
+		} else if (!tribe.equals(other.tribe))
+			return false;
+		if (tribeSequence == null) {
+			if (other.tribeSequence != null)
+				return false;
+		} else if (!tribeSequence.equals(other.tribeSequence))
 			return false;
 		return true;
 	}
