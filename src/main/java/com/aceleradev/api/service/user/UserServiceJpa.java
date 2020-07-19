@@ -21,14 +21,21 @@ public class UserServiceJpa implements UserService {
 	private UserRepository userRepository;
 	private PasswordEncrypter passwordEncrypter;
 	private JourneyRepository journeyRepository;
-	private WakanderTribesService wakanderTribesService;
+	private WakanderTribesService wakanderTribeService;
 
+	public UserServiceJpa(UserRepository userRepository, PasswordEncrypter passwordEncrypter,
+			JourneyRepository journeyRepository, WakanderTribesService wakanderTribeService) {
+		this.userRepository = userRepository;
+		this.passwordEncrypter = passwordEncrypter;
+		this.journeyRepository = journeyRepository;
+		this.wakanderTribeService = wakanderTribeService;
+	}
 
 	@Override
 	public User create(UserCreationFormDto dto) throws Exception {
 		Wakander wakanderUser = dto.converter(passwordEncrypter);
 		saveUser(wakanderUser);
-		wakanderUser.setTribes(journeyRepository,wakanderTribesService);
+		wakanderUser.setTribes(journeyRepository, wakanderTribeService);
 		return wakanderUser;
 	}
 
