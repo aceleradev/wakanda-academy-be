@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 import com.aceleradev.api.exception.ApiException;
 import com.aceleradev.api.repository.JourneyRepository;
-import com.aceleradev.api.repository.WakanderTribeRepository;
+import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 
 @Entity
 @Table(name = "wakanders")
@@ -54,11 +54,11 @@ public class Wakander extends User {
 		return "Wakander [code=" + code + ", name=" + getName() + ", email=" + getEmail() + "]";
 	}
 
-	public void setTribes(JourneyRepository journeyRepository, WakanderTribeRepository wakanderTribeRepository) throws ApiException {
+	public void setTribes(JourneyRepository journeyRepository, WakanderTribesService wakanderTribesService) throws ApiException {
 		instanceTribes();
 		List<WakanderTribe> tribesStandard = extractStandardWakanderTribes(journeyRepository.findByStandardTrue());
 		this.tribes.addAll(tribesStandard);
-		wakanderTribeRepository.saveAll(this.tribes);
+		wakanderTribesService.saveAll(this.tribes);
 	}
 
 	private List<WakanderTribe> extractStandardWakanderTribes(Optional<Journey> standardJourney) throws ApiException {

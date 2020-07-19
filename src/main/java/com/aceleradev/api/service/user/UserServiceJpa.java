@@ -12,8 +12,8 @@ import com.aceleradev.api.domain.model.Wakander;
 import com.aceleradev.api.exception.EntityExistsException;
 import com.aceleradev.api.repository.JourneyRepository;
 import com.aceleradev.api.repository.UserRepository;
-import com.aceleradev.api.repository.WakanderTribeRepository;
 import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
+import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 
 @Service
 public class UserServiceJpa implements UserService {
@@ -21,21 +21,14 @@ public class UserServiceJpa implements UserService {
 	private UserRepository userRepository;
 	private PasswordEncrypter passwordEncrypter;
 	private JourneyRepository journeyRepository;
-	private WakanderTribeRepository wakanderTribeRepository;
+	private WakanderTribesService wakanderTribesService;
 
-	public UserServiceJpa(UserRepository userRepository, PasswordEncrypter passwordEncrypter,
-			JourneyRepository journeyRepository, WakanderTribeRepository journeyTribeRepository) {
-		this.userRepository = userRepository;
-		this.passwordEncrypter = passwordEncrypter;
-		this.journeyRepository = journeyRepository;
-		this.wakanderTribeRepository = journeyTribeRepository;
-	}
 
 	@Override
 	public User create(UserCreationFormDto dto) throws Exception {
 		Wakander wakanderUser = dto.converter(passwordEncrypter);
 		saveUser(wakanderUser);
-		wakanderUser.setTribes(journeyRepository,wakanderTribeRepository);
+		wakanderUser.setTribes(journeyRepository,wakanderTribesService);
 		return wakanderUser;
 	}
 
