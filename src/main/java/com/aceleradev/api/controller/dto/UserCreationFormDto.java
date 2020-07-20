@@ -22,7 +22,8 @@ public class UserCreationFormDto {
 	@NotBlank
 	@Size(min = 3, max = 60)
 	private String name;
-	@Pattern(regexp = "^[a-z]\\w*") @Size(min = 3, max = 30)
+	@Pattern(regexp = "^[a-z]\\w*")
+	@Size(min = 3, max = 30)
 	private String wakanderCode;
 	@Email
 	@NotBlank
@@ -76,6 +77,11 @@ public class UserCreationFormDto {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "UserCreationFormDto [name=" + name + ", email=" + email + "]";
 	}
 
 	public Wakander converter(PasswordEncrypter passwordEncrypter) throws NoSuchAlgorithmException {

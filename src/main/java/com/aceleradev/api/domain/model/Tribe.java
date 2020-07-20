@@ -17,31 +17,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tribes")
 public class Tribe {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(length = 60, unique = true)
 	private String code;
-	
+
 	@Column(length = 120, nullable = false)
 	private String name;
-	
+
 	@Lob
 	private String description;
-	
+
 	@Column(name = "icon_url")
 	private String iconURL;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dependent_id", referencedColumnName = "id")
 	private Tribe dependent;
-	
+
 	@OneToMany(mappedBy = "tribe")
 	private List<Skill> skills;
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -49,6 +51,7 @@ public class Tribe {
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -56,6 +59,7 @@ public class Tribe {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -63,6 +67,7 @@ public class Tribe {
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -70,6 +75,7 @@ public class Tribe {
 	public String getIconURL() {
 		return iconURL;
 	}
+
 	public void setIconURL(String iconURL) {
 		this.iconURL = iconURL;
 	}
@@ -77,6 +83,7 @@ public class Tribe {
 	public Tribe getDependent() {
 		return dependent;
 	}
+
 	public void setDependent(Tribe dependent) {
 		this.dependent = dependent;
 	}
@@ -84,6 +91,7 @@ public class Tribe {
 	public List<Skill> getSkills() {
 		return skills;
 	}
+
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
@@ -95,6 +103,7 @@ public class Tribe {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -111,5 +120,10 @@ public class Tribe {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Tribe [code=" + code + ", name=" + name + "]";
+	}
+
 }
