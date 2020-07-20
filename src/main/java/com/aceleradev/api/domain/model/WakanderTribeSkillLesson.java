@@ -6,11 +6,11 @@ import java.util.Optional;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -22,7 +22,7 @@ import com.aceleradev.api.domain.model.ids.WakanderTribeSkillLessonId;
 @Entity
 @Table(name = "wakander_tribe_skill_lessons")
 public class WakanderTribeSkillLesson {
-	@Id
+	@EmbeddedId
 	@AttributeOverrides({
 			@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.wakanderId", column = @Column(name = "wakander_user_id")),
 			@AttributeOverride(name = "wakanderTribeSkillId.wakanderTribeId.tribeId", column = @Column(name = "tribe_id")),
@@ -50,7 +50,10 @@ public class WakanderTribeSkillLesson {
 
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
-
+	
+	@Column(name = "unlocked_content", columnDefinition = "DEFAULT 0")
+	private boolean unlockedContent;
+	
 	public WakanderTribeSkillLesson() {
 	}
 
@@ -174,4 +177,11 @@ public class WakanderTribeSkillLesson {
 		this.startedAt = LocalDateTime.now();
 	}
 
+	public boolean isUnlockedContent() {
+		return unlockedContent;
+	}
+	public void setUnlockedContent(boolean unlockedContent) {
+		this.unlockedContent = unlockedContent;
+	}
+	
 }
