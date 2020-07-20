@@ -96,6 +96,4 @@ public class JourneyTribe {
 	public String toString() {
 		return "JourneyTribe [journey=" + journey + ", tribe=" + tribe + ", sequence=" + sequence + "]";
 	}
-	
-	
 }

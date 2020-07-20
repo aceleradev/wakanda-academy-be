@@ -172,7 +172,6 @@ public class WakanderTribe {
 
 	@Override
 	public String toString() {
-		return "WakanderTribe [wakander=" + wakander + ", tribe=" + tribe + ", statedAt=" + statedAt + ", endedAt="
-				+ endedAt + ", status=" + status + "]";
+		return "WakanderTribe [statedAt=" + statedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
 	}
 }

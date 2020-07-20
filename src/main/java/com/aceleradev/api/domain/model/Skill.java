@@ -97,7 +97,7 @@ public class Skill {
 
 	@Override
 	public String toString() {
-		return "Skill [code=" + code + ", name=" + name + ", tribeSequence=" + tribeSequence + ", tribe=" + tribe + "]";
+		return "Skill [code=" + code + ", name=" + name + ", tribeSequence=" + tribeSequence + "]";
 	}
 
 	@Override
