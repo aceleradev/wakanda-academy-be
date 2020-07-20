@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/listTribes")
+@RequestMapping("/wakander/tribe")
 public class ListTribesWakanderControllerImpl implements ListTribesWakandaController {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
