@@ -4,19 +4,16 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tribes")
-public class Tribe {
+@Table(name = "journeys")
+public class Journey {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,15 +27,13 @@ public class Tribe {
 	@Lob
 	private String description;
 
-	@Column(name = "icon_url")
-	private String iconURL;
+	private Boolean standard;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dependent_id", referencedColumnName = "id")
-	private Tribe dependent;
+	@OneToMany(mappedBy = "journey")
+	private List<JourneyTribe> tribes;
 
-	@OneToMany(mappedBy = "tribe")
-	private List<Skill> skills;
+	public Journey() {
+	}
 
 	public Long getId() {
 		return id;
@@ -72,34 +67,27 @@ public class Tribe {
 		this.description = description;
 	}
 
-	public String getIconURL() {
-		return iconURL;
+	public Boolean getStandard() {
+		return standard;
 	}
 
-	public void setIconURL(String iconURL) {
-		this.iconURL = iconURL;
+	public void setStandard(Boolean standard) {
+		this.standard = standard;
 	}
 
-	public Tribe getDependent() {
-		return dependent;
+	public List<JourneyTribe> getTribes() {
+		return tribes;
 	}
 
-	public void setDependent(Tribe dependent) {
-		this.dependent = dependent;
-	}
-
-	public List<Skill> getSkills() {
-		return skills;
-	}
-
-	public void setSkills(List<Skill> skills) {
-		this.skills = skills;
+	public void setTribes(List<JourneyTribe> tribes) {
+		this.tribes = tribes;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -112,7 +100,12 @@ public class Tribe {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tribe other = (Tribe) obj;
+		Journey other = (Journey) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -123,7 +116,7 @@ public class Tribe {
 
 	@Override
 	public String toString() {
-		return "Tribe [code=" + code + ", name=" + name + "]";
+		return "Journey [code=" + code + ", name=" + name + "]";
 	}
 
 }

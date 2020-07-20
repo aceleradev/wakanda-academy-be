@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 60, nullable = false)
     private String name;
@@ -79,4 +79,8 @@ public class User {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", credential=" + credential + "]";
+	}
 }

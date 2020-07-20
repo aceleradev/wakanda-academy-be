@@ -1,13 +1,14 @@
 package service.wakander.tribe;
 
-import com.aceleradev.api.controller.dto.WakanderTribeDTO;
-import com.aceleradev.api.domain.model.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.aceleradev.api.controller.dto.WakanderTribeDTO;
+import com.aceleradev.api.domain.model.Status;
+import com.aceleradev.api.domain.model.Tribe;
+import com.aceleradev.api.domain.model.Wakander;
+import com.aceleradev.api.domain.model.WakanderTribe;
 
 public class WakanderTribeServiceTest {
 
@@ -16,9 +17,6 @@ public class WakanderTribeServiceTest {
         WakanderTribeDTO wktribeDTO=new WakanderTribeDTO(new WakanderTribe(
                 new Wakander()
                 ,new Tribe()
-                ,new ArrayList<WakanderTribeSkill>()
-                , LocalDateTime.now()
-                , LocalDateTime.now()
                 , Status.DOING
         ));
 

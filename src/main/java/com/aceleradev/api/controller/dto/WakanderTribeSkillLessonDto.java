@@ -1,15 +1,12 @@
 package com.aceleradev.api.controller.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.aceleradev.api.domain.model.Lesson;
 import com.aceleradev.api.domain.model.Status;
 import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
 
 public class WakanderTribeSkillLessonDto {
-
 	private String lessonCode;
 	private String lessonName;
 	private Status status;
@@ -36,5 +33,4 @@ public class WakanderTribeSkillLessonDto {
 	public Status getStatus() {
 		return status;
 	}
-
 }
