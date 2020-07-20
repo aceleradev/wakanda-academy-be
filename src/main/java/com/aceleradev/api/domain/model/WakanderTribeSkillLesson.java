@@ -115,7 +115,6 @@ public class WakanderTribeSkillLesson {
 	}
 
 	public String getLessonCode() {
-	
 		return this.lesson.getCode();
 	}
 
@@ -164,4 +163,15 @@ public class WakanderTribeSkillLesson {
 	public String toString() {
 		return "WakanderTribeSkillLesson [startedAt=" + startedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
 	}
+
+	public void endsLesson() {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+	}
+
+	public void startsLesson() {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+	}
+
 }
