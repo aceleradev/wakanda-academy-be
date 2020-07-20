@@ -18,7 +18,7 @@ import com.aceleradev.api.service.wakander.tribes.WakanderTribesJpaService;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribesService;
 
 @RestController
-@RequestMapping("/wakander/tribe")
+@RequestMapping("/wakander")
 public class WakanderTribesController implements WakanderTribesAPI {
 
     private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
@@ -29,7 +29,7 @@ public class WakanderTribesController implements WakanderTribesAPI {
     }
 
 	@Override
-	@GetMapping("/{wakanderCode}")
+	@GetMapping("/{wakanderCode}/tribe")
 	@ResponseStatus(value = HttpStatus.OK)
 	public List<WakanderTribeDTO> list(@PathVariable String wakanderCode) throws NotFoundException {
 		log.info("Starting listTribes in WakanderTribesServiceImpl");
