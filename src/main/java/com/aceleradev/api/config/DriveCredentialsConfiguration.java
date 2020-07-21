@@ -2,6 +2,7 @@ package com.aceleradev.api.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
@@ -10,7 +11,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -29,11 +29,11 @@ import com.google.api.services.drive.DriveScopes;
 @Configuration
 public class DriveCredentialsConfiguration {
 	
-	private Resource credential;
+	private String credentialLocation;
 	private String applicationName;
-
-	public DriveCredentialsConfiguration(@Value("${app.drive.credentials}") Resource credential, @Value("${app.drive.applicationName}") String applicationName) {
-		this.credential = credential;
+	
+	public DriveCredentialsConfiguration(@Value("${app.drive.credentials}") String credentialLocation, @Value("${app.drive.applicationName}") String applicationName) {
+		this.credentialLocation = credentialLocation;
 		this.applicationName = applicationName;
 	}
 	
@@ -43,6 +43,11 @@ public class DriveCredentialsConfiguration {
 		if(!file.exists())
 			file.mkdir();
 		return file;
+	}
+	
+	@Bean
+	public InputStream credentialsInputStream() {
+		return DriveCredentialsConfiguration.class.getResourceAsStream(this.credentialLocation);
 	}
 	
 	@Bean
@@ -58,8 +63,8 @@ public class DriveCredentialsConfiguration {
 	}
 	
 	@Bean
-	public Credential googleCredential(HttpTransport httpTransport, JsonFactory jsonFactory, File dataStoreFolder) throws IOException {
-		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(this.credential.getInputStream()));
+	public Credential googleCredential(HttpTransport httpTransport, JsonFactory jsonFactory, File dataStoreFolder, InputStream credentialsInputStream) throws IOException {
+		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(credentialsInputStream));
 		
 		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, jsonFactory, clientSecrets, SCOPES)
 																		.setDataStoreFactory(new FileDataStoreFactory(dataStoreFolder))
