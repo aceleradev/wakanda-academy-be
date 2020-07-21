@@ -8,6 +8,7 @@ import com.aceleradev.api.exception.ExpiredTokenException;
 import com.aceleradev.api.exception.InvalidTokenException;
 import com.aceleradev.api.security.token.TokenVerificatorService;
 import com.aceleradev.api.util.DateUtils;
+import com.aceleradev.api.util.StringUtil;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -24,7 +25,7 @@ public class JwtTokenVerificatorService implements TokenVerificatorService {
 	
 	@Override
 	public AuthenticatedUser getTokenContent(String token) throws InvalidTokenException, ExpiredTokenException {
-		if(token == null || token.isBlank())
+		if(StringUtil.isBlank(token))
 			throw new InvalidTokenException("Token de acesso vazio");
 		try {
 			Claims claims = Jwts.parser()
