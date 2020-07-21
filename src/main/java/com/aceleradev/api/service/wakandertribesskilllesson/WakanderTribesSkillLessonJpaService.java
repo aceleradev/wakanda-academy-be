@@ -23,13 +23,9 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     }
 
     private Optional<WakanderTribeSkillLesson> startNextLessonBy(String wakanderCode, String currentLessonCode) {
-        WakanderTribeSkillLesson result = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
-        if (result != null) {
-            result.startsLesson();
-            return Optional.of(wakanderTribeSkillLessonRepository.save(result));
-        } else {
-            return Optional.empty();
-        }
+        Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
+        optResult.ifPresent(WakanderTribeSkillLesson::startsLesson);
+        return optResult;
     }
 
 }

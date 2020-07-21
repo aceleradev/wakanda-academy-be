@@ -1,12 +1,15 @@
 package com.aceleradev.api.repository;
 
-import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
-import com.aceleradev.api.domain.model.ids.WakanderTribeSkillLessonId;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
+import com.aceleradev.api.domain.model.ids.WakanderTribeSkillLessonId;
 
 public interface WakanderTribeSkillLessonRepository extends JpaRepository<WakanderTribeSkillLesson,WakanderTribeSkillLessonId>{
 	@Modifying(flushAutomatically = true)
@@ -23,7 +26,10 @@ public interface WakanderTribeSkillLessonRepository extends JpaRepository<Wakand
 			" and wtsl.lesson_id =(select next_lesson.id from lessons lsm inner join lessons next_lesson on" +
 			" next_lesson.skill_id=lsm.skill_id and next_lesson.skill_sequence=(lsm.skill_sequence+1)" +
 			" where lsm.code = :currentLessonCode)",nativeQuery = true)
-	WakanderTribeSkillLesson findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(@Param("wakanderCode") String wakanderCode,
+	Optional<WakanderTribeSkillLesson> findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(@Param("wakanderCode") String wakanderCode,
 																				@Param("currentLessonCode") String currentLessonCode);
 
+	@Query(name = "WakanderTribeSkillLesson.findByCodes")
+	Optional<WakanderTribeSkillLesson> findByCodes(String wakanderCode, String tribeCode, String skillCode, String lessonCode);
+	
 }

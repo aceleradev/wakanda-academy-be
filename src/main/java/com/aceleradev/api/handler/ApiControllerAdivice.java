@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -38,6 +39,12 @@ public class ApiControllerAdivice {
     	log.error("Error:",ex);
         ApiErrorResponse apiErrorResponse = this.apiErrorResponseExceptionExtractor.getApiResponse(ex, HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiErrorResponse);
+    }
+    
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ApiErrorResponse> handleAuthenticationException(AuthenticationException ex) {
+    	ApiErrorResponse apiErrorResponse = this.apiErrorResponseExceptionExtractor.getApiResponse(ex, HttpStatus.BAD_REQUEST.value());
+    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrorResponse);
     }
 
     @ExceptionHandler(BusinessException.class)

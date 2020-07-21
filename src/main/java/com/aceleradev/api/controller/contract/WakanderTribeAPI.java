@@ -1,4 +1,4 @@
-package com.aceleradev.api.controller;
+package com.aceleradev.api.controller.contract;
 
 import java.util.List;
 
