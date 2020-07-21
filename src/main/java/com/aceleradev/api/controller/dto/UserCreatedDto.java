@@ -4,22 +4,17 @@ import com.aceleradev.api.domain.model.User;
 
 public class UserCreatedDto {
 
-    private Long id;
     private String name;
     private String email;
+    
+    public UserCreatedDto(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
 
-    public UserCreatedDto(User user) {
-        this.id = user.getId();
+	public UserCreatedDto(User user) {
         this.name = user.getName();
         this.email = user.getEmail();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
