@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lessons")
 public class Lesson {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,6 +22,8 @@ public class Lesson {
 	@Column(length = 120, nullable = false)
 	private String name;
 	private String link;
+	@Column(name = "file_id")
+	private String fileId;
 	private Float difficulty;
 	private Integer skillSequence;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -75,6 +78,13 @@ public class Lesson {
 		this.skill = skill;
 	}
 
+	public String getFileId() {
+		return fileId;
+	}
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+
 	@Override
 	public String toString() {
 		return "Lesson [code=" + code + ", name=" + name + ", skillSequence=" + skillSequence + ", skill=" + skill
@@ -117,4 +127,6 @@ public class Lesson {
 			return false;
 		return true;
 	}
+	
+	
 }

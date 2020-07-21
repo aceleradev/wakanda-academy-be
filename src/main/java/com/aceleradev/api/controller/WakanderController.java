@@ -30,13 +30,14 @@ public class WakanderController {
 	public WakanderProfileDTO getWakanderProfile(@PathVariable String wakanderCode) throws NotFoundException {
 		log.info("Start getWakanderProfile in WakanderController");
 		log.info("finding wakander by code: {}",wakanderCode);
-		Optional<Wakander> wakander = wakandaService.findWakanderByCode(wakanderCode);
-		if(wakander.isPresent()) {
-			log.info("returning wakander: {}",wakander);
-			return new WakanderProfileDTO(wakander.get());
-		}
-		log.info("It is not possible to find a Wakander by code {}",wakanderCode);
-		throw new NotFoundException("It is not possible to find a Wakander by code "+wakanderCode);
+		Optional<Wakander> optWakander = wakandaService.findWakanderByCode(wakanderCode);
+		WakanderProfileDTO wakanderDTO = optWakander.map(WakanderProfileDTO::new)
+													.orElseThrow(() -> {
+														log.info("It is not possible to find a Wakander by code {}",wakanderCode);
+														return new NotFoundException("It is not possible to find a Wakander by code "+wakanderCode);
+													});
+		log.info("returning wakander: {}",optWakander);
+		return wakanderDTO;
 	}
 
 }

@@ -1,6 +1,13 @@
 server:
   servlet:
     context-path: /wakanda/app/v1
+app:
+  drive:
+    applicationName: ${GOOGLE_DRIVE_APPLICATION_NAME:wakanda}
+    credentials: ${GOOGLE_DRIVE_CREDENTIALS}
+  jwt:
+    key:
+      location: ${JWT_KEY_LOCATION}
 spring:
   datasource:
     url: ${WAKANDA_DB_URL}

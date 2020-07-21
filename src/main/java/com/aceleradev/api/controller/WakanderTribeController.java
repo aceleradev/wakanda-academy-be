@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aceleradev.api.controller.contract.WakanderTribeAPI;
 import com.aceleradev.api.controller.dto.WakanderTribeDTO;
 import com.aceleradev.api.controller.dto.WakanderTribeDetailDTO;
 import com.aceleradev.api.domain.model.WakanderTribe;

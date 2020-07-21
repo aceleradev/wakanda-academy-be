@@ -52,4 +52,5 @@ public class UserServiceJpa implements UserService {
 			throw new EntityExistsException(messageErro);
 		}
 	}
+	
 }

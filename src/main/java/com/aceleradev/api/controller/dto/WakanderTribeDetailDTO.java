@@ -29,16 +29,14 @@ public class WakanderTribeDetailDTO {
 	}
 	
 	public static WakanderTribeDetailDTO buildResponse(String wakanderCode, String tribeCode,
-			Optional<WakanderTribe> wakanderTribeDetail) throws NotFoundException {
-		if (wakanderTribeDetail.isPresent()) {
-			log.info("returning WakanderTribeDetailDTO {}", wakanderCode);
-			return new WakanderTribeDetailDTO(wakanderTribeDetail.get());
-		} else {
-			throw throwNotfoundException(wakanderCode, tribeCode);
-		}
+			Optional<WakanderTribe> optWakanderTribeDetail) throws NotFoundException {
+		WakanderTribeDetailDTO wakanderTribeDetailDTO = optWakanderTribeDetail.map(WakanderTribeDetailDTO::new)
+																			.orElseThrow(() -> throwNotfoundException(wakanderCode, tribeCode));
+		log.info("returning WakanderTribeDetailDTO {}", wakanderCode);
+		return wakanderTribeDetailDTO;
 	}
 
-	private static NotFoundException throwNotfoundException(String wakanderCode, String tribeCode) throws NotFoundException {
+	private static NotFoundException throwNotfoundException(String wakanderCode, String tribeCode) {
 		log.info("It is not possible to find a WakanderTribe by wakandaCode {} and tribecode {}", wakanderCode,
 				tribeCode);
 		return new NotFoundException("It is not possible to find a WakanderTribe by wakandaCode " + wakanderCode
