@@ -69,7 +69,7 @@ public class DriveCredentialsConfiguration {
 		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, jsonFactory, clientSecrets, SCOPES)
 																		.setDataStoreFactory(new FileDataStoreFactory(dataStoreFolder))
                 														.build();
-        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
+        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	}
 	

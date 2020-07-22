@@ -20,6 +20,8 @@ bin
 *.iml
 *.ipr
 
+/tokens/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
