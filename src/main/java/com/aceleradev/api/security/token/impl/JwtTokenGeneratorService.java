@@ -31,6 +31,7 @@ public class JwtTokenGeneratorService implements TokenGeneratorService {
 		params.put("email", wakanderProfileDTO.getEmail());
 		return Jwts.builder()
 				.setIssuedAt(new Date())
+				.setIssuer(wakanderProfileDTO.getEmail())
 				.setSubject("Usuario wakanda")
 				.setIssuer(wakanderProfileDTO.getEmail())
 				.setExpiration(DateUtils.toDate(expiresAt))
