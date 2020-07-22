@@ -1,5 +1,7 @@
 package com.aceleradev.api.security.token.impl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.aceleradev.api.controller.dto.AuthenticatedUser;
@@ -32,7 +34,10 @@ public class JwtTokenVerificatorService implements TokenVerificatorService {
 								.setSigningKey(this.privateKey.getContent())
 								.parseClaimsJws(token)
 								.getBody();
-			return new AuthenticatedUser(claims.getIssuer(), DateUtils.toLocalDateTime(claims.getExpiration()));
+			String email = Optional.ofNullable(claims.get("email"))
+								.map(Object::toString)
+								.orElse(null);
+			return new AuthenticatedUser(email, DateUtils.toLocalDateTime(claims.getExpiration()));
 		} catch (ExpiredJwtException e) {
 			throw new ExpiredTokenException("Token de acesso expirado", e);
 		} catch (Exception e) {
