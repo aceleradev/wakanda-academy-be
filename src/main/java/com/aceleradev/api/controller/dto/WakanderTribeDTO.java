@@ -1,6 +1,10 @@
 package com.aceleradev.api.controller.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.aceleradev.api.domain.model.Status;
+import com.aceleradev.api.domain.model.Tribe;
 import com.aceleradev.api.domain.model.WakanderTribe;
 
 public class WakanderTribeDTO {
@@ -10,6 +14,7 @@ public class WakanderTribeDTO {
     private String description;
     private String iconUrl;
     private Status status;
+    private Tribe dependent;
 
     public WakanderTribeDTO() {}
 
@@ -19,8 +24,13 @@ public class WakanderTribeDTO {
         this.description=wktribe.getTribe().getDescription();
         this.iconUrl=wktribe.getTribe().getIconURL();
         this.status=wktribe.getStatus();
+        this.dependent=wktribe.getTribe().getDependent();
     }
 
+    public static List<WakanderTribeDTO> listTribes (List<WakanderTribe> wakanderTribe){
+    	return wakanderTribe.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
+    }
+   
     public String getTribeCode() {
         return tribeCode;
     }
@@ -60,4 +70,8 @@ public class WakanderTribeDTO {
     public void setStatus(Status status) {
         this.status = status;
     }
+    
+    public Tribe getDependent() {
+		return dependent;
+	}
 }
