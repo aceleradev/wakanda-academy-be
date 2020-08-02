@@ -27,7 +27,7 @@ public class WakanderTribeDTO {
         this.dependent=wktribe.getTribe().getDependent();
     }
 
-    public static List<WakanderTribeDTO> listTribes (List<WakanderTribe> wakanderTribe){
+    public static List<WakanderTribeDTO> convert(List<WakanderTribe> wakanderTribe){
     	return wakanderTribe.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
     }
    
