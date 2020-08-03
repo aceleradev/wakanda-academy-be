@@ -20,8 +20,8 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
 
     @Override
     public Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException {
-        wakanderTribeSkillLessonRepository.endsCurrentLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
-        checkPreviousLessonDone(wakanderCode, currentLessonCode);
+    	checkPreviousLessonDone(wakanderCode, currentLessonCode);
+    	wakanderTribeSkillLessonRepository.endsCurrentLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
         return startNextLessonBy(wakanderCode, currentLessonCode);
     }
     
