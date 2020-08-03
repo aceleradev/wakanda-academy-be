@@ -2,7 +2,9 @@ package com.aceleradev.api.service.wakandertribesskilllesson;
 
 import org.springframework.stereotype.Service;
 
+import com.aceleradev.api.domain.model.Status;
 import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
+import com.aceleradev.api.exception.ApiException;
 import com.aceleradev.api.repository.WakanderTribeSkillLessonRepository;
 
 import java.util.Optional;
@@ -17,15 +19,24 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     }
 
     @Override
-    public Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) {
+    public Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException {
         wakanderTribeSkillLessonRepository.endsCurrentLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
+        checkPreviousLessonDone(wakanderCode, currentLessonCode);
         return startNextLessonBy(wakanderCode, currentLessonCode);
     }
-
+    
     private Optional<WakanderTribeSkillLesson> startNextLessonBy(String wakanderCode, String currentLessonCode) {
         Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
         optResult.ifPresent(WakanderTribeSkillLesson::startsLesson);
         return optResult;
     }
 
+    private void checkPreviousLessonDone (String wakanderCode, String currentLessonCode) throws ApiException {
+    	Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findPreviousWakanderLessonDone(wakanderCode, currentLessonCode);
+    	if (optResult.isPresent()) {
+    		if (optResult.get().getStatus() == Status.DOING) {
+    			throw new ApiException(500L, "Não foi possível iniciar essa aula, pois já existe uma aula em andamento.");
+    		}
+    	}
+    }
 }
