@@ -6,6 +6,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,6 +20,7 @@ import com.aceleradev.api.exception.EntityExistsException;
 import com.aceleradev.api.exception.NotFoundException;
 
 @RestControllerAdvice
+@ControllerAdvice
 public class ApiControllerAdivice {
 	private static final Logger log = LoggerFactory.getLogger(ApiControllerAdivice.class);
     private ApiErrorResponseExceptionExtractor apiErrorResponseExceptionExtractor;
