@@ -104,7 +104,9 @@ public class WakanderTribe {
 	}
 
 	private WakanderTribeSkill buildWakanderTribeSkill(Skill skill) {
-		return new WakanderTribeSkill(this, skill, Status.TODO);
+		return new WakanderTribeSkill(this, skill,
+				(this.getTribe().getDependent()==null && skill.getTribeSequence()==1) ?
+						Status.DOING : Status.TODO);
 	}
 
 	public List<WakanderTribeSkill> getWakanderTribeSkills() {

@@ -70,7 +70,7 @@ public class Wakander extends User {
 	}
 
 	private WakanderTribe buildWakanderTribe(Tribe tribe) {
-		WakanderTribe wakanderTribe = new WakanderTribe(this, tribe, Status.TODO);
+		WakanderTribe wakanderTribe = new WakanderTribe(this, tribe, (tribe.getDependent()==null) ? Status.DOING:Status.TODO);
 		return wakanderTribe;
 	}
 

@@ -85,6 +85,13 @@ public class Lesson {
 		this.fileId = fileId;
 	}
 
+	public Integer getSkillSequence() {
+		return skillSequence;
+	}
+	public void setSkillSequence(Integer skillSequence) {
+		this.skillSequence = skillSequence;
+	}
+
 	@Override
 	public String toString() {
 		return "Lesson [code=" + code + ", name=" + name + ", skillSequence=" + skillSequence + ", skill=" + skill
