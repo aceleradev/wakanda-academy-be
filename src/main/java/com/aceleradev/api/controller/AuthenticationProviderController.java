@@ -1,5 +1,7 @@
 package com.aceleradev.api.controller;
 
+import com.aceleradev.api.exception.InvalidTokenException;
+import com.aceleradev.api.security.token.impl.JwtTokenRefresherService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +16,11 @@ import com.aceleradev.api.security.authentication.AuthenticationService;
 public class AuthenticationProviderController implements AuthenticationProviderApi {
 	
 	private AuthenticationService authenticationService;
-	
-	public AuthenticationProviderController(AuthenticationService authenticationService) {
+	private JwtTokenRefresherService tokenRefresherService;
+
+	public AuthenticationProviderController(AuthenticationService authenticationService, JwtTokenRefresherService tokenRefresherService) {
 		this.authenticationService = authenticationService;
+		this.tokenRefresherService = tokenRefresherService;
 	}
 
 	@Override
@@ -25,6 +29,13 @@ public class AuthenticationProviderController implements AuthenticationProviderA
 		AuthenticationResponse authenticateUser = this.authenticationService.authenticateUser(request);
 		return ResponseEntity.ok(authenticateUser);
 	}
-	
+
+	@Override
+	public ResponseEntity<AuthenticationResponse> authenticationRefresh(String expiredToken) throws InvalidTokenException {
+		logger.info("Solicitando renovação do Token");
+		AuthenticationResponse refreshedAuthentication=this.tokenRefresherService.refreshToken(expiredToken);
+		return ResponseEntity.ok(refreshedAuthentication);
+	}
+
 	private static final Logger logger = LogManager.getLogger(AuthenticationProviderController.class);
 }
