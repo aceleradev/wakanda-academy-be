@@ -33,7 +33,7 @@ public class AuthenticationProviderController implements AuthenticationProviderA
 	@Override
 	public ResponseEntity<AuthenticationResponse> authenticationRefresh(String expiredToken) throws InvalidTokenException {
 		logger.info("Solicitando renovação do Token");
-		AuthenticationResponse refreshedAuthentication=this.tokenRefresherService.refreshToken(expiredToken);
+		AuthenticationResponse refreshedAuthentication=this.authenticationService.refresfhToken(expiredToken);
 		return ResponseEntity.ok(refreshedAuthentication);
 	}
 
