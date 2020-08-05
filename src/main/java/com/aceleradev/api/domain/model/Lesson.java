@@ -88,6 +88,7 @@ public class Lesson {
 	public Integer getSkillSequence() {
 		return skillSequence;
 	}
+
 	public void setSkillSequence(Integer skillSequence) {
 		this.skillSequence = skillSequence;
 	}
