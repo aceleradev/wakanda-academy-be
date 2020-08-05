@@ -103,7 +103,11 @@ public class WakanderTribeSkill {
 	}
 
 	private WakanderTribeSkillLesson buildWakanderTribeSkill(Lesson lesson) {
-		return new WakanderTribeSkillLesson(this, lesson, Status.TODO);
+		return new WakanderTribeSkillLesson(this, lesson,
+				(this.getWakanderTribe().getTribe().getDependent()==null
+						&& this.getSkill().getTribeSequence()==1
+						&& lesson.getSkillSequence()==1) ?
+						Status.DOING : Status.TODO);
 	}
 
 	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons() {

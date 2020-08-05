@@ -17,6 +17,7 @@ import com.aceleradev.api.service.wakander.tribes.WakanderTribeService;
 
 @Service
 public class UserServiceJpa implements UserService {
+
 	private static final Logger logger = LogManager.getLogger(UserServiceJpa.class);
 	private UserRepository userRepository;
 	private PasswordEncrypter passwordEncrypter;
