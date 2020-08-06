@@ -25,4 +25,12 @@ public interface WakanderTribeSkillLessonRepository extends JpaRepository<Wakand
 	@Query(name = "WakanderTribeSkillLesson.findByCodes")
 	Optional<WakanderTribeSkillLesson> findByCodes(String wakanderCode, String tribeCode, String skillCode, String lessonCode);
 	
+	@Query(value = "select " +
+	      "wktl.* from wakander_tribe_skill_lessons wktl inner join wakanders wk on " +
+	      "wk.user_id=wktl.wakander_user_id " +
+	      "where wk.code=:wakanderCode AND " +
+	      "wktl.lesson_id =(select ls.skill_sequence -1 from lessons ls where ls.code = :currentLessonCode)",nativeQuery = true)
+	Optional<WakanderTribeSkillLesson> findPreviousWakanderLessonDone(@Param("wakanderCode") String wakanderCode,
+			@Param("currentLessonCode") String currentLessonCode);
+	
 }
