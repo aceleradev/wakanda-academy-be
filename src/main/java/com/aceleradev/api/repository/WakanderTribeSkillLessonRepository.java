@@ -18,7 +18,7 @@ public interface WakanderTribeSkillLessonRepository extends JpaRepository<Wakand
 	void endsCurrentLessonByWakanderCodeAndCurrentLessonCode(@Param("wakanderCode") String wakanderCode,
 															 @Param("currentLessonCode") String currentLessonCode);
 	
-	@Query(value = "WakanderTribeSkillLesson.endsCurrentLessonByWakanderCodeAndCurrentLessonCode",nativeQuery = true)
+	@Query(value = "WakanderTribeSkillLesson.findNextLessonByWakanderCodeAndCurrentLessonCode",nativeQuery = true)
 	Optional<WakanderTribeSkillLesson> findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(@Param("wakanderCode") String wakanderCode,
 																				@Param("currentLessonCode") String currentLessonCode);
 
