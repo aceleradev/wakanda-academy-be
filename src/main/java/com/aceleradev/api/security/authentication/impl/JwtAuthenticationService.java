@@ -2,12 +2,8 @@ package com.aceleradev.api.security.authentication.impl;
 
 import java.time.LocalDateTime;
 
-import com.aceleradev.api.exception.InvalidTokenException;
-import com.aceleradev.api.security.token.TokenRefresherService;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +11,11 @@ import com.aceleradev.api.controller.dto.AuthenticationRequest;
 import com.aceleradev.api.controller.dto.AuthenticationResponse;
 import com.aceleradev.api.controller.dto.WakanderProfileDTO;
 import com.aceleradev.api.domain.model.Wakander;
+import com.aceleradev.api.exception.InvalidTokenException;
 import com.aceleradev.api.repository.WakanderRepository;
 import com.aceleradev.api.security.authentication.AuthenticationService;
 import com.aceleradev.api.security.token.TokenGeneratorService;
+import com.aceleradev.api.security.token.TokenRefresherService;
 
 @Service
 public class JwtAuthenticationService implements AuthenticationService {

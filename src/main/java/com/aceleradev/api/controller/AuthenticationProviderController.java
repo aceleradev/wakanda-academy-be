@@ -1,7 +1,5 @@
 package com.aceleradev.api.controller;
 
-import com.aceleradev.api.exception.InvalidTokenException;
-import com.aceleradev.api.security.token.impl.JwtTokenRefresherService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +8,16 @@ import org.springframework.stereotype.Controller;
 import com.aceleradev.api.controller.contract.AuthenticationProviderApi;
 import com.aceleradev.api.controller.dto.AuthenticationRequest;
 import com.aceleradev.api.controller.dto.AuthenticationResponse;
+import com.aceleradev.api.exception.InvalidTokenException;
 import com.aceleradev.api.security.authentication.AuthenticationService;
 
 @Controller
 public class AuthenticationProviderController implements AuthenticationProviderApi {
 	
 	private AuthenticationService authenticationService;
-	private JwtTokenRefresherService tokenRefresherService;
 
-	public AuthenticationProviderController(AuthenticationService authenticationService, JwtTokenRefresherService tokenRefresherService) {
+	public AuthenticationProviderController(AuthenticationService authenticationService) {
 		this.authenticationService = authenticationService;
-		this.tokenRefresherService = tokenRefresherService;
 	}
 
 	@Override
