@@ -1,4 +1,4 @@
-package com.aceleradev.api.controller.dto;
+package com.aceleradev.api.user.controller.dto;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.aceleradev.api.domain.model.Credential;
 import com.aceleradev.api.domain.model.Wakander;
-import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
+import com.aceleradev.api.user.service.encrypt.PasswordEncrypter;
 
 public class UserCreationFormDto {
 	private static final Logger logger = LogManager.getLogger(UserCreationFormDto.class);

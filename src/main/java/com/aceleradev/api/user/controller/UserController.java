@@ -1,4 +1,4 @@
-package com.aceleradev.api.controller;
+package com.aceleradev.api.user.controller;
 
 import java.net.URI;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.aceleradev.api.controller.dto.UserCreatedDto;
-import com.aceleradev.api.controller.dto.UserCreationFormDto;
-import com.aceleradev.api.domain.model.User;
-import com.aceleradev.api.service.user.UserService;
+import com.aceleradev.api.user.controller.dto.UserCreatedDto;
+import com.aceleradev.api.user.controller.dto.UserCreationFormDto;
+import com.aceleradev.api.user.model.User;
+import com.aceleradev.api.user.service.UserService;
 
 @Controller
 @RequestMapping("/user")

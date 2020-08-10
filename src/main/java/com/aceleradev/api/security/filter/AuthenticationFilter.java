@@ -15,8 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.aceleradev.api.domain.model.User;
 import com.aceleradev.api.security.authentication.AuthenticatedProvider;
+import com.aceleradev.api.user.model.User;
 
 @Service
 public class AuthenticationFilter extends OncePerRequestFilter {

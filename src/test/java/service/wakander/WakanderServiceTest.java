@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import com.aceleradev.api.controller.dto.UserCreationFormDto;
+import com.aceleradev.api.user.controller.dto.UserCreationFormDto;
 
 public class WakanderServiceTest {
 

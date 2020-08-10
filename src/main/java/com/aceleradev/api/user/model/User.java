@@ -1,4 +1,4 @@
-package com.aceleradev.api.domain.model;
+package com.aceleradev.api.user.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.aceleradev.api.domain.model.Credential;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity

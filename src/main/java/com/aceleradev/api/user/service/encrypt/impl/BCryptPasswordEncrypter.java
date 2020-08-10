@@ -1,11 +1,11 @@
-package com.aceleradev.api.service.user.encrypt.impl;
+package com.aceleradev.api.user.service.encrypt.impl;
 
 import java.security.NoSuchAlgorithmException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
+import com.aceleradev.api.user.service.encrypt.PasswordEncrypter;
 
 @Service
 public class BCryptPasswordEncrypter implements PasswordEncrypter {

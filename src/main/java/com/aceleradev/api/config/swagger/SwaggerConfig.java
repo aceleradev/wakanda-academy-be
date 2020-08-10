@@ -3,7 +3,7 @@ package com.aceleradev.api.config.swagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.aceleradev.api.domain.model.User;
+import com.aceleradev.api.user.model.User;
 
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;

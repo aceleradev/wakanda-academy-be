@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.aceleradev.api.repository.UserRepository;
+import com.aceleradev.api.user.repository.UserRepository;
 
 @Component
 public class JwtUserDetailsService implements UserDetailsService {
@@ -21,7 +21,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		com.aceleradev.api.domain.model.User localUser = this.userRepository
+		com.aceleradev.api.user.model.User localUser = this.userRepository
 															.findByEmail(username)
 															.orElseThrow(() -> new UsernameNotFoundException(String.format("Usuario[email=%s] nao encontrado", username)));
 		return new User(localUser.getEmail(), localUser.getCredential().getPassword(), Collections.emptyList());

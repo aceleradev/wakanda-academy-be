@@ -1,6 +1,6 @@
-package com.aceleradev.api.controller.dto;
+package com.aceleradev.api.user.controller.dto;
 
-import com.aceleradev.api.domain.model.User;
+import com.aceleradev.api.user.model.User;
 
 public class UserCreatedDto {
 

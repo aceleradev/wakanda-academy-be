@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import com.aceleradev.api.exception.ApiException;
 import com.aceleradev.api.repository.JourneyRepository;
 import com.aceleradev.api.service.wakander.tribes.WakanderTribeService;
+import com.aceleradev.api.user.model.User;
 
 @Entity
 @Table(name = "wakanders")
