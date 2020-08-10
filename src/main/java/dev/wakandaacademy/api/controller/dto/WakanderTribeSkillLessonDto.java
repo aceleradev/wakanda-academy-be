@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dev.wakandaacademy.api.domain.model.Status;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 public class WakanderTribeSkillLessonDto {
 	private String lessonCode;

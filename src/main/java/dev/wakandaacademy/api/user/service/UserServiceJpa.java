@@ -6,7 +6,6 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.api.domain.model.Wakander;
 import dev.wakandaacademy.api.exception.EntityExistsException;
 import dev.wakandaacademy.api.repository.JourneyRepository;
 import dev.wakandaacademy.api.service.wakander.tribes.WakanderTribeService;
@@ -14,6 +13,7 @@ import dev.wakandaacademy.api.user.controller.dto.UserCreationFormDto;
 import dev.wakandaacademy.api.user.model.User;
 import dev.wakandaacademy.api.user.repository.UserRepository;
 import dev.wakandaacademy.api.user.service.encrypt.PasswordEncrypter;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 
 @Service
 public class UserServiceJpa implements UserService {

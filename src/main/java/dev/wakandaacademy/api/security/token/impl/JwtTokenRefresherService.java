@@ -5,10 +5,10 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.controller.dto.AuthenticationResponse;
-import dev.wakandaacademy.api.controller.dto.WakanderProfileDTO;
 import dev.wakandaacademy.api.domain.PrivateKey;
 import dev.wakandaacademy.api.exception.InvalidTokenException;
 import dev.wakandaacademy.api.security.token.TokenRefresherService;
+import dev.wakandaacademy.api.wakander.controller.dto.WakanderProfileDTO;
 
 import java.time.LocalDateTime;
 

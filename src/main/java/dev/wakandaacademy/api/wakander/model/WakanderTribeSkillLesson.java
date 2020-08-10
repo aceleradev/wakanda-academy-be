@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.model;
+package dev.wakandaacademy.api.wakander.model;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -17,7 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import dev.wakandaacademy.api.domain.model.ids.WakanderTribeSkillLessonId;
+import dev.wakandaacademy.api.domain.model.Lesson;
+import dev.wakandaacademy.api.domain.model.Status;
+import dev.wakandaacademy.api.wakander.model.ids.WakanderTribeSkillLessonId;
 
 @Entity
 @Table(name = "wakander_tribe_skill_lessons")

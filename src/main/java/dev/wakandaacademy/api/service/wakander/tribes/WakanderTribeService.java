@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import dev.wakandaacademy.api.controller.dto.WakanderTribeDTO;
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 public interface WakanderTribeService {
     List<WakanderTribeDTO> listTribes(String wakanderCode);

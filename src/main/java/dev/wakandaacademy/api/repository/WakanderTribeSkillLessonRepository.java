@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
-import dev.wakandaacademy.api.domain.model.ids.WakanderTribeSkillLessonId;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
+import dev.wakandaacademy.api.wakander.model.ids.WakanderTribeSkillLessonId;
 
 public interface WakanderTribeSkillLessonRepository extends JpaRepository<WakanderTribeSkillLesson,WakanderTribeSkillLessonId>{
 	

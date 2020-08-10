@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.model;
+package dev.wakandaacademy.api.user.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

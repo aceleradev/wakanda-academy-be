@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.DriveException;
 import dev.wakandaacademy.api.repository.WakanderTribeSkillLessonRepository;
 import dev.wakandaacademy.api.service.driver.DriveService;
 import dev.wakandaacademy.api.service.wakander.lesson.LessonContentService;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 @Service
 public class LessonContentServiceImpl implements LessonContentService {

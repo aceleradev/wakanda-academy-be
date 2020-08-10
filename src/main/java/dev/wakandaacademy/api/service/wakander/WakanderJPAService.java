@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.api.domain.model.Wakander;
 import dev.wakandaacademy.api.repository.WakanderRepository;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 
 @Service
 public class WakanderJPAService implements WakanderService {

@@ -1,6 +1,6 @@
-package dev.wakandaacademy.api.controller.dto;
+package dev.wakandaacademy.api.wakander.controller.dto;
 
-import dev.wakandaacademy.api.domain.model.Wakander;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 import io.jsonwebtoken.Claims;
 
 public class WakanderProfileDTO {

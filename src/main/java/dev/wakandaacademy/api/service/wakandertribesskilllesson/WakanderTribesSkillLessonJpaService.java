@@ -7,10 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.model.Status;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.NotFoundException;
 import dev.wakandaacademy.api.repository.WakanderTribeSkillLessonRepository;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 @Service
 public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillLessonService {

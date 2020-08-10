@@ -1,6 +1,6 @@
 package dev.wakandaacademy.api.service.wakander.tribes;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 public interface WakanderTribeSkillService {
 

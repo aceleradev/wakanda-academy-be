@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.controller.dto.WakanderTribeDTO;
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
 import dev.wakandaacademy.api.repository.WakanderTribeRepository;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 @Service
 public class WakanderTribesJpaService implements WakanderTribeService {

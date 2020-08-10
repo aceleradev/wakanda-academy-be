@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 public interface WakanderTribeRepository extends JpaRepository<WakanderTribe,Long> {
     @Query(name = "WakanderTribe.listUnlockedTribes")

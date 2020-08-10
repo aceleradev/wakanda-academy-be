@@ -6,9 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkill;
 import dev.wakandaacademy.api.repository.WakanderTribeSkillRepository;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkill;
 
 @Service
 public class WakanderTribeSkillJPAService implements WakanderTribeSkillService {

@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.wakandaacademy.api.controller.contract.WakanderTribeAPI;
 import dev.wakandaacademy.api.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.controller.dto.WakanderTribeDetailDTO;
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
 import dev.wakandaacademy.api.exception.NotFoundException;
 import dev.wakandaacademy.api.service.wakander.tribes.WakanderTribeService;
 import dev.wakandaacademy.api.service.wakander.tribes.WakanderTribesJpaService;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 @RestController
 @RequestMapping("/wakander")

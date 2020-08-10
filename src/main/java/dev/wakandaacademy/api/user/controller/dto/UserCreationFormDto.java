@@ -11,9 +11,9 @@ import javax.validation.constraints.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dev.wakandaacademy.api.domain.model.Credential;
-import dev.wakandaacademy.api.domain.model.Wakander;
+import dev.wakandaacademy.api.user.model.Credential;
 import dev.wakandaacademy.api.user.service.encrypt.PasswordEncrypter;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 
 public class UserCreationFormDto {
 	private static final Logger logger = LogManager.getLogger(UserCreationFormDto.class);

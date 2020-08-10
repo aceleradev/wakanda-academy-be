@@ -7,14 +7,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.model.Lesson;
-import dev.wakandaacademy.api.domain.model.Wakander;
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkill;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
 import dev.wakandaacademy.api.enums.DriveRole;
 import dev.wakandaacademy.api.exception.DriveException;
 import dev.wakandaacademy.api.service.driver.DriveService;
 import dev.wakandaacademy.api.service.driver.permission.PermissionDriveService;
+import dev.wakandaacademy.api.wakander.model.Wakander;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkill;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 @Service
 public class GoogleDriveService implements DriveService {

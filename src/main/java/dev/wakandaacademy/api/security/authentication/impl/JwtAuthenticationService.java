@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.controller.dto.AuthenticationRequest;
 import dev.wakandaacademy.api.controller.dto.AuthenticationResponse;
-import dev.wakandaacademy.api.controller.dto.WakanderProfileDTO;
-import dev.wakandaacademy.api.domain.model.Wakander;
 import dev.wakandaacademy.api.exception.InvalidTokenException;
 import dev.wakandaacademy.api.repository.WakanderRepository;
 import dev.wakandaacademy.api.security.authentication.AuthenticationService;
 import dev.wakandaacademy.api.security.token.TokenGeneratorService;
 import dev.wakandaacademy.api.security.token.TokenRefresherService;
+import dev.wakandaacademy.api.wakander.controller.dto.WakanderProfileDTO;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 
 @Service
 public class JwtAuthenticationService implements AuthenticationService {

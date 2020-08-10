@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.wakandaacademy.api.controller.contract.WakandaActionAPI;
 import dev.wakandaacademy.api.controller.dto.NextWakanderLessonDTO;
 import dev.wakandaacademy.api.domain.Message;
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.DriveException;
 import dev.wakandaacademy.api.service.wakander.lesson.LessonContentService;
 import dev.wakandaacademy.api.service.wakandertribesskilllesson.WakanderTribesSkillLessonService;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 @RestController
 @RequestMapping("/wakanderAction")

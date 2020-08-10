@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.model;
+package dev.wakandaacademy.api.wakander.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import dev.wakandaacademy.api.domain.model.Journey;
+import dev.wakandaacademy.api.domain.model.Status;
+import dev.wakandaacademy.api.domain.model.Tribe;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.repository.JourneyRepository;
 import dev.wakandaacademy.api.service.wakander.tribes.WakanderTribeService;
+import dev.wakandaacademy.api.user.model.Credential;
 import dev.wakandaacademy.api.user.model.User;
 
 @Entity

@@ -14,8 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import dev.wakandaacademy.api.domain.model.Credential;
-
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)

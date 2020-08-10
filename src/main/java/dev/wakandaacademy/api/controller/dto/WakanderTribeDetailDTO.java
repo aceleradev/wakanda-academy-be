@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribe;
 import dev.wakandaacademy.api.exception.NotFoundException;
+import dev.wakandaacademy.api.wakander.model.WakanderTribe;
 
 public class WakanderTribeDetailDTO {
 	private static final Logger log = LoggerFactory.getLogger(WakanderTribeDetailDTO.class);

@@ -1,6 +1,6 @@
 package dev.wakandaacademy.api.controller.dto;
 
-import dev.wakandaacademy.api.domain.model.WakanderTribeSkillLesson;
+import dev.wakandaacademy.api.wakander.model.WakanderTribeSkillLesson;
 
 public class NextWakanderLessonDTO {
 

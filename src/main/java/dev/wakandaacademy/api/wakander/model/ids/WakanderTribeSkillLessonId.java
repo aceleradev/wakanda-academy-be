@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.model.ids;
+package dev.wakandaacademy.api.wakander.model.ids;
 
 import java.io.Serializable;
 

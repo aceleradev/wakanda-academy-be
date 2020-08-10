@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.controller;
+package dev.wakandaacademy.api.wakander.controller;
 
 import java.util.Optional;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.wakandaacademy.api.controller.dto.WakanderProfileDTO;
-import dev.wakandaacademy.api.domain.model.Wakander;
 import dev.wakandaacademy.api.exception.NotFoundException;
 import dev.wakandaacademy.api.service.wakander.WakanderService;
+import dev.wakandaacademy.api.wakander.controller.dto.WakanderProfileDTO;
+import dev.wakandaacademy.api.wakander.model.Wakander;
 
 @RestController
 @RequestMapping("/wakander")

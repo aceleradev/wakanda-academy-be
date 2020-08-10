@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.api.controller.dto.WakanderProfileDTO;
 import dev.wakandaacademy.api.domain.PrivateKey;
 import dev.wakandaacademy.api.security.token.TokenGeneratorService;
 import dev.wakandaacademy.api.util.DateUtils;
+import dev.wakandaacademy.api.wakander.controller.dto.WakanderProfileDTO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
