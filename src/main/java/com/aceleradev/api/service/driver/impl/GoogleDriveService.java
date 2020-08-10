@@ -30,6 +30,7 @@ public class GoogleDriveService implements DriveService {
 		String wakanderEmail = this.getWakanderEmail(wakanderTribeSkillLesson);
 		Lesson lesson = wakanderTribeSkillLesson.getLesson();
 		logger.info("Liberando lesson[{}] para wakander[email={}]", lesson, wakanderEmail);
+		if(wakanderTribeSkillLesson.isUnlockedContent())
 		this.permissionDriveService.permit(wakanderEmail, lesson.getFileId(), DriveRole.READER);
 	}
 

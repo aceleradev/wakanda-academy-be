@@ -63,16 +63,21 @@ public class DriveCredentialsConfiguration {
 	}
 	
 	@Bean
-	public Credential googleCredential(HttpTransport httpTransport, JsonFactory jsonFactory, File dataStoreFolder, InputStream credentialsInputStream) throws IOException {
+	public GoogleAuthorizationCodeFlow authorizationCodeFlow(HttpTransport httpTransport, JsonFactory jsonFactory,
+			File dataStoreFolder, InputStream credentialsInputStream) throws IOException {
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(jsonFactory, new InputStreamReader(credentialsInputStream));
-		
 		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, jsonFactory, clientSecrets, SCOPES)
 																		.setDataStoreFactory(new FileDataStoreFactory(dataStoreFolder))
-                														.build();
+																		.build();
+		return flow;
+	}
+	
+	@Bean
+	public Credential googleCredential(GoogleAuthorizationCodeFlow flow) throws IOException {
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	}
-	
+
 	@Bean
 	public Drive driveService(Credential credential, HttpTransport httpTransport, JsonFactory jsonFactory) {
 		 Drive driveService = new Drive.Builder(httpTransport, jsonFactory, credential)

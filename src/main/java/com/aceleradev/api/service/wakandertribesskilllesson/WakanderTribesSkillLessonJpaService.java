@@ -1,13 +1,16 @@
 package com.aceleradev.api.service.wakandertribesskilllesson;
 
+import java.util.Optional;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.aceleradev.api.domain.model.Status;
 import com.aceleradev.api.domain.model.WakanderTribeSkillLesson;
 import com.aceleradev.api.exception.ApiException;
+import com.aceleradev.api.exception.NotFoundException;
 import com.aceleradev.api.repository.WakanderTribeSkillLessonRepository;
-
-import java.util.Optional;
 
 @Service
 public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillLessonService {
@@ -26,17 +29,24 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     }
     
     private Optional<WakanderTribeSkillLesson> startNextLessonBy(String wakanderCode, String currentLessonCode) {
-        Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
-        optResult.ifPresent(WakanderTribeSkillLesson::startsLesson);
-        return optResult;
+    	Optional<WakanderTribeSkillLesson> optLesson = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
+    	try {
+    		WakanderTribeSkillLesson wakanderTribeSkillLesson = optLesson.orElseThrow(NotFoundException::new);
+    		wakanderTribeSkillLesson.startsLesson();
+    		wakanderTribeSkillLessonRepository.save(wakanderTribeSkillLesson);
+		} catch (NotFoundException e) {
+			logger.warn("Não foi encontrado proxima aula[wakander={}, lesson={}]", wakanderCode, currentLessonCode);
+		}
+    	return optLesson;
     }
 
     private void checkPreviousLessonDone (String wakanderCode, String currentLessonCode) throws ApiException {
-    	Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findPreviousWakanderLessonDone(wakanderCode, currentLessonCode);
+    	Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findPreviousWakanderLessonDone(wakanderCode, currentLessonCode)
+    																					.filter(lesson -> Status.DOING.equals(lesson.getStatus()));
     	if (optResult.isPresent()) {
-    		if (optResult.get().getStatus() == Status.DOING) {
-    			throw new ApiException(500L, "Não foi possível iniciar essa aula, pois já existe uma aula em andamento.");
-    		}
+			throw new ApiException(500L, "Não foi possível iniciar essa aula, pois já existe uma aula em andamento.");
     	}
     }
+    
+    private static final Logger logger = LogManager.getLogger(WakanderTribesSkillLessonJpaService.class);
 }
