@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import com.aceleradev.api.controller.dto.WakanderTribeDTO;
-import com.aceleradev.api.domain.model.Status;
-import com.aceleradev.api.domain.model.Tribe;
-import com.aceleradev.api.domain.model.Wakander;
-import com.aceleradev.api.domain.model.WakanderTribe;
+import dev.wakandaacademy.api.controller.dto.WakanderTribeDTO;
+import dev.wakandaacademy.api.domain.model.Status;
+import dev.wakandaacademy.api.domain.model.Tribe;
+import dev.wakandaacademy.api.domain.model.Wakander;
+import dev.wakandaacademy.api.domain.model.WakanderTribe;
 
 public class WakanderTribeServiceTest {
 
