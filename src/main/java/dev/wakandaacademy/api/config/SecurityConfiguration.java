@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import dev.wakandaacademy.api.security.filter.AuthenticationFilter;
+import dev.wakandaacademy.api.domain.security.filter.AuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity

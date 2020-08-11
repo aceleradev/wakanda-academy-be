@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.servlet.resource.HttpResource;
 
-import dev.wakandaacademy.api.domain.ApiErrorResponse;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.EntityExistsException;
 import dev.wakandaacademy.api.exception.NotFoundException;
+import dev.wakandaacademy.api.handler.domain.ApiErrorResponse;
 
 @RestControllerAdvice
 @ControllerAdvice

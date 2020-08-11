@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import dev.wakandaacademy.api.domain.PrivateKey;
+import dev.wakandaacademy.api.domain.security.domain.PrivateKey;
 
 @Configuration
 public class JwtPrivateKeyConfiguration {

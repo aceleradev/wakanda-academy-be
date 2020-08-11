@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import dev.wakandaacademy.api.domain.ApiErrorResponse;
-import dev.wakandaacademy.api.domain.ObjectError;
+import dev.wakandaacademy.api.handler.domain.ApiErrorResponse;
+import dev.wakandaacademy.api.handler.domain.ObjectError;
 
 @Component
 public class ApiErrorResponseExceptionExtractor {
