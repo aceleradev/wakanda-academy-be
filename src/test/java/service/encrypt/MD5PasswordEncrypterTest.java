@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.aceleradev.api.service.user.encrypt.PasswordEncrypter;
-import com.aceleradev.api.service.user.encrypt.impl.BCryptPasswordEncrypter;
+import dev.wakandaacademy.api.domain.user.service.encrypt.PasswordEncrypter;
+import dev.wakandaacademy.api.domain.user.service.encrypt.impl.BCryptPasswordEncrypter;
 
 
 public class MD5PasswordEncrypterTest {
