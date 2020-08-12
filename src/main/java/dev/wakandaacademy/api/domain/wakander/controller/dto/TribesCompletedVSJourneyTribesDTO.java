@@ -1,10 +1,10 @@
 package dev.wakandaacademy.api.domain.wakander.controller.dto;
 
-public class TribesCompletedVSJourneyTribes {
+public class TribesCompletedVSJourneyTribesDTO {
 	private Integer totalWakanderTribesCompleted;
 	private Integer totalWakanderTribesJourney;
 
-	public TribesCompletedVSJourneyTribes(Integer totalWakanderTribesCompleted,
+	public TribesCompletedVSJourneyTribesDTO(Integer totalWakanderTribesCompleted,
 			Integer totalWakanderTribesJourney) {
 		this.totalWakanderTribesCompleted = totalWakanderTribesCompleted;
 		this.totalWakanderTribesJourney = totalWakanderTribesJourney;

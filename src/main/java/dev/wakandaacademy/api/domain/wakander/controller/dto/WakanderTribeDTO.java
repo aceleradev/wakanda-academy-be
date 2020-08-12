@@ -53,4 +53,11 @@ public class WakanderTribeDTO {
 	public void setCompletedPercentageTribe(Number completedPercentageTribe) {
 		this.completedPercentageTribe = completedPercentageTribe;
 	}
+
+	@Override
+	public String toString() {
+		return "WakanderTribeDTO [tribeCode=" + tribeCode + ", name=" + name + ", description=" + description
+				+ ", iconUrl=" + iconUrl + ", status=" + status + ", completedPercentageTribe="
+				+ completedPercentageTribe + "]";
+	}
 }
