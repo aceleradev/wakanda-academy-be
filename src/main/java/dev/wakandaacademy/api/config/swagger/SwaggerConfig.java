@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket aceleraDevApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.aceleradev.api"))
+                .apis(RequestHandlerSelectors.basePackage("dev.wakandaacademy.api"))
                 .build()
                 .ignoredParameterTypes(User.class).globalOperationParameters(
                         Arrays.asList(new ParameterBuilder().name("Authorization")
