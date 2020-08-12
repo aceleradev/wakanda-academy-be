@@ -3,75 +3,54 @@ package dev.wakandaacademy.api.domain.wakander.controller.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 import dev.wakandaacademy.api.domain.wakander.model.Status;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 
 public class WakanderTribeDTO {
+	private String tribeCode;
+	private String name;
+	private String description;
+	private String iconUrl;
+	private Status status;
+	private Number completedPercentageTribe;
 
-    private String tribeCode;
-    private String name;
-    private String description;
-    private String iconUrl;
-    private Status status;
-    private Tribe dependent;
+	public WakanderTribeDTO(WakanderTribe wktribe) {
+		this.tribeCode = wktribe.getTribe().getCode();
+		this.name = wktribe.getTribe().getName();
+		this.description = wktribe.getTribe().getDescription();
+		this.iconUrl = wktribe.getTribe().getIconURL();
+		this.status = wktribe.getStatus();
+	}
 
-    public WakanderTribeDTO() {}
+	public static List<WakanderTribeDTO> convert(List<WakanderTribe> wakanderTribe) {
+		return wakanderTribe.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
+	}
 
-    public WakanderTribeDTO(WakanderTribe wktribe) {
-        this.tribeCode=wktribe.getTribe().getCode();
-        this.name=wktribe.getTribe().getName();
-        this.description=wktribe.getTribe().getDescription();
-        this.iconUrl=wktribe.getTribe().getIconURL();
-        this.status=wktribe.getStatus();
-        this.dependent=wktribe.getTribe().getDependent();
-    }
+	public String getTribeCode() {
+		return tribeCode;
+	}
 
-    public static List<WakanderTribeDTO> convert(List<WakanderTribe> wakanderTribe){
-    	return wakanderTribe.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
-    }
-   
-    public String getTribeCode() {
-        return tribeCode;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setTribeCode(String tribeCode) {
-        this.tribeCode = tribeCode;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getIconUrl() {
+		return iconUrl;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Status getStatus() {
+		return status;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public Number getCompletedPercentageTribe() {
+		return completedPercentageTribe;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIconUrl() {
-        return iconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-    
-    public Tribe getDependent() {
-		return dependent;
+	public void setCompletedPercentageTribe(Number completedPercentageTribe) {
+		this.completedPercentageTribe = completedPercentageTribe;
 	}
 }
