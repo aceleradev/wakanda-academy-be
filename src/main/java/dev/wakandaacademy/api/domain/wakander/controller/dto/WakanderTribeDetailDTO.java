@@ -13,11 +13,11 @@ public class WakanderTribeDetailDTO {
 	private static final Logger log = LoggerFactory.getLogger(WakanderTribeDetailDTO.class);
 	private String nameTribe;
 	private List<WakanderTribeSkillDto> wakanderTribeSkills;
+	private Number completedPercentageTribe;
 
 	public WakanderTribeDetailDTO(WakanderTribe wakanderTribe) {
 		this.nameTribe = wakanderTribe.getNameTribe();
 		this.wakanderTribeSkills = WakanderTribeSkillDto.convert(wakanderTribe.getWakanderTribeSkills());
-
 	}
 
 	public String getNameTribe() {
@@ -28,6 +28,14 @@ public class WakanderTribeDetailDTO {
 		return wakanderTribeSkills;
 	}
 	
+	public Number getCompletedPercentageTribe() {
+		return completedPercentageTribe;
+	}
+
+	public void setCompletedPercentageTribe(Number completedPercentageTribe) {
+		this.completedPercentageTribe = completedPercentageTribe;
+	}
+
 	public static WakanderTribeDetailDTO buildResponse(String wakanderCode, String tribeCode,
 			Optional<WakanderTribe> optWakanderTribeDetail) throws NotFoundException {
 		WakanderTribeDetailDTO wakanderTribeDetailDTO = optWakanderTribeDetail.map(WakanderTribeDetailDTO::new)
