@@ -32,13 +32,16 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     	Optional<WakanderTribeSkillLesson> optLesson = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
     	try {
     		WakanderTribeSkillLesson wakanderTribeSkillLesson = optLesson.orElseThrow(NotFoundException::new);
-    		wakanderTribeSkillLesson.startsLesson();
+    		if(wakanderTribeSkillLesson.getStatus()== Status.TODO && wakanderTribeSkillLesson.getStartedAt()==null) {
+    		wakanderTribeSkillLessonRepository.startsNextLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
     		wakanderTribeSkillLessonRepository.save(wakanderTribeSkillLesson);
+    		}
 		} catch (NotFoundException e) {
 			logger.warn("Não foi encontrado proxima aula[wakander={}, lesson={}]", wakanderCode, currentLessonCode);
 		}
     	return optLesson;
     }
+
 
     private void checkPreviousLessonDone (String wakanderCode, String currentLessonCode) throws ApiException {
     	Optional<WakanderTribeSkillLesson> optResult = wakanderTribeSkillLessonRepository.findPreviousWakanderLessonDone(wakanderCode, currentLessonCode)
