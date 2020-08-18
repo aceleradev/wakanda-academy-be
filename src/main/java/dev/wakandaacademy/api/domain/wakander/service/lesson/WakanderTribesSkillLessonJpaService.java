@@ -32,8 +32,8 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     	Optional<WakanderTribeSkillLesson> optLesson = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
     	try {
     		WakanderTribeSkillLesson wakanderTribeSkillLesson = optLesson.orElseThrow(NotFoundException::new);
-    		if(wakanderTribeSkillLesson.getStatus()== Status.TODO && wakanderTribeSkillLesson.getStartedAt()==null) {
-    		wakanderTribeSkillLessonRepository.startsNextLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
+    		if(wakanderTribeSkillLesson.getStatus()==Status.TODO && wakanderTribeSkillLesson.getStartedAt()==null) {
+       		wakanderTribeSkillLesson.setStatus(Status.DOING);
     		wakanderTribeSkillLessonRepository.save(wakanderTribeSkillLesson);
     		}
 		} catch (NotFoundException e) {
