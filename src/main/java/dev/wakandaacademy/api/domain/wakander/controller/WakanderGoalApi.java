@@ -14,9 +14,9 @@ import io.swagger.annotations.Api;
 @RequestMapping(value = "/wakander/{wakanderCode}/goal")
 public interface WakanderGoalApi {
 	@GetMapping
-	WakanderGoalDTO getOpenGoal(@PathVariable String wakanderCode) throws ApiException;
+	WakanderGoalDTO getOpenGoal(@PathVariable("wakanderCode") String wakanderCode) throws ApiException;
 
 	@PutMapping
-	WakanderGoalDTO updateOpenGoal(@PathVariable String wakanderCode, @RequestBody WakanderGoalDTO wakanderGoalDTO)
+	WakanderGoalDTO updateOpenGoal(@PathVariable("wakanderCode") String wakanderCode, @RequestBody WakanderGoalDTO wakanderGoalDTO)
 			throws ApiException;
 }
