@@ -5,9 +5,10 @@ import java.util.Optional;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 
 public interface WakanderTribeService {
     List<WakanderTribeDTO> listTribes(String wakanderCode);
-    Optional<WakanderTribe> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode, String tribeCode);
+    Optional<WakanderTribeInfo> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode, String tribeCode);
 	void saveAll(List<WakanderTribe> tribes);
 }

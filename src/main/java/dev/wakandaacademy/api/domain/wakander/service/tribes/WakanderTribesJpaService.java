@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
 
 @Service
@@ -42,9 +43,9 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 	}
 
 	@Override
-	public Optional<WakanderTribe> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode,
+	public Optional<WakanderTribeInfo> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode,
 			String tribeCode) {
-		return wakanderTribeRepository.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode);
+		return  wakanderTribeRepository.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode);
 	}
 
 	@Override

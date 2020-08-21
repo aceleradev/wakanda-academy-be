@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
 import dev.wakandaacademy.api.exception.ApiException;
+import dev.wakandaacademy.api.exception.BusinessException;
 import io.swagger.annotations.Api;
 
 @Api(value = "wakander-goal")
@@ -18,5 +19,5 @@ public interface WakanderGoalApi {
 
 	@PutMapping
 	WakanderGoalDTO updateOpenGoal(@PathVariable String wakanderCode, @RequestBody WakanderGoalDTO wakanderGoalDTO)
-			throws ApiException;
+			throws ApiException, BusinessException;
 }
