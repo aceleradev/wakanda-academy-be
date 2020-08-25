@@ -1,7 +1,6 @@
 package dev.wakandaacademy.api.domain.wakander.service.goals.impl;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,10 +27,12 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 	}
 
 	@Override
-	public void createOrUpdateGoal(WakanderGoalDTO Dto) {
-		String WakanderGoalDTO = "adasd";
-		String tribeCode = "tribe";
-		String wakanderCode = "wakander";
+	public void createOrUpdateGoal(WakanderGoalDTO dto) {
+		WakanderGoal wakanderGoal = new WakanderGoal();
+		
+		String tribeCode = wakanderGoal.getWakander().getCode();
+	
+		String wakanderCode = wakanderGoal.getTribe().getCode();
 		
 		Integer weeklyGoalStudyHours = 1;
 		WakanderGoal goals = null;
@@ -43,7 +44,7 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 		
 		try {
 			wakanderTribe = this.tribeRepository
-												.findWakanderByCodeAndTribeByCode(WakanderGoalDTO, tribeCode)
+												.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode)
 												.orElseThrow(() -> new BusinessException("A tribo do wakander não existe"));
 			 tribe = wakanderTribe.getTribe();
 		} catch (BusinessException e1) {
@@ -62,8 +63,8 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 			
 		} catch (NotFoundException e) {
 
-			Wakander wakander = wakanderTribe.getWakander();
-			goals = new WakanderGoal(wakander, tribe, weeklyGoalStudyHours, LocalDateTime.now());
+			Wakander wakanderT = wakanderTribe.getWakander();
+			goals = new WakanderGoal(wakanderT, tribe, weeklyGoalStudyHours, LocalDateTime.now());
 		} finally {
 			this.wakanderGoalRepository.save(goals);
 		}
