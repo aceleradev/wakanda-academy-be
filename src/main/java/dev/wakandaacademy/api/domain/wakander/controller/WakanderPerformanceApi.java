@@ -12,6 +12,6 @@ import io.swagger.annotations.Api;
 @RequestMapping(value = "/wakander/{wakanderCode}/performace")
 public interface WakanderPerformanceApi {
 	@RequestMapping(value = "/tribes-completed-vs-journey-tribes", method = RequestMethod.GET)
-	TribesCompletedVSJourneyTribesDTO getTotalTribesCompletedVSTotalTribesJourney(@PathVariable String WakanderCode)
+	TribesCompletedVSJourneyTribesDTO getTotalTribesCompletedVSTotalTribesJourney(@PathVariable String wakanderCode)
 			throws ApiException;
 }
