@@ -11,7 +11,7 @@ import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 
 public interface WakanderTribeRepository extends JpaRepository<WakanderTribe,Long> {
-    @Query(name = "WakanderTribe.listUnlockedTribes")
+    @Query(name = "WakanderTribe.listUnlockedTribes", nativeQuery = true)
     List<WakanderTribeInfo> listUnlockedTribes(@Param("wakanderCode") String wakanderCode);
     
     
