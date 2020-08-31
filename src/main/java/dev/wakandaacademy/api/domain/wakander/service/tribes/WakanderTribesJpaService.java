@@ -31,7 +31,7 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 	public List<WakanderTribeDTO> listTribes(String wakanderCode) {
 		log.info("Starting listTribes in WakanderTribesJpaService");
 		log.info("searching for unlocked tribes");
-		List<WakanderTribe> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
+		List<WakanderTribeInfo> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
 		log.info("checking results");
 		if (wakanderTribes == null) {
 			log.info("no tribe was found");

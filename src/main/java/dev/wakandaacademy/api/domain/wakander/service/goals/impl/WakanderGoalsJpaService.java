@@ -51,7 +51,6 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 	}
 
 	@Override
-
 	public void createOrUpdateGoal(String wakanderCode,WakanderGoalDTO goalDto) throws BusinessException {
 		log.info("Starting UserService Create to User: {}",goalDto);
 
@@ -67,7 +66,6 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 
 		log.info("Esse Cara : {}",tribe);
 
-
 		try {
 			// public Criar o metodo com o fluxo abaixo,o nome deve contemplar o fluxo abaixo. UPDATEGOAL 
 			goals = this.wakanderGoalRepository
@@ -78,13 +76,11 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 			goals.setWeeklyGoalStudyHours(weeklyGoalStudyHours);
 			log.info(": {}",goals);
 		} catch (NotFoundException e) {
-
 			//public  NEwGOALWakander 
 			Wakander wakander = wakanderRepository.findByCode(wakanderCode)
 					.orElseThrow(() -> new BusinessException(" wakander não existe"));;
 					goals = new WakanderGoal(wakander, tribe, weeklyGoalStudyHours, LocalDateTime.now());
 					log.info(": {}",goals);
-
 		}
 		this.wakanderGoalRepository.save(goals);
 
