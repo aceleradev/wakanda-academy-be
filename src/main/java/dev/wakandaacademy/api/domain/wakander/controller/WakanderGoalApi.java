@@ -22,13 +22,13 @@ public interface WakanderGoalApi {
 
 	
 	@GetMapping
-	WakanderGoalDTO getOpenGoal(@PathVariable String wakanderCode) 
+	WakanderGoalDTO getOpenGoal(@PathVariable("wakanderCode") String wakanderCode) 
 			throws ApiException, BusinessException;
 	
 	
 
 
 	@PutMapping
-	WakanderGoalDTO updateOpenGoal(@PathVariable String wakanderCode, @RequestBody WakanderGoalDTO wakanderGoalDTO)
+	WakanderGoalDTO updateOpenGoal(@PathVariable("wakanderCode") String wakanderCode, @RequestBody WakanderGoalDTO wakanderGoalDTO)
 			throws ApiException, BusinessException;
 }
