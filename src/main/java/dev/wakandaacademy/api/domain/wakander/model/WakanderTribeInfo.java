@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 public class WakanderTribeInfo extends WakanderTribe {
 	
 	@Column(name = "percentual_conclusao", insertable = false, updatable = false)
-	private BigDecimal percentualConclusao;
-	
-	public BigDecimal getPercentualConclusao() {
-		return percentualConclusao;
+	private BigDecimal completedPercentageTribe;
+
+	public BigDecimal getcompletedPercentageTribe() {
+		return completedPercentageTribe;
 	}
-	public void setPercentualConclusao(BigDecimal percentualConclusao) {
-		this.percentualConclusao = percentualConclusao;
+
+	public void setcompletedPercentageTribe(BigDecimal percentualConclusao) {
+		this.completedPercentageTribe = percentualConclusao;
 	}
-	
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDetailDTO;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
+
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribeService;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribesJpaService;
