@@ -55,7 +55,7 @@ public class Wakander extends User {
 
 	@Override
 	public String toString() {
-		return "Wakander [code=" + code + ", name=" + getName() + ", email=" + getEmail() + "]";
+		return "Wakander [code=" + code + ",tribes="+  getCode()+", name=" + getName() + ", email=" + getEmail() + "]";
 	}
 
 	public void setTribes(JourneyRepository journeyRepository, WakanderTribeService wakanderTribesService) throws ApiException {

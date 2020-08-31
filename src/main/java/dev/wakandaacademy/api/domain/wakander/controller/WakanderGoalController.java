@@ -1,22 +1,43 @@
 package dev.wakandaacademy.api.domain.wakander.controller;
 
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.TribeGoalDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
+import dev.wakandaacademy.api.domain.wakander.model.Wakander;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
+import dev.wakandaacademy.api.domain.wakander.service.goals.WakanderGoalService;
 import dev.wakandaacademy.api.exception.ApiException;
+import dev.wakandaacademy.api.exception.BusinessException;
 
 @RestController
 public class WakanderGoalController implements WakanderGoalApi {
-	@Override
-	public WakanderGoalDTO getOpenGoal(String WakanderCode) throws ApiException {
-		// TODO not implmented - Mocked
-		return new WakanderGoalDTO(20, new TribeGoalDTO("TRIBE-MOCK", "Tribo mockada"));
+
+	private static final Logger log = LoggerFactory.getLogger(WakanderGoalController.class);
+
+	private WakanderGoalService wakanderGoalService;
+
+	public WakanderGoalController(WakanderGoalService wakanderGoalService) {
+		this.wakanderGoalService = wakanderGoalService;
 	}
 
 	@Override
-	public WakanderGoalDTO updateOpenGoal(String wakanderCode, WakanderGoalDTO wakanderGoalDTO) throws ApiException {
-		// TODO not implmented - Mocked
-		return wakanderGoalDTO;
+	public WakanderGoalDTO getOpenGoal(String wakanderCode) throws BusinessException {
+		WakanderGoal wakanderGoal = wakanderGoalService.getGoal(wakanderCode);
+		return new WakanderGoalDTO(wakanderGoal.getWeeklyGoalStudyHours(), 
+				new TribeGoalDTO(wakanderGoal.getTribe().getCode(), wakanderGoal.getTribe().getName()));
+
+	}
+
+	@Override
+	public WakanderGoalDTO updateOpenGoal(String wakanderCode, WakanderGoalDTO dto) throws BusinessException {
+		log.info("request: wakanderCode {} WakanderGoalDTO {}",wakanderCode,dto);
+		wakanderGoalService.createOrUpdateGoal(wakanderCode,dto);
+		return dto;
 	}
 }

@@ -25,6 +25,7 @@ public class WakanderTribeController implements WakanderTribeAPI {
 	private static final Logger log = LoggerFactory.getLogger(WakanderTribesJpaService.class);
 	private WakanderTribeService wakanderTribesService;
 
+	
 	public WakanderTribeController(WakanderTribeService wakanderTribesService) {
 		this.wakanderTribesService = wakanderTribesService;
 	}
@@ -50,7 +51,8 @@ public class WakanderTribeController implements WakanderTribeAPI {
 			@PathVariable String tribeCode) throws NotFoundException {
 		log.info("Starting findWakanderTribeDetailByWakanderCodeAndTribeCode in WakanderTribesService");
 		log.info("Parameters: wakanderCode = {} and tribeCode = {}", wakanderCode, tribeCode);
-		Optional<WakanderTribeInfo> wakanderTribeDetail = wakanderTribesService
+		Optional<
+      > wakanderTribeDetail = wakanderTribesService
 				.findWakanderTribeDetailByWakanderCodeAndTribeCode(wakanderCode, tribeCode);
 		return WakanderTribeDetailDTO.buildResponse(wakanderCode, tribeCode, wakanderTribeDetail);
 	}

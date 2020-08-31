@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class WakanderTribeInfo extends WakanderTribe {
 
+
 	@Column(name = "percentual_conclusao", insertable = false, updatable = false)
 	private BigDecimal completedPercentageTribe;
 

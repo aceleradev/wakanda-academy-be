@@ -14,12 +14,13 @@ public interface WakanderTribeRepository extends JpaRepository<WakanderTribe,Lon
     @Query(name = "WakanderTribe.listUnlockedTribes", nativeQuery = true)
     List<WakanderTribeInfo> listUnlockedTribes(@Param("wakanderCode") String wakanderCode);
     
+
     
     
     @Query(name = "WakanderTribe.findWakanderByCodeAndTribeByCode", nativeQuery = true)
 	Optional<WakanderTribeInfo> findWakanderByCodeAndTribeByCode(@Param("wakanderCode") String wakanderCode, @Param("tribeCode") String tribeCode);
     
-    
+
 
     
 }

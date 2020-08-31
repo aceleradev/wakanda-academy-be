@@ -45,7 +45,7 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 	@Override
 	public Optional<WakanderTribeInfo> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode,
 			String tribeCode) {
-		return wakanderTribeRepository.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode);
+		return  wakanderTribeRepository.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode);
 	}
 
 	@Override
