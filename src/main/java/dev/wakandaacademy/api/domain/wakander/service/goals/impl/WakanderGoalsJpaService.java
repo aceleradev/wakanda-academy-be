@@ -1,11 +1,10 @@
 package dev.wakandaacademy.api.domain.wakander.service.goals.impl;
 
 import java.time.LocalDateTime;
-<<<<<<< HEAD
+
 import java.util.List;
 import java.util.Optional;
-=======
->>>>>>> f438e5014d91048b7276ec129683123a8e55e5ec
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +51,6 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void createOrUpdateGoal(String wakanderCode,WakanderGoalDTO goalDto) throws BusinessException {
 		log.info("Starting UserService Create to User: {}",goalDto);
 
@@ -68,35 +66,6 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 
 		log.info("Esse Cara : {}",tribe);
 
-
-=======
-	public void createOrUpdateGoal(WakanderGoalDTO dto) {
-		WakanderGoal wakanderGoal = new WakanderGoal();
-		
-		String tribeCode = wakanderGoal.getWakander().getCode();
-	
-		String wakanderCode = wakanderGoal.getTribe().getCode();
-		
-		Integer weeklyGoalStudyHours = 1;
-		WakanderGoal goals = null;
-		
-		WakanderTribeInfo wakanderTribe = null;
-		
-		Tribe tribe = null;
-		
-		
-		try {
-			wakanderTribe = this.tribeRepository
-												.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode)
-												.orElseThrow(() -> new BusinessException("A tribo do wakander não existe"));
-			 tribe = wakanderTribe.getTribe();
-		} catch (BusinessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
->>>>>>> f438e5014d91048b7276ec129683123a8e55e5ec
 		try {
 			// public Criar o metodo com o fluxo abaixo,o nome deve contemplar o fluxo abaixo. UPDATEGOAL 
 			goals = this.wakanderGoalRepository
@@ -107,19 +76,11 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 			goals.setWeeklyGoalStudyHours(weeklyGoalStudyHours);
 			log.info(": {}",goals);
 		} catch (NotFoundException e) {
-<<<<<<< HEAD
 			//public  NEwGOALWakander 
 			Wakander wakander = wakanderRepository.findByCode(wakanderCode)
 					.orElseThrow(() -> new BusinessException(" wakander não existe"));;
 					goals = new WakanderGoal(wakander, tribe, weeklyGoalStudyHours, LocalDateTime.now());
 					log.info(": {}",goals);
-=======
-
-			Wakander wakanderT = wakanderTribe.getWakander();
-			goals = new WakanderGoal(wakanderT, tribe, weeklyGoalStudyHours, LocalDateTime.now());
-		} finally {
-			this.wakanderGoalRepository.save(goals);
->>>>>>> f438e5014d91048b7276ec129683123a8e55e5ec
 		}
 		this.wakanderGoalRepository.save(goals);
 
