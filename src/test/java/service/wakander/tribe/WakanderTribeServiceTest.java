@@ -1,3 +1,4 @@
+
 package service.wakander.tribe;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,3 +27,4 @@ public class WakanderTribeServiceTest {
     }
 
 }
+
