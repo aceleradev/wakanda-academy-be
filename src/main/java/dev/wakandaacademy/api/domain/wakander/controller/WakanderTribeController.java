@@ -51,8 +51,7 @@ public class WakanderTribeController implements WakanderTribeAPI {
 			@PathVariable String tribeCode) throws NotFoundException {
 		log.info("Starting findWakanderTribeDetailByWakanderCodeAndTribeCode in WakanderTribesService");
 		log.info("Parameters: wakanderCode = {} and tribeCode = {}", wakanderCode, tribeCode);
-		Optional<
-      > wakanderTribeDetail = wakanderTribesService
+		Optional<WakanderTribeInfo> wakanderTribeDetail = wakanderTribesService
 				.findWakanderTribeDetailByWakanderCodeAndTribeCode(wakanderCode, tribeCode);
 		return WakanderTribeDetailDTO.buildResponse(wakanderCode, tribeCode, wakanderTribeDetail);
 	}
