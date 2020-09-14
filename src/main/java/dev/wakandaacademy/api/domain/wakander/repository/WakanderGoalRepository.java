@@ -12,7 +12,7 @@ import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 
 public interface WakanderGoalRepository extends  JpaRepository<WakanderGoal,Long>{
 
-	@Query("SELECT goal FROM WakanderGoal goal JOIN goal.wakander w WHERE w.code = ?1 AND goal.endedAt IS NULL")
+	@Query(name = "WakanderGoal.findByWakanderCodeTopByIdDesc")
 	Optional<WakanderGoal> findByWakanderCodeTopByIdDesc(String wakanderCode);
 	
 }
