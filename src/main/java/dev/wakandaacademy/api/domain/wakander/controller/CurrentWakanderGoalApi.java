@@ -15,6 +15,5 @@ public interface CurrentWakanderGoalApi {
 
 	
 	@GetMapping
-	CurrentWakanderGoalDTO getCurrentGoal(@PathVariable("wakanderCode") String wakanderCode) 
-			throws ApiException, BusinessException;
+	CurrentWakanderGoalDTO getCurrentGoal(@PathVariable("wakanderCode") String wakanderCode) throws ApiException, BusinessException;
 }

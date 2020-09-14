@@ -11,7 +11,7 @@ import dev.wakandaacademy.api.domain.wakander.controller.dto.TribeGoalDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
 import dev.wakandaacademy.api.domain.wakander.model.Wakander;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
-import dev.wakandaacademy.api.domain.wakander.service.goals.WakanderGoalService;
+import dev.wakandaacademy.api.domain.wakander.service.goals.CurrentWakanderGoalService;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.BusinessException;
 
@@ -20,9 +20,9 @@ public class WakanderGoalController implements WakanderGoalApi {
 
 	private static final Logger log = LoggerFactory.getLogger(WakanderGoalController.class);
 
-	private WakanderGoalService wakanderGoalService;
+	private CurrentWakanderGoalService wakanderGoalService;
 
-	public WakanderGoalController(WakanderGoalService wakanderGoalService) {
+	public WakanderGoalController(CurrentWakanderGoalService wakanderGoalService) {
 		this.wakanderGoalService = wakanderGoalService;
 	}
 
