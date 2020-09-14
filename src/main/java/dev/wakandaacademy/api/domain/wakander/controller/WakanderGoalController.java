@@ -33,6 +33,7 @@ public class WakanderGoalController implements WakanderGoalApi {
 				new TribeGoalDTO(wakanderGoal.getTribe().getCode(), wakanderGoal.getTribe().getName()));
 
 	}
+	
 
 	@Override
 	public WakanderGoalDTO updateOpenGoal(String wakanderCode, WakanderGoalDTO dto) throws BusinessException {
