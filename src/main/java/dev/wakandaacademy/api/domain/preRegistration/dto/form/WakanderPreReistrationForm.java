@@ -1,4 +1,5 @@
-package dev.wakandaacademy.api.domain.preRegistration.api.dto.form;
+package dev.wakandaacademy.api.domain.preRegistration.dto.form;
+
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.Pattern;
 
 @Valid
 public class WakanderPreReistrationForm {
+
 	@NotBlank(message = "Name Empty")
 	@Pattern(regexp = "^[A-Z][a-z]*\\s.*[A-Z][a-z]*$", message = "Fullname Not Valid")
 	private String fullName;

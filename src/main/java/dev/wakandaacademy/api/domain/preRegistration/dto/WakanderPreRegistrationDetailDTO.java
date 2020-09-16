@@ -1,6 +1,13 @@
-package dev.wakandaacademy.api.domain.preRegistration.api.dto;
+package dev.wakandaacademy.api.domain.preRegistration.dto;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import dev.wakandaacademy.api.domain.preRegistration.model.WakanderPreRegistration;
+
 
 public class WakanderPreRegistrationDetailDTO {
+	private static final Logger logger = LogManager.getLogger(WakanderPreRegistrationDetailDTO.class);
 	private String name;
 	private String cellPhoneNumber;
 	private String email;
@@ -64,5 +71,10 @@ public class WakanderPreRegistrationDetailDTO {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	
+	WakanderPreRegistration convert(WakanderPreRegistrationDetailDTO dto) {
+		logger.info("converting WakanderPreRegistrationDetailDTO to WakanderPreRegistration");
+		return new WakanderPreRegistration(dto.getName(), dto.getEmail(), dto.getCellPhoneNumber());
 	}
 }

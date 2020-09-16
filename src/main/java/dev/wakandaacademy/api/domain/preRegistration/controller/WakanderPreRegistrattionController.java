@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.preRegistration.api;
+package dev.wakandaacademy.api.domain.preRegistration.controller;
 
 import javax.validation.Valid;
 
@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.wakandaacademy.api.domain.preRegistration.api.dto.WakanderPreRegistrationDetailDTO;
-import dev.wakandaacademy.api.domain.preRegistration.api.dto.form.WakanderPreReistrationForm;
+import dev.wakandaacademy.api.domain.preRegistration.dto.WakanderPreRegistrationDetailDTO;
+import dev.wakandaacademy.api.domain.preRegistration.dto.form.WakanderPreReistrationForm;
 import dev.wakandaacademy.api.exception.ApiException;
 
 @RestController
