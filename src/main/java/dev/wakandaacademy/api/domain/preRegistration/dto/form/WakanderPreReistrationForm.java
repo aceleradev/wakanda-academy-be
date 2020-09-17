@@ -6,6 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import dev.wakandaacademy.api.domain.preRegistration.dto.WakanderPreRegistrationDetailDTO;
+
 @Valid
 public class WakanderPreReistrationForm {
 
@@ -45,5 +47,9 @@ public class WakanderPreReistrationForm {
 	public String toString() {
 		return "WakanderPreReistrationForm [fullName=" + fullName + ", email=" + email + ", cellPhoneNumber="
 				+ cellPhoneNumber + "]";
+	}
+	
+	public WakanderPreRegistrationDetailDTO convertToDTO() {
+		return new WakanderPreRegistrationDetailDTO(this.fullName, this.cellPhoneNumber, this.email);	
 	}
 }

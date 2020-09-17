@@ -18,7 +18,7 @@ public class WakanderPreRegistration {
     @Column(length = 60, nullable = false)
     private String fullName;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     
     @Column(nullable = false)

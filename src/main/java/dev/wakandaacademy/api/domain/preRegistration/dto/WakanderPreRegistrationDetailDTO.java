@@ -73,7 +73,7 @@ public class WakanderPreRegistrationDetailDTO {
 		return true;
 	}
 	
-	public WakanderPreRegistration convert() {
+	public WakanderPreRegistration convertToEntity() {
 		logger.info("converting WakanderPreRegistrationDetailDTO to WakanderPreRegistration");
 		return new WakanderPreRegistration(this.getName(), this.getEmail(), this.getCellPhoneNumber());
 	}

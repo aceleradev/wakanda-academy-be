@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.wakandaacademy.api.domain.preRegistration.dto.WakanderPreRegistrationDetailDTO;
 import dev.wakandaacademy.api.domain.preRegistration.dto.form.WakanderPreReistrationForm;
 import dev.wakandaacademy.api.exception.ApiException;
+import dev.wakandaacademy.api.exception.BusinessException;
 
 @RestController
 @RequestMapping("/public/wakander/pre-registrattion")
 public interface WakanderPreRegistrattionApi {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	WakanderPreRegistrationDetailDTO create(@RequestBody @Valid WakanderPreReistrationForm form) throws ApiException;
+	WakanderPreRegistrationDetailDTO create(@RequestBody @Valid WakanderPreReistrationForm form) throws ApiException, BusinessException;
 }
