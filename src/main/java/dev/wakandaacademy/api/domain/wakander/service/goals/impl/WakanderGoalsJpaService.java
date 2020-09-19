@@ -77,4 +77,14 @@ public class WakanderGoalsJpaService implements CurrentWakanderGoalService {
 						return goals;
 	}
 
+	@Override
+	public WakanderGoal getGoalCurrent(String wakanderCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	
+
 }

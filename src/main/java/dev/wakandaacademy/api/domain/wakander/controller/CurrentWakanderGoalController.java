@@ -1,16 +1,17 @@
 package dev.wakandaacademy.api.domain.wakander.controller;
 
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.CurrentWakanderGoalDTO;
-import dev.wakandaacademy.api.domain.wakander.controller.dto.TribeGoalDTO;
-import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 import dev.wakandaacademy.api.domain.wakander.service.goals.CurrentWakanderGoalService;
-import dev.wakandaacademy.api.exception.ApiException;
-import dev.wakandaacademy.api.exception.BusinessException;
+
 
 @RestController
 public class CurrentWakanderGoalController implements CurrentWakanderGoalApi {
@@ -24,12 +25,14 @@ public class CurrentWakanderGoalController implements CurrentWakanderGoalApi {
 	}
 
 	@Override
-	public CurrentWakanderGoalDTO getCurrentGoal(String wakanderCode) throws ApiException, BusinessException {
+	public CurrentWakanderGoalDTO getCurrentGoal(@PathVariable String wakanderCode)  {
 		
-		WakanderGoal wakanderGoal = currentWakanderGoalService.currentGoal(wakanderCode);
-		return new CurrentWakanderGoalDTO();
-		 
-		return null;
+
+		WakanderGoal wakanderGoal = currentWakanderGoalService.getGoalCurrent(wakanderCode);
+		return new CurrentWakanderGoalDTO(wakanderGoal.getExpirationDateXp());
+		
+		
+	
 	}
 
 }
