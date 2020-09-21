@@ -3,7 +3,7 @@ package dev.wakandaacademy.api.domain.wakander.service.goals.impl;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
@@ -12,9 +12,9 @@ import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 import dev.wakandaacademy.api.domain.wakander.repository.TribeRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderGoalRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderRepository;
-import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
+
 import dev.wakandaacademy.api.domain.wakander.service.goals.CurrentWakanderGoalService;
-import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribesJpaService;
+
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
@@ -77,11 +77,6 @@ public class WakanderGoalsJpaService implements CurrentWakanderGoalService {
 						return goals;
 	}
 
-	@Override
-	public WakanderGoal getGoalCurrent(String wakanderCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 

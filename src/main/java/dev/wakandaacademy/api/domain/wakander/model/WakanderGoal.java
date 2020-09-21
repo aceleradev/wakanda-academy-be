@@ -35,8 +35,8 @@ public class WakanderGoal {
 	@Column(name = "started_at")
 	private LocalDateTime startedAt;
 	
-	@Column(name = "expiration_date_xp")
-	private LocalDateTime expirationDateXp;
+	@Column(name = "expiration_date_xp",insertable = false, updatable = false)
+	private Integer velocidadeXp;
 	
 	public WakanderGoal() {}
 	
@@ -45,7 +45,8 @@ public class WakanderGoal {
 		this.tribe = tribe;
 		this.weeklyGoalStudyHours = weeklyGoalStudyHours;
 		this.startedAt = startedAt;
-		this.expirationDateXp = expirationDateXp;
+		
+		
 	}
 
 	public Long getId() {
@@ -85,13 +86,16 @@ public class WakanderGoal {
 		this.startedAt = startedAt;
 	}
 
-	public LocalDateTime getExpirationDateXp() {
-		return expirationDateXp;
+	public Integer getVelocidadeXp() {
+		return velocidadeXp;
 	}
 
-	public void setExpirationDateXp(LocalDateTime expirationDateXp) {
-		this.expirationDateXp = expirationDateXp;
+	public void setVelocidadeXp(Integer velocidadeXp) {
+		this.velocidadeXp = velocidadeXp;
 	}
+	
+
+	
 	
 	
 	

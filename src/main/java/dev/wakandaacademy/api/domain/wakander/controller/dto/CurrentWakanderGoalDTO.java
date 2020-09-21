@@ -1,22 +1,22 @@
 package dev.wakandaacademy.api.domain.wakander.controller.dto;
 
 
-import java.time.LocalDateTime;
-
-import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 
 public class CurrentWakanderGoalDTO {
 	
-	private LocalDateTime xpCurrentGoal;
+	private Integer xpCurrentGoal;
 
-	public CurrentWakanderGoalDTO(WakanderGoal wakanderGoal) {
-		this.xpCurrentGoal = wakanderGoal.getExpirationDateXp();
+	public CurrentWakanderGoalDTO(Integer wakanderGoal) {
+		this.xpCurrentGoal = wakanderGoal;
 	}
 
 
-	public  LocalDateTime getXpCurrentGoal() {
+	public  Integer getXpCurrentGoal() {
 		return xpCurrentGoal;
 	}
+
+
+	
 	
 	
 	

@@ -1,5 +1,7 @@
 package dev.wakandaacademy.api.domain.wakander.service.goals;
 
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -13,7 +15,7 @@ public interface CurrentWakanderGoalService {
 
 	     WakanderGoal getGoal(String wakanderCode) throws BusinessException;
 	     
-	     WakanderGoal getGoalCurrent(String wakanderCode) throws BusinessException;
+	     
 
 		
 	   
