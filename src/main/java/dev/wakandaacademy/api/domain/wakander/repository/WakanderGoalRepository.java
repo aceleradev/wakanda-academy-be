@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import dev.wakandaacademy.api.domain.user.model.User;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 
 

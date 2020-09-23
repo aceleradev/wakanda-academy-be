@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
-
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
