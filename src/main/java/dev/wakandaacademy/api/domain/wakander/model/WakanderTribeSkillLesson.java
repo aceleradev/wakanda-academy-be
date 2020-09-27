@@ -52,7 +52,7 @@ public class WakanderTribeSkillLesson {
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 	
-	@Column(name = "unlocked_content", columnDefinition = "DEFAULT 0")
+	@Column(name = "unlocked_content")
 	private boolean unlockedContent;
 	
 	public WakanderTribeSkillLesson() {
