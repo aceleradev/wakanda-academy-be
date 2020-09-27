@@ -12,7 +12,7 @@ import dev.wakandaacademy.api.domain.wakander.service.goals.WakanderGoalService;
 import dev.wakandaacademy.api.exception.BusinessException;
 
 
-@RestController
+//@RestController
 public class CurrentWakanderGoalController implements CurrentWakanderGoalApi {
 	
 	private static final Logger log = LoggerFactory.getLogger(CurrentWakanderGoalController.class);
@@ -27,7 +27,7 @@ public class CurrentWakanderGoalController implements CurrentWakanderGoalApi {
 	public CurrentWakanderGoalDTO getCurrentGoal(String wakanderCode) throws BusinessException   {
 		log.info(wakanderCode);
 	  WakanderGoal wakanderGoal = wakanderGoalService.getCurrentGoal(wakanderCode);
-	  return new CurrentWakanderGoalDTO(wakanderGoal.getVelocidadeXp());
+	  return new CurrentWakanderGoalDTO(null);
 		
 		
 	

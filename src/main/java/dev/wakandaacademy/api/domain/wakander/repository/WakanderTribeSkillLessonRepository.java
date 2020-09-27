@@ -1,5 +1,6 @@
 package dev.wakandaacademy.api.domain.wakander.repository;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,4 +31,11 @@ public interface WakanderTribeSkillLessonRepository extends JpaRepository<Wakand
 	Optional<WakanderTribeSkillLesson> findPreviousWakanderLessonDone(@Param("wakanderCode") String wakanderCode,
 			@Param("currentLessonCode") String currentLessonCode);
 	
+	@Query(value = "SELECT SUM(l.difficulty) FROM wakander_tribe_skill_lessons wtsl "
+			+ " INNER JOIN lessons l ON l.id = wtsl.lesson_id "
+			+ " INNER JOIN wakanders w ON w.user_id = wtsl.wakander_user_id "
+			+ " WHERE w.code = ?1 "
+			+ " AND wtsl.ended_at > NOW() - INTERVAL 7 DAY", nativeQuery = true)
+	BigDecimal calculateExpirienceWakanderWeeklyPerformance(String wakanderCode);
+
 }

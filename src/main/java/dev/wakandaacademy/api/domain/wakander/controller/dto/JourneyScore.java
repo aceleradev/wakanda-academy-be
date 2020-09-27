@@ -1,20 +1,13 @@
 package dev.wakandaacademy.api.domain.wakander.controller.dto;
 
-import dev.wakandaacademy.api.domain.wakander.model.WakanderPerformace;
-
-public class TribesCompletedVSJourneyTribesDTO {
+public class JourneyScore {
 	private Integer totalWakanderTribesCompleted;
 	private Integer totalWakanderTribesJourney;
 
-	public TribesCompletedVSJourneyTribesDTO(Integer totalWakanderTribesCompleted,
+	public JourneyScore(Integer totalWakanderTribesCompleted,
 			Integer totalWakanderTribesJourney) {
 		this.totalWakanderTribesCompleted = totalWakanderTribesCompleted;
 		this.totalWakanderTribesJourney = totalWakanderTribesJourney;
-	}
-
-	public TribesCompletedVSJourneyTribesDTO(WakanderPerformace totalTribesCompletedVSTotalTribesJourney) {
-		this.totalWakanderTribesCompleted = totalTribesCompletedVSTotalTribesJourney.getTotalWakanderTribesCompleted();
-		this.totalWakanderTribesJourney = totalTribesCompletedVSTotalTribesJourney.getTotalWakanderTribesJourney();
 	}
 
 	public Integer getTotalWakanderTribesCompleted() {

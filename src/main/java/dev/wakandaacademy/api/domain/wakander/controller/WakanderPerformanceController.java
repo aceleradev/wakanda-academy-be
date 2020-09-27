@@ -2,12 +2,15 @@ package dev.wakandaacademy.api.domain.wakander.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.wakandaacademy.api.domain.wakander.controller.dto.TribesCompletedVSJourneyTribesDTO;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderPerformace;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.JourneyScore;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderWeeklyPerformanceDTO;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderPerformaceService;
 import dev.wakandaacademy.api.exception.ApiException;
+import dev.wakandaacademy.api.exception.BusinessException;
 
 @RestController
 public class WakanderPerformanceController implements WakanderPerformanceApi {
@@ -19,14 +22,21 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 		this.wakanderPerformaceService = wakanderPerformanceJpaService;
 	}
 
-	public TribesCompletedVSJourneyTribesDTO getTotalTribesCompletedVSTotalTribesJourney(String wakanderCode)
+	public ResponseEntity<JourneyScore> getTotalTribesCompletedVSTotalTribesJourney(String wakanderCode)
 			throws ApiException {
 		log.info("Start controller");
 		log.info("Parameters WakanderCode = {}", wakanderCode);
-		WakanderPerformace totalTribesCompletedVSTotalTribesJourney = wakanderPerformaceService
-				.findTotalTribesCompletedVSTotalTribesJourney(wakanderCode);
-		return new TribesCompletedVSJourneyTribesDTO(totalTribesCompletedVSTotalTribesJourney);
+		JourneyScore totalTribesCompletedVSTotalTribesJourney = wakanderPerformaceService
+																			.findTotalTribesCompletedVSTotalTribesJourney(wakanderCode);
+		return ResponseEntity.ok(totalTribesCompletedVSTotalTribesJourney);
 
+	}
+
+	@Override
+	public ResponseEntity<WakanderWeeklyPerformanceDTO> getWakanderWeeklyPerformance(String wakanderCode) throws BusinessException {
+		WakanderWeeklyPerformace wakanderWeeklyPerformance = this.wakanderPerformaceService.getWakanderWeeklyPerformance(wakanderCode);
+		WakanderWeeklyPerformanceDTO dto = WakanderWeeklyPerformanceDTO.fromWakanderWeeklyPerformance(wakanderWeeklyPerformance);					
+		return ResponseEntity.ok(dto);
 	}
 
 }
