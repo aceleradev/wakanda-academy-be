@@ -22,11 +22,18 @@ public class WakanderTribesSkillLessonJpaService implements WakanderTribesSkillL
     }
 
     @Override
-    public Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException {
+    public Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException, NotFoundException {
     	checkPreviousLessonDone(wakanderCode, currentLessonCode);
-    	wakanderTribeSkillLessonRepository.endsCurrentLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
+    	WakanderTribeSkillLesson currentLesson = findByWakanderCodeAndLessonCode(wakanderCode, currentLessonCode);
+    	currentLesson.ends(wakanderTribeSkillLessonRepository);
+    	//.endsCurrentLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);
         return startNextLessonBy(wakanderCode, currentLessonCode);
     }
+
+	private WakanderTribeSkillLesson findByWakanderCodeAndLessonCode(String wakanderCode, String lessonCode) throws NotFoundException {
+		return wakanderTribeSkillLessonRepository.findByWakanderCodeAndLessonCode(wakanderCode, lessonCode)
+    			.orElseThrow(() -> new NotFoundException("Wakander Tribe Skill Lesson Not Found by Wakander Code = "+ wakanderCode +" and Lesson Code = "));
+	}
     
     private Optional<WakanderTribeSkillLesson> startNextLessonBy(String wakanderCode, String currentLessonCode) {
     	Optional<WakanderTribeSkillLesson> optLesson = wakanderTribeSkillLessonRepository.findNextWakanderLessonByWakanderCodeAndCurrentLessonCode(wakanderCode, currentLessonCode);

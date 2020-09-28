@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import dev.wakandaacademy.api.domain.journey.domain.Lesson;
 import dev.wakandaacademy.api.domain.wakander.model.ids.WakanderTribeSkillLessonId;
+import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeSkillLessonRepository;
 
 @Entity
 @Table(name = "wakander_tribe_skill_lessons")
@@ -184,5 +185,10 @@ public class WakanderTribeSkillLesson {
 	public void setUnlockedContent(boolean unlockedContent) {
 		this.unlockedContent = unlockedContent;
 	}
-	
+
+	public void ends(WakanderTribeSkillLessonRepository wakanderTribeSkillLessonRepository) {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+		wakanderTribeSkillLessonRepository.save(this);
+	}
 }
