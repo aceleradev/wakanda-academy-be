@@ -126,6 +126,21 @@ public class WakanderTribeSkillLesson {
 		return this.lesson.getName();
 	}
 	
+	public WakanderTribeSkillLesson getNextSkillLesson() {
+		return this.wakanderTribeSkill
+				.getWakanderTribeSkillLessons()
+				.stream()
+				.sorted((l1, l2) -> l1.getLesson().getSkillSequence().compareTo(l2.getLesson().getSkillSequence()))
+				.filter(lesson -> lesson.getLesson().getSkillSequence() > this.getLesson().getSkillSequence())
+				.findFirst()
+				.orElse(null);
+	}
+	
+	public void finalize() {
+		this.setStatus(Status.DONE);
+		this.setEndedAt(LocalDateTime.now());
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -143,6 +143,33 @@ public class WakanderTribeSkill {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	public WakanderTribeSkillLesson getFirstLesson() {
+		return this.getWakanderTribeSkillLessons()
+				.stream()
+				.sorted((l1, l2) -> l1.getLesson().getSkillSequence().compareTo(l2.getLesson().getSkillSequence()))
+				.findFirst()
+				.orElse(null);
+	}
+	
+	public WakanderTribeSkill getNextTribeSkill() {
+		Skill skill = this.skill.getNextSkill();
+		return this.wakanderTribe.getWakanderTribeSkills()
+						.stream()
+						.filter(sk -> sk.getSkill().equals(skill))
+						.findFirst()
+						.orElse(null);
+	}
+	
+	public void start() {
+		this.setStatus(Status.DOING);
+		this.setStartedAt(LocalDateTime.now());
+	}
+	
+	public void finalize() {
+		this.setStatus(Status.DONE);
+		this.setEndedAt(LocalDateTime.now());
+	}
 
 	@Override
 	public int hashCode() {

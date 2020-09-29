@@ -94,6 +94,23 @@ public class Skill {
 	public void setTribeSequence(Integer tribeSequence) {
 		this.tribeSequence = tribeSequence;
 	}
+	
+	public Skill getNextSkill() {
+		return this.tribe
+				   .getSkills()
+				   .stream()
+				   .sorted((sk1, sk2) -> sk1.getTribeSequence().compareTo(sk2.getTribeSequence()))
+				   .filter(sk -> sk.getTribeSequence() > this.getTribeSequence())
+				   .findFirst()
+				   .orElse(null);
+	}
+	
+	public Lesson getLastLesson() {
+		return this.lessons
+				.stream()
+				.max((l1, l2) -> l1.getSkillSequence().compareTo(l2.getSkillSequence()))
+				.orElse(null);
+	}
 
 	@Override
 	public String toString() {
@@ -106,11 +123,8 @@ public class Skill {
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((tribe == null) ? 0 : tribe.hashCode());
-		result = prime * result + ((tribeSequence == null) ? 0 : tribeSequence.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -130,16 +144,7 @@ public class Skill {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (tribe == null) {
-			if (other.tribe != null)
-				return false;
-		} else if (!tribe.equals(other.tribe))
-			return false;
-		if (tribeSequence == null) {
-			if (other.tribeSequence != null)
-				return false;
-		} else if (!tribeSequence.equals(other.tribeSequence))
-			return false;
 		return true;
 	}
+
 }

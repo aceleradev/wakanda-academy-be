@@ -36,7 +36,7 @@ public class WakanderActionController implements WakanderActionAPI {
 	@GetMapping
     @Override
     public ResponseEntity<NextWakanderLessonDTO> getNextWakanderLessonDto(@RequestParam String wakanderCode,
-                                                                          @RequestParam String currentLessonCode) throws ApiException {
+                                                                          @RequestParam String currentLessonCode) throws ApiException, BusinessException {
         log.info("starting getNextWakanderLessonDto in WakanderTribesSkillLessonService");
         Optional<WakanderTribeSkillLesson> result=wkTribeSkillLesson.
                                     getNextWakanderLesson(wakanderCode,currentLessonCode);

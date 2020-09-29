@@ -12,6 +12,6 @@ public interface WakanderActionAPI {
 
 	ResponseEntity<?> unlockTribe(String wakanderCode, String tribeCode);
 	ResponseEntity<Message> unlockLessonContent(String wakanderCode, String tribeCode, String skillCode, String lessonCode) throws BusinessException, DriveException;
-    ResponseEntity<NextWakanderLessonDTO> getNextWakanderLessonDto(String wakanderCode,String currentLessonCode) throws ApiException;
+    ResponseEntity<NextWakanderLessonDTO> getNextWakanderLessonDto(String wakanderCode,String currentLessonCode) throws ApiException, BusinessException;
 
 }
