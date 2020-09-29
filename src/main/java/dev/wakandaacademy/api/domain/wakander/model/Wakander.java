@@ -62,7 +62,13 @@ public class Wakander extends User {
 		instanceTribes();
 		List<WakanderTribe> tribesStandard = extractStandardWakanderTribes(journeyRepository.findByStandardTrue());
 		this.tribes.addAll(tribesStandard);
+		startFirst();
 		wakanderTribesService.saveAll(this.tribes);
+	}
+
+	private void startFirst() {
+		this.tribes.stream().filter(t -> t.isFirst()).findFirst().get().startFirst();
+		
 	}
 
 	private List<WakanderTribe> extractStandardWakanderTribes(Optional<Journey> standardJourney) throws ApiException {

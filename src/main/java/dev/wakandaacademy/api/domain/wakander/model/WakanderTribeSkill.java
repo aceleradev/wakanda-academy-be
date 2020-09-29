@@ -24,7 +24,8 @@ import dev.wakandaacademy.api.domain.journey.domain.Lesson;
 import dev.wakandaacademy.api.domain.journey.domain.Skill;
 import dev.wakandaacademy.api.domain.wakander.model.ids.WakanderTribeId;
 import dev.wakandaacademy.api.domain.wakander.model.ids.WakanderTribeSkillId;
-import dev.wakandaacademy.api.domain.wakander.service.tribes.LessonService;
+import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeSkillRepository;
+import dev.wakandaacademy.api.domain.wakander.service.lesson.LessonService;
 
 @Entity
 @Table(name = "wakander_tribe_skills")
@@ -105,11 +106,7 @@ public class WakanderTribeSkill {
 	}
 
 	private WakanderTribeSkillLesson buildWakanderTribeSkill(Lesson lesson) {
-		return new WakanderTribeSkillLesson(this, lesson,
-				(this.getWakanderTribe().getTribe().getDependent()==null
-						&& this.getSkill().getTribeSequence()==1
-						&& lesson.getSkillSequence()==1) ?
-						Status.DOING : Status.TODO);
+		return new WakanderTribeSkillLesson(this, lesson, Status.TODO);
 	}
 
 	public List<WakanderTribeSkillLesson> getWakanderTribeSkillLessons() {
@@ -144,12 +141,12 @@ public class WakanderTribeSkill {
 		this.status = status;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((skill == null) ? 0 : skill.hashCode());
-		result = prime * result + ((wakanderTribe == null) ? 0 : wakanderTribe.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -162,31 +159,46 @@ public class WakanderTribeSkill {
 		if (getClass() != obj.getClass())
 			return false;
 		WakanderTribeSkill other = (WakanderTribeSkill) obj;
-		if (skill == null) {
-			if (other.skill != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!skill.equals(other.skill))
-			return false;
-		if (wakanderTribe == null) {
-			if (other.wakanderTribe != null)
-				return false;
-		} else if (!wakanderTribe.equals(other.wakanderTribe))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	public String getSkillCode() {
-
 		return this.skill.getCode();
 	}
 
 	public String getSkillName() {
-
 		return this.skill.getName();
 	}
 
 	@Override
 	public String toString() {
 		return "WakanderTribeSkill [startedAt=" + startedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
+	}
+
+	public void ends(WakanderTribeSkillRepository wakanderTribeSkillRepository) {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+		wakanderTribeSkillRepository.save(this);
+	}
+
+	public void starts(WakanderTribeSkillRepository WakanderTribeSkillRepository) {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+		WakanderTribeSkillRepository.save(this);
+	}
+
+	public boolean isFirst() {
+		return this.skill.getTribeSequence() == 1;
+	}
+
+	public void startFirst() {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+		this.wakanderTribeSkillLessons.stream().filter(l -> l.isFirst()).findFirst().get().startFirst();
 	}
 }

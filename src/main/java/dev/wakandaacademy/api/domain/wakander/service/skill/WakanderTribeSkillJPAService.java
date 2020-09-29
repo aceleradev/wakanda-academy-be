@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.wakander.service.tribes;
+package dev.wakandaacademy.api.domain.wakander.service.skill;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeSkill;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeSkillRepository;
+import dev.wakandaacademy.api.domain.wakander.service.lesson.WakanderTribeSkillLessonService;
 
 @Service
 public class WakanderTribeSkillJPAService implements WakanderTribeSkillService {
@@ -16,7 +17,7 @@ public class WakanderTribeSkillJPAService implements WakanderTribeSkillService {
 	private WakanderTribeSkillRepository wakanderTribeSkillRepository;
 	private SkillService skillService;
 	private WakanderTribeSkillLessonService wakanderTribeSkillLessonService;
-
+	
 
 	public WakanderTribeSkillJPAService(WakanderTribeSkillRepository wakanderTribeSkillRepository,
 			SkillService skillService, WakanderTribeSkillLessonService wakanderTribeSkillLessonService) {
@@ -25,13 +26,35 @@ public class WakanderTribeSkillJPAService implements WakanderTribeSkillService {
 		this.wakanderTribeSkillLessonService = wakanderTribeSkillLessonService;
 	}
 
-
 	@Override
 	public void saveAllWakanderTribeSkill(WakanderTribe wk) {
-		log.info("Saving All Skills to WakanderTribe: {}",wk);
+		log.info("Saving All Skills to WakanderTribe: {}", wk);
 		List<WakanderTribeSkill> wakanderTribeSkills = wk.getWakanderTribeSkills(skillService);
 		wakanderTribeSkillRepository.saveAll(wakanderTribeSkills);
 		wakanderTribeSkills.parallelStream()
-		.forEach(wts -> wakanderTribeSkillLessonService.saveAllWakanderTribeSkillLesson(wts));
+				.forEach(wts -> wakanderTribeSkillLessonService.saveAllWakanderTribeSkillLesson(wts));
 	}
+
+	@Override
+	public void ends(WakanderTribeSkill currentWakanderTribeSkill, WakanderTribeSkill nextWakanderTribeSkill) {
+		currentWakanderTribeSkill = refreshsAndEnds(currentWakanderTribeSkill);
+		nextWakanderTribeSkill = findById(nextWakanderTribeSkill);
+		
+	}
+
+	private WakanderTribeSkill refreshsAndEnds(WakanderTribeSkill currentWakanderTribeSkill) {
+		currentWakanderTribeSkill = findById(currentWakanderTribeSkill);
+		currentWakanderTribeSkill.ends(wakanderTribeSkillRepository);
+		return currentWakanderTribeSkill;
+	}
+
+	private WakanderTribeSkill findById(WakanderTribeSkill currentWakanderTribeSkill) {
+		return wakanderTribeSkillRepository.findById(currentWakanderTribeSkill.getId()).get();
+	}
+
+	@Override
+	public void starts(WakanderTribeSkill wakanderTribeSkill, WakanderTribeSkill wakanderTribeSkill2) {
+		
+	}
+
 }

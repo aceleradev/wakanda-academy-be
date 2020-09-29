@@ -7,7 +7,7 @@ import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
 public interface WakanderTribesSkillLessonService {
-	Optional<WakanderTribeSkillLesson> getNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException, NotFoundException;
+	Optional<WakanderTribeSkillLesson> endsCurrentLessonAndStartsNextWakanderLesson(String wakanderCode, String currentLessonCode) throws ApiException, NotFoundException;
 	
 	
 }

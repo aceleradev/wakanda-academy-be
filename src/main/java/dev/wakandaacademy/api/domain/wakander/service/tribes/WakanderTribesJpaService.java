@@ -13,6 +13,7 @@ import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
+import dev.wakandaacademy.api.domain.wakander.service.skill.WakanderTribeSkillService;
 
 @Service
 public class WakanderTribesJpaService implements WakanderTribeService {
@@ -54,5 +55,15 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 		wakanderTribeRepository.saveAll(tribes);
 		tribes.parallelStream()
 			.forEach(wk -> wakanderTribeSkillService.saveAllWakanderTribeSkill(wk));
+	}
+
+	@Override
+	public void ends(WakanderTribe wakanderTribe) {
+		wakanderTribe.ends(wakanderTribeRepository);
+	}
+
+	@Override
+	public void starts(WakanderTribe wakanderTribe) {
+		wakanderTribe.starts(wakanderTribeRepository);
 	}
 }

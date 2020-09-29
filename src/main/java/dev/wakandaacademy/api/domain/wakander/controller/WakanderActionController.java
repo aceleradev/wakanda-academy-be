@@ -19,6 +19,7 @@ import dev.wakandaacademy.api.domain.wakander.service.lesson.WakanderTribesSkill
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.DriveException;
+import dev.wakandaacademy.api.exception.NotFoundException;
 
 @RestController
 @RequestMapping("/wakanderAction")
@@ -36,10 +37,10 @@ public class WakanderActionController implements WakanderActionAPI {
 	@GetMapping
     @Override
     public ResponseEntity<NextWakanderLessonDTO> getNextWakanderLessonDto(@RequestParam String wakanderCode,
-                                                                          @RequestParam String currentLessonCode) throws ApiException {
+                                                                          @RequestParam String currentLessonCode) throws ApiException, NotFoundException {
         log.info("starting getNextWakanderLessonDto in WakanderTribesSkillLessonService");
         Optional<WakanderTribeSkillLesson> result=wkTribeSkillLesson.
-                                    getNextWakanderLesson(wakanderCode,currentLessonCode);
+                                    endsCurrentLessonAndStartsNextWakanderLesson(wakanderCode,currentLessonCode);
         NextWakanderLessonDTO nextWakanderLessonDTO = result.map(NextWakanderLessonDTO::new)
         													.orElseThrow(() -> new ApiException(500L, "Não existe outra skill para esta tribo"));
         log.info("returning the nextLesson");

@@ -1,4 +1,4 @@
-package dev.wakandaacademy.api.domain.wakander.service.tribes;
+package dev.wakandaacademy.api.domain.wakander.service.lesson;
 
 import java.util.List;
 

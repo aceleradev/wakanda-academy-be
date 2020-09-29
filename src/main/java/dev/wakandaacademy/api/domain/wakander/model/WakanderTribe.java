@@ -21,7 +21,8 @@ import javax.persistence.Table;
 import dev.wakandaacademy.api.domain.journey.domain.Skill;
 import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 import dev.wakandaacademy.api.domain.wakander.model.ids.WakanderTribeId;
-import dev.wakandaacademy.api.domain.wakander.service.tribes.SkillService;
+import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
+import dev.wakandaacademy.api.domain.wakander.service.skill.SkillService;
 
 @Entity
 @Table(name = "wakander_tribes")
@@ -106,9 +107,7 @@ public class WakanderTribe {
 	}
 
 	private WakanderTribeSkill buildWakanderTribeSkill(Skill skill) {
-		return new WakanderTribeSkill(this, skill,
-				(this.getTribe().getDependent()==null && skill.getTribeSequence()==1) ?
-						Status.DOING : Status.TODO);
+		return new WakanderTribeSkill(this, skill, Status.TODO);
 	}
 
 	public List<WakanderTribeSkill> getWakanderTribeSkills() {
@@ -181,5 +180,30 @@ public class WakanderTribe {
 	@Override
 	public String toString() {
 		return "WakanderTribe [statedAt=" + statedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
+	}
+	
+	public boolean isFirst() {
+		return this.tribeId == 1;
+	}
+
+	public void startFirst() {
+		start();
+		this.wakanderTribeSkills.stream().filter(s -> s.isFirst()).findFirst().get().startFirst();
+	}
+
+	private void start() {
+		this.status = Status.DOING;
+		this.statedAt = LocalDateTime.now();
+	}
+
+	public void ends(WakanderTribeRepository wakanderTribeRepository) {
+		this.status = Status.DONE;
+		this.endedAt = LocalDateTime.now();
+		wakanderTribeRepository.save(this);
+	}
+
+	public void starts(WakanderTribeRepository wakanderTribeRepository) {
+		start();
+		wakanderTribeRepository.save(this);
 	}
 }

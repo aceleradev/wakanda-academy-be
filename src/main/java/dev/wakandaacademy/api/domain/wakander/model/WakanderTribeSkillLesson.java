@@ -169,16 +169,6 @@ public class WakanderTribeSkillLesson {
 		return "WakanderTribeSkillLesson [startedAt=" + startedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
 	}
 
-	public void endsLesson() {
-		this.status = Status.DONE;
-		this.endedAt = LocalDateTime.now();
-	}
-
-	public void startsLesson() {
-		this.status = Status.DOING;
-		this.startedAt = LocalDateTime.now();
-	}
-
 	public boolean isUnlockedContent() {
 		return unlockedContent;
 	}
@@ -186,9 +176,24 @@ public class WakanderTribeSkillLesson {
 		this.unlockedContent = unlockedContent;
 	}
 
+	public void starts(WakanderTribeSkillLessonRepository wakanderTribeSkillLessonRepository) {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
+		wakanderTribeSkillLessonRepository.save(this);
+	}
+
 	public void ends(WakanderTribeSkillLessonRepository wakanderTribeSkillLessonRepository) {
 		this.status = Status.DONE;
 		this.endedAt = LocalDateTime.now();
 		wakanderTribeSkillLessonRepository.save(this);
+	}
+
+	public boolean isFirst() {
+		return this.lesson.getSkillSequence() == 1;
+	}
+
+	public void startFirst() {
+		this.status = Status.DOING;
+		this.startedAt = LocalDateTime.now();
 	}
 }
