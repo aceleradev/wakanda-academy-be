@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.wakander.controller.WakanderPerformanceController;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.JourneyScore;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.model.Status;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderPerformace;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribeService;
 
 @Service
@@ -22,25 +22,23 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	}
 
 	@Override
-	public WakanderPerformace findTotalTribesCompletedVSTotalTribesJourney(String wakanderCode) {
+	public JourneyScore findTotalTribesCompletedVSTotalTribesJourney(String wakanderCode) {
 		log.info("Start service");
 		log.info("Parameters WakanderCode = {}", wakanderCode);
 		
-		List<WakanderTribeDTO> listTribes = wakanderTribesJpaService.listTribes(wakanderCode);
-		Integer totalDeTribosDoWakander = listTribes.size();
+		List<WakanderTribeDTO> listJourneyTribes = wakanderTribesJpaService.listTribes(wakanderCode);
+		Integer totalDeTribosDoWakander = listJourneyTribes.size();
 		log.info("total lista:"+ totalDeTribosDoWakander );
-		Integer totalDeTribosDoWakanderConcluidas = 0;
-		for (WakanderTribeDTO wakanderTribeDTO : listTribes) {
-			if(wakanderTribeDTO.getStatus().equals(Status.DONE)) {
-				totalDeTribosDoWakanderConcluidas++;
-				
-			}
+
+		
+		int totalTribesFinished = (int) listJourneyTribes.stream()
+		                                                 .filter(wakanderTribeDto -> Status.DONE.equals(wakanderTribeDto.getStatus()))
+		                                                 .count(); 
 			
-		}
-		log.info("Total de tribos concluidas: " + totalDeTribosDoWakanderConcluidas);
-		WakanderPerformace wakanderPerformance = new WakanderPerformace(totalDeTribosDoWakanderConcluidas, totalDeTribosDoWakander);
+		
+		log.info("Total de tribos concluidas: " + totalTribesFinished);
 	
-		return wakanderPerformance;
+		return new JourneyScore(totalTribesFinished, totalDeTribosDoWakander);
 	}
 
 }

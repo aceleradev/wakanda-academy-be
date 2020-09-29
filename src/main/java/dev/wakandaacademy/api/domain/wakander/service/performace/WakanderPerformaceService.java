@@ -1,9 +1,9 @@
 package dev.wakandaacademy.api.domain.wakander.service.performace;
 
-import dev.wakandaacademy.api.domain.wakander.model.WakanderPerformace;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.JourneyScore;
 
 public interface WakanderPerformaceService {
 
-	WakanderPerformace findTotalTribesCompletedVSTotalTribesJourney(String wakanderCode);
+	JourneyScore findTotalTribesCompletedVSTotalTribesJourney(String wakanderCode);
 
 }
