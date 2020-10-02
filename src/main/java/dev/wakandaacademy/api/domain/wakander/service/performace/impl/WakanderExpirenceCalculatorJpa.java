@@ -2,6 +2,7 @@ package dev.wakandaacademy.api.domain.wakander.service.performace.impl;
 
 import java.math.BigDecimal;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.wakander.model.Wakander;
@@ -9,6 +10,7 @@ import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeSkillLesso
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderExpirenceCalculator;
 
 @Service
+@Primary
 public class WakanderExpirenceCalculatorJpa implements WakanderExpirenceCalculator {
 	
 	private WakanderTribeSkillLessonRepository wakanderTribeSkillLessonRepository;

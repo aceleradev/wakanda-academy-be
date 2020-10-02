@@ -5,17 +5,17 @@ import java.time.LocalDateTime;
 
 import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
 
-public class WakanderWeeklyPerformanceDTO {
+public class WakanderWeeklyPerfomanceDTO {
 	
 	private String wakanderCode;
 	private BigDecimal experienceAcquired;
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
 	
-	private WakanderWeeklyPerformanceDTO() {}
+	private WakanderWeeklyPerfomanceDTO() {}
 	
-	public static WakanderWeeklyPerformanceDTO fromWakanderWeeklyPerformance(WakanderWeeklyPerformace wakanderWeeklyPerformace) {
-		WakanderWeeklyPerformanceDTO dto = new WakanderWeeklyPerformanceDTO();
+	public static WakanderWeeklyPerfomanceDTO fromWakanderWeeklyPerformance(WakanderWeeklyPerformace wakanderWeeklyPerformace) {
+		WakanderWeeklyPerfomanceDTO dto = new WakanderWeeklyPerfomanceDTO();
 		dto.wakanderCode = wakanderWeeklyPerformace.getWakander().getCode();
 		dto.experienceAcquired = wakanderWeeklyPerformace.getExperienceAcquired();
 		dto.startDate = wakanderWeeklyPerformace.getStartDate();
@@ -38,6 +38,5 @@ public class WakanderWeeklyPerformanceDTO {
 	public LocalDateTime getEndDate() {
 		return endDate;
 	}
-	
 	
 }

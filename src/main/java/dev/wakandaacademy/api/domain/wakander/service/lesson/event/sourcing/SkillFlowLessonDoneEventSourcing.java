@@ -26,6 +26,7 @@ public class SkillFlowLessonDoneEventSourcing implements LessonDoneEventSourcing
 	@Override
 	public void lessonDone(String wakanderCode, String lessonCode) {
 		try {
+			logger.info("Iniciando fluxo para evento de aula concluida para skill");
 			WakanderTribeSkillLesson currentLesson = this.wakanderTribeSkillLessonRepository
 												.findWakanderLesson(wakanderCode, lessonCode)
 												.orElseThrow(() -> new BusinessException(String.format("Lesson[code=%s] do wakander[%s] não encontrada", lessonCode, wakanderCode)));
@@ -33,7 +34,7 @@ public class SkillFlowLessonDoneEventSourcing implements LessonDoneEventSourcing
 			WakanderTribeSkill currentSkill = currentLesson.getWakanderTribeSkill();
 			WakanderTribeSkill nextSkill = currentSkill.getNextTribeSkill();
 			
-			if(currentLesson.getNextSkillLesson() == null) {
+			if(isLastLesson(currentLesson)) {
 				finalizeCurrentSkill(currentSkill);
 				if(isNotLastSkill(nextSkill)) {
 					startNextSkill(nextSkill);
@@ -43,6 +44,10 @@ public class SkillFlowLessonDoneEventSourcing implements LessonDoneEventSourcing
 		} catch (Exception e) {
 			logger.error("Erro executar fluxo de verificação de skill para evento de aula concluida | Motivo: {}", e.getMessage());
 		}
+	}
+
+	private boolean isLastLesson(WakanderTribeSkillLesson currentLesson) {
+		return currentLesson.getNextSkillLesson() == null;
 	}
 
 	private boolean isNotLastSkill(WakanderTribeSkill nextSkill) {

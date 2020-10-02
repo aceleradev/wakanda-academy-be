@@ -30,6 +30,7 @@ public class TribeFlowLessonDoneEventSourcing implements LessonDoneEventSourcing
 	@Override
 	public void lessonDone(String wakanderCode, String lessonCode) {
 		try {
+			logger.info("Iniciando fluxo para evento de aula concluida para tribo");
 			WakanderTribeSkillLesson currentLesson = this.wakanderTribeSkillLessonRepository
 												.findWakanderLesson(wakanderCode, lessonCode)
 												.orElseThrow(() -> new BusinessException(String.format("Lesson[code=%s] do wakander[code=%s] não encontrada", lessonCode, wakanderCode)));
@@ -63,21 +64,23 @@ public class TribeFlowLessonDoneEventSourcing implements LessonDoneEventSourcing
 		return currentLesson.getNextSkillLesson() == null;
 	}
 
+	private void finalizeCurrentTribe(WakanderTribe currentTribe) {
+		logger.info("Finalizando tribo atual");
+		currentTribe.finalize();
+		this.wakanderTribeRepository.save(currentTribe);
+	}
+
 	private void startFirstLessonNextTribe(WakanderTribeSkill firstSkillNextTribe) {
+		logger.info("Iniciando primeira aula da proxima tribo");
 		WakanderTribeSkillLesson firstLessonNextTribe = firstSkillNextTribe.getFirstLesson();
 		firstLessonNextTribe.setStatus(Status.DOING);
 		this.wakanderTribeSkillLessonRepository.save(firstLessonNextTribe);
 	}
 
 	private void startFirstSkillNextTribe(WakanderTribeSkill firstSkillNextTribe) {
+		logger.info("Iniciando primeira skill da proxima tribo");
 		firstSkillNextTribe.start();
 		this.wakanderTribeSkillRepository.save(firstSkillNextTribe);
 	}
-
-	private void finalizeCurrentTribe(WakanderTribe currentTribe) {
-		currentTribe.finalize();
-		this.wakanderTribeRepository.save(currentTribe);
-	}
-
 	private static final Logger logger = LogManager.getLogger(TribeFlowLessonDoneEventSourcing.class);
 }
