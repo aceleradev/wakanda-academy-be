@@ -14,6 +14,7 @@ import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderWeeklyPerfo
 import dev.wakandaacademy.api.domain.wakander.model.Status;
 import dev.wakandaacademy.api.domain.wakander.model.Wakander;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
+import dev.wakandaacademy.api.domain.wakander.repository.WakanderGoalPerformanceRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderRepository;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderExpirenceCalculatorProxy;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderForecastJourneyDateCalculator;
@@ -29,6 +30,7 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	private WakanderRepository wakanderRepository;
 	private WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator;
 	private WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator;
+	private WakanderGoalPerformanceRepository wakanderGoalPerformanceRepository;
 	
 	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator) {
 		this.wakanderTribesJpaService = wakanderTribesJpaService;
@@ -71,9 +73,7 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 
 	@Override
 	public GoalPerformance getGoalPerformance(String wakanderCode) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return wakanderGoalPerformanceRepository.findGoalPerformance(wakanderCode);
 	}
-
 
 }

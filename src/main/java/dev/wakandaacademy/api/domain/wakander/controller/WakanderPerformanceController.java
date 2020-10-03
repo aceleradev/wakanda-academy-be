@@ -41,10 +41,8 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 	@Override
 	public ResponseEntity<GoalPerformance> getWakanderGoalPerformance(String wakanderCode)
 			throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		GoalPerformance completionPercentual = wakanderPerformaceService.getGoalPerformance(wakanderCode);
+		return ResponseEntity.ok(completionPercentual);
 	}
 	
-	
-
 }
