@@ -1,5 +1,7 @@
 package dev.wakandaacademy.api.domain.wakander.controller;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -41,8 +43,9 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 	@Override
 	public ResponseEntity<GoalPerformance> getWakanderGoalPerformance(String wakanderCode)
 			throws BusinessException {
-		GoalPerformance completionPercentual = wakanderPerformaceService.getGoalPerformance(wakanderCode);
-		return ResponseEntity.ok(completionPercentual);
+		log.info("Start controller");
+		GoalPerformance goalPerformance = wakanderPerformaceService.getGoalPerformance(wakanderCode);
+		return ResponseEntity.ok(goalPerformance);
 	}
 	
 }

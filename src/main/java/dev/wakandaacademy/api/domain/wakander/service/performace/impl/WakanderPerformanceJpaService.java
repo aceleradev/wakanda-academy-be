@@ -1,5 +1,6 @@
 package dev.wakandaacademy.api.domain.wakander.service.performace.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import dev.wakandaacademy.api.domain.wakander.model.Wakander;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderGoalPerformanceRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderRepository;
+import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderCompletionPercentageCalculator;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderExpirenceCalculatorProxy;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderForecastJourneyDateCalculator;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderPerformaceService;
@@ -30,13 +32,15 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	private WakanderRepository wakanderRepository;
 	private WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator;
 	private WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator;
-	private WakanderGoalPerformanceRepository wakanderGoalPerformanceRepository;
+	private WakanderCompletionPercentageCalculator wakanderCompletionPercentageCalculator;
 	
-	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator) {
+	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator,
+								WakanderCompletionPercentageCalculator wakanderCompletionPercentageCalculator) {
 		this.wakanderTribesJpaService = wakanderTribesJpaService;
 		this.wakanderRepository = wakanderRepository;
 		this.wakanderExpirenceCalculator = wakanderExpirenceCalculator;
 		this.forecastJourneyDateCalculator = forecastJourneyDateCalculator;
+		this.wakanderCompletionPercentageCalculator = wakanderCompletionPercentageCalculator;
 	}
 
 	@Override
@@ -73,7 +77,10 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 
 	@Override
 	public GoalPerformance getGoalPerformance(String wakanderCode) throws BusinessException {
-		return wakanderGoalPerformanceRepository.findGoalPerformance(wakanderCode);
+		log.info("Wakander Goal Performance ");
+		BigDecimal goalCompletionPercentage = wakanderCompletionPercentageCalculator.calculateCompletionPercentage(wakanderCode);
+		log.info("Consulting wakander performance:" + goalCompletionPercentage);
+		return new GoalPerformance(goalCompletionPercentage, null);
 	}
 
 }

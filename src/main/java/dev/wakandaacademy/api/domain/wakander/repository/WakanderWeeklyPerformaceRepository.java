@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import dev.wakandaacademy.api.domain.wakander.controller.dto.GoalPerformance;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
 
 @Repository
@@ -18,7 +17,5 @@ public interface WakanderWeeklyPerformaceRepository extends JpaRepository<Wakand
 			+ " AND per.startDate = (SELECT MAX(p.startDate) FROM WakanderWeeklyPerformace p WHERE p.wakander.code = ?1)")
 	Optional<WakanderWeeklyPerformace> findCurrentWakanderWeeklyPerfomance(String wakanderCode);
 	
-	@Query(name = "WakanderPerformanceGoalPercent.findPercentageCompletedCurrentGoal", nativeQuery = true)
-	GoalPerformance findGoalPerformance(String wakanderCode);
 	
 }
