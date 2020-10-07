@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.GoalPerformance;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.JourneyPerformance;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderForecastJorneyDateDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderWeeklyPerfomanceDTO;
 import dev.wakandaacademy.api.exception.ApiException;
 import dev.wakandaacademy.api.exception.BusinessException;
@@ -26,4 +27,7 @@ public interface WakanderPerformanceApi {
 	
 	@GetMapping("/goal")
 	ResponseEntity<GoalPerformance> getWakanderGoalPerformance(@PathVariable("wakanderCode") String wakanderCode) throws BusinessException;
+ 
+	@GetMapping("/forecastJorneyDate")
+	ResponseEntity<WakanderForecastJorneyDateDTO> getWakanderForecastJorneyDate( @PathVariable ("wakanderCode") String wakanderCode) throws BusinessException;
 }

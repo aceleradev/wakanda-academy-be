@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import dev.wakandaacademy.api.domain.wakander.controller.WakanderPerformanceController;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.GoalPerformance;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.JourneyPerformance;
+import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderForecastJorneyDateDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderWeeklyPerfomanceDTO;
 import dev.wakandaacademy.api.domain.wakander.model.Status;
@@ -16,7 +17,7 @@ import dev.wakandaacademy.api.domain.wakander.model.Wakander;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderWeeklyPerformace;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderRepository;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderExpirenceCalculatorProxy;
-import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderForecastJourneyDateCalculator;
+import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderForecastJourneyDateCalculatorService;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderPerformaceService;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribeService;
 import dev.wakandaacademy.api.exception.BusinessException;
@@ -28,9 +29,9 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	private WakanderTribeService wakanderTribesJpaService;
 	private WakanderRepository wakanderRepository;
 	private WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator;
-	private WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator;
+	private WakanderForecastJourneyDateCalculatorService forecastJourneyDateCalculator;
 	
-	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator) {
+	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculatorService forecastJourneyDateCalculator) {
 		this.wakanderTribesJpaService = wakanderTribesJpaService;
 		this.wakanderRepository = wakanderRepository;
 		this.wakanderExpirenceCalculator = wakanderExpirenceCalculator;
@@ -73,6 +74,16 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	public GoalPerformance getGoalPerformance(String wakanderCode) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public WakanderForecastJorneyDateDTO getWakanderForecastJorneyDate(String wakanderCode) throws BusinessException {
+		
+		return null;
+	}
+
+	public WakanderForecastJourneyDateCalculatorService getForecastJourneyDateCalculator() {
+		return forecastJourneyDateCalculator;
 	}
 
 
