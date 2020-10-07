@@ -12,5 +12,5 @@ public class WakanderForecastJorneyDateDTO {
 	public LocalDate getForecastJorneyDate() {
 		return forecastJorneyDate;
 	}
-
+//vamos testar o commit
 }
