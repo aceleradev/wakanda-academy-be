@@ -28,6 +28,7 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 			throws ApiException {
 		log.info("Start controller");
 		log.info("Parameters WakanderCode = {}", wakanderCode);
+		log.info("Start getJourneyPerformance");
 		JourneyPerformance totalTribesCompletedVSTotalTribesJourney = wakanderPerformaceService
 																			.getJourneyPerformance(wakanderCode);
 		return ResponseEntity.ok(totalTribesCompletedVSTotalTribesJourney);
@@ -37,6 +38,8 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 	@Override
 	public ResponseEntity<WakanderWeeklyPerfomanceDTO> getWakanderWeeklyPerformance(String wakanderCode) throws BusinessException {
 		WakanderWeeklyPerfomanceDTO dto = this.wakanderPerformaceService.getWakanderWeeklyPerformance(wakanderCode);
+		log.info("Start getWakanderWeeklyPerformance");
+		
 		return ResponseEntity.ok(dto);
 	}
 
@@ -44,7 +47,9 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 	public ResponseEntity<GoalPerformance> getWakanderGoalPerformance(String wakanderCode)
 			throws BusinessException {
 		log.info("Start controller");
+		
 		GoalPerformance goalPerformance = wakanderPerformaceService.getGoalPerformance(wakanderCode);
+		log.info("Start getWakanderGoalPerformance");
 		return ResponseEntity.ok(goalPerformance);
 	}
 	

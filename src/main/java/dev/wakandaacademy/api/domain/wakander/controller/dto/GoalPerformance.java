@@ -13,9 +13,18 @@ public class GoalPerformance {
 		this.forecastDate = forecastDate;
 	}
 
+
+	public LocalDate getForecastDate() {
+		return forecastDate;
+	}
+
+
+
 	public BigDecimal getCompletionPercentual() {
 		return completionPercentual;
 	}
+	
+	
 
 	@Override
 	public String toString() {

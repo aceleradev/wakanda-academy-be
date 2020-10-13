@@ -1,6 +1,7 @@
 package dev.wakandaacademy.api.domain.wakander.service.performace.impl;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderComplet
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderExpirenceCalculatorProxy;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderForecastJourneyDateCalculator;
 import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderPerformaceService;
+import dev.wakandaacademy.api.domain.wakander.service.performace.WakanderPerformanceDateCalculator;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribeService;
 import dev.wakandaacademy.api.exception.BusinessException;
 
@@ -33,14 +35,16 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	private WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator;
 	private WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator;
 	private WakanderCompletionPercentageCalculator wakanderCompletionPercentageCalculator;
+	private WakanderPerformanceDateCalculator wakanderPerformanceDateCalculator;
 	
 	public WakanderPerformanceJpaService(WakanderTribeService wakanderTribesJpaService, WakanderRepository wakanderRepository, WakanderExpirenceCalculatorProxy wakanderExpirenceCalculator, WakanderForecastJourneyDateCalculator forecastJourneyDateCalculator,
-								WakanderCompletionPercentageCalculator wakanderCompletionPercentageCalculator) {
+								WakanderCompletionPercentageCalculator wakanderCompletionPercentageCalculator, WakanderPerformanceDateCalculator wakanderPerformanceDateCalculator) {
 		this.wakanderTribesJpaService = wakanderTribesJpaService;
 		this.wakanderRepository = wakanderRepository;
 		this.wakanderExpirenceCalculator = wakanderExpirenceCalculator;
 		this.forecastJourneyDateCalculator = forecastJourneyDateCalculator;
 		this.wakanderCompletionPercentageCalculator = wakanderCompletionPercentageCalculator;
+		this.wakanderPerformanceDateCalculator = wakanderPerformanceDateCalculator;
 	}
 
 	@Override
@@ -65,22 +69,41 @@ public class WakanderPerformanceJpaService implements WakanderPerformaceService 
 	@Override
 	public WakanderWeeklyPerfomanceDTO getWakanderWeeklyPerformance(String wakanderCode) throws BusinessException {
 		log.info("Consulting wakander performance");
-		
+		log.info("Consulting wakander performance22");
 		Wakander wakander = this.wakanderRepository
 								.findByCode(wakanderCode)
 								.orElseThrow(() -> new BusinessException(String.format("Wakander[code=%s] não encontrado", wakanderCode)));
 
 		WakanderWeeklyPerformace wakanderWeeklyPerformace = this.wakanderExpirenceCalculator.getCalculatedWeeklyPerformance(wakander);
 
-		return WakanderWeeklyPerfomanceDTO.fromWakanderWeeklyPerformance(wakanderWeeklyPerformace);
+		log.info("Parameters wakanderWeeklyPerformace = {}", wakanderWeeklyPerformace);
+		
+		WakanderWeeklyPerfomanceDTO perfomace = WakanderWeeklyPerfomanceDTO.fromWakanderWeeklyPerformance(wakanderWeeklyPerformace);
+		
+		log.info("Parameters Performace = {}", perfomace);
+		
+		return perfomace;
 	}
 
 	@Override
 	public GoalPerformance getGoalPerformance(String wakanderCode) throws BusinessException {
 		log.info("Wakander Goal Performance ");
 		BigDecimal goalCompletionPercentage = wakanderCompletionPercentageCalculator.calculateCompletionPercentage(wakanderCode);
-		log.info("Consulting wakander performance:" + goalCompletionPercentage);
-		return new GoalPerformance(goalCompletionPercentage, null);
+		
+		
+		
+		BigDecimal goalCompletionDateGoal = wakanderPerformanceDateCalculator.calculateCompletionDateGoal(wakanderCode);
+		log.info("Consulting wakander goalCompletionDateGoal:" + goalCompletionDateGoal);
+		
+		BigDecimal goalCompletionDateWeek = wakanderPerformanceDateCalculator.calculateCompletionDateWeak(wakanderCode);
+		log.info("Consulting wakander goalCompletionDateWeek:" + goalCompletionDateWeek);
+					
+		 long  a =   goalCompletionDateGoal.longValue() / goalCompletionDateWeek.longValue() ;
+		 log.info("Consulting wakander a:" + a);
+		 LocalDate goalCompletionDate = LocalDate.now().plusDays(a);
+		 log.info("Consulting wakander a:" + goalCompletionDate);
+				
+		return new GoalPerformance(goalCompletionPercentage, goalCompletionDate);
 	}
 
 }
