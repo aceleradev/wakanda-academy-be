@@ -3,7 +3,7 @@ package dev.wakandaacademy.api.domain.wakander.service.goals.impl;
 import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
@@ -12,14 +12,14 @@ import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
 import dev.wakandaacademy.api.domain.wakander.repository.TribeRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderGoalRepository;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderRepository;
-import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
-import dev.wakandaacademy.api.domain.wakander.service.goals.WakanderGoalService;
-import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribesJpaService;
+
+import dev.wakandaacademy.api.domain.wakander.service.goals.CurrentWakanderGoalService;
+
 import dev.wakandaacademy.api.exception.BusinessException;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
 @Service
-public class WakanderGoalsJpaService implements WakanderGoalService {
+public class WakanderGoalsJpaService implements CurrentWakanderGoalService {
 	private static final Logger log = LoggerFactory.getLogger(WakanderGoalsJpaService.class);
 	private WakanderGoalRepository wakanderGoalRepository;
 	private TribeRepository tribeRepository;
@@ -76,5 +76,10 @@ public class WakanderGoalsJpaService implements WakanderGoalService {
 						.orElseThrow(() -> new BusinessException(" wakander não possui horas semanais cadastradas."));;
 						return goals;
 	}
+
+
+
+
+	
 
 }

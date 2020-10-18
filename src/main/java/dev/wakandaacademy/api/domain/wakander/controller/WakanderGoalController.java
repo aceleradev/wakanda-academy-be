@@ -1,18 +1,18 @@
 package dev.wakandaacademy.api.domain.wakander.controller;
 
-import java.util.Optional;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.wakandaacademy.api.domain.journey.domain.Tribe;
+
 import dev.wakandaacademy.api.domain.wakander.controller.dto.TribeGoalDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderGoalDTO;
-import dev.wakandaacademy.api.domain.wakander.model.Wakander;
+
 import dev.wakandaacademy.api.domain.wakander.model.WakanderGoal;
-import dev.wakandaacademy.api.domain.wakander.service.goals.WakanderGoalService;
-import dev.wakandaacademy.api.exception.ApiException;
+import dev.wakandaacademy.api.domain.wakander.service.goals.CurrentWakanderGoalService;
+
 import dev.wakandaacademy.api.exception.BusinessException;
 
 @RestController
@@ -20,9 +20,9 @@ public class WakanderGoalController implements WakanderGoalApi {
 
 	private static final Logger log = LoggerFactory.getLogger(WakanderGoalController.class);
 
-	private WakanderGoalService wakanderGoalService;
+	private CurrentWakanderGoalService wakanderGoalService;
 
-	public WakanderGoalController(WakanderGoalService wakanderGoalService) {
+	public WakanderGoalController(CurrentWakanderGoalService wakanderGoalService) {
 		this.wakanderGoalService = wakanderGoalService;
 	}
 
@@ -33,6 +33,7 @@ public class WakanderGoalController implements WakanderGoalApi {
 				new TribeGoalDTO(wakanderGoal.getTribe().getCode(), wakanderGoal.getTribe().getName()));
 
 	}
+	
 
 	@Override
 	public WakanderGoalDTO updateOpenGoal(String wakanderCode, WakanderGoalDTO dto) throws BusinessException {

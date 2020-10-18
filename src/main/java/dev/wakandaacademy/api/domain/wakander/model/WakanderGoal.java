@@ -1,9 +1,5 @@
 package dev.wakandaacademy.api.domain.wakander.model;
 
-import javax.persistence.Table;
-
-import dev.wakandaacademy.api.domain.journey.domain.Tribe;
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -13,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import dev.wakandaacademy.api.domain.journey.domain.Tribe;
 
 @Entity
 @Table(name = "wakander_goals")
@@ -34,15 +33,17 @@ public class WakanderGoal {
 	private LocalDateTime endedAt;
 	
 	@Column(name = "started_at")
-	private LocalDateTime startedAt; 
+	private LocalDateTime startedAt;
 	
 	public WakanderGoal() {}
 	
-	public WakanderGoal(Wakander wakander, Tribe tribe, Integer weeklyGoalStudyHours, LocalDateTime startedAt) {
+	public WakanderGoal(Wakander wakander, Tribe tribe, Integer weeklyGoalStudyHours, LocalDateTime startedAt ) {
 		this.wakander = wakander;
 		this.tribe = tribe;
 		this.weeklyGoalStudyHours = weeklyGoalStudyHours;
 		this.startedAt = startedAt;
+		
+		
 	}
 
 	public Long getId() {
@@ -81,6 +82,7 @@ public class WakanderGoal {
 	public void setStartedAt(LocalDateTime startedAt) {
 		this.startedAt = startedAt;
 	}
+
 	
 	
 }

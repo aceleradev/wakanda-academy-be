@@ -23,8 +23,6 @@ public class LessonContentServiceImpl implements LessonContentService {
 		this.driveService = driveService;
 	}
 
-
-
 	@Override
 	public void unlockWakanderTribeSkillLessonContent(String wakanderCode, String tribeCode, String skillCode, String lessonCode) throws BusinessException, DriveException {
 		log.info("Starting unlockWakanderTribeSkillLessonContent in LessonContentServiceImpl");
@@ -36,7 +34,7 @@ public class LessonContentServiceImpl implements LessonContentService {
 			return;
 		}
 		this.driveService.unlockAccess(wakanderTribeSkillLesson);
-		wakanderTribeSkillLesson.setUnlockedContent(true);
+		wakanderTribeSkillLesson.unlockedContent();
 		this.wakanderTribeSkillLessonRepository.save(wakanderTribeSkillLesson);
 	}
 

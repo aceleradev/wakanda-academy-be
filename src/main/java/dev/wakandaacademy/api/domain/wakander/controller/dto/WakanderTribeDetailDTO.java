@@ -7,24 +7,26 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
-
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
 public class WakanderTribeDetailDTO {
 	private static final Logger log = LoggerFactory.getLogger(WakanderTribeDetailDTO.class);
 	private String nameTribe;
+	private String tribeCode;
 	private List<WakanderTribeSkillDto> wakanderTribeSkills;
 	private BigDecimal completedPercentageTribe;
 
 	public WakanderTribeDetailDTO(WakanderTribeInfo wakanderTribe) {
 		this.nameTribe = wakanderTribe.getNameTribe();
+		this.tribeCode = wakanderTribe.getTribe().getCode();
 		this.completedPercentageTribe = wakanderTribe.getcompletedPercentageTribe();
 		this.wakanderTribeSkills = WakanderTribeSkillDto.convert(wakanderTribe.getWakanderTribeSkills());
 	}
-
-
+	
+	public String getTribeCode() {
+		return tribeCode;
+	}
 
 	public String getNameTribe() {
 		return nameTribe;
@@ -52,8 +54,5 @@ public class WakanderTribeDetailDTO {
 		return new NotFoundException("It is not possible to find a WakanderTribe by wakandaCode " + wakanderCode
 				+ " and tribecode " + tribeCode);
 	}
-
-
-
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import dev.wakandaacademy.api.domain.security.authentication.AuthenticationService;
 import dev.wakandaacademy.api.domain.security.controller.dto.AuthenticationRequest;
 import dev.wakandaacademy.api.domain.security.controller.dto.AuthenticationResponse;
+import dev.wakandaacademy.api.domain.security.domain.BearerToken;
 import dev.wakandaacademy.api.domain.security.token.TokenGeneratorService;
 import dev.wakandaacademy.api.domain.security.token.TokenRefresherService;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderProfileDTO;
@@ -44,7 +45,7 @@ public class JwtAuthenticationService implements AuthenticationService {
 
 	@Override
 	public AuthenticationResponse refresfhToken(String expiredToken) throws InvalidTokenException {
-		return this.tokenRefresherService.refreshToken(expiredToken);
+		return this.tokenRefresherService.refreshToken(new BearerToken(expiredToken));
 	}
 
 }

@@ -94,7 +94,7 @@ public class WakanderTribe {
 	public Tribe getTribe() {
 		return tribe;
 	}
-
+	
 	public void setTribe(Tribe tribe) {
 		Optional.ofNullable(tribe).map(Tribe::getId).ifPresent(this::setTribeId);
 		this.tribe = tribe;
@@ -173,6 +173,11 @@ public class WakanderTribe {
 			return false;
 		return true;
 	}
+	
+	public void finalize() {
+		this.setStatus(Status.DONE);
+		this.setEndedAt(LocalDateTime.now());
+	}
 
 	public String getNameTribe() {
 		return this.tribe.getName();
@@ -182,4 +187,23 @@ public class WakanderTribe {
 	public String toString() {
 		return "WakanderTribe [statedAt=" + statedAt + ", endedAt=" + endedAt + ", status=" + status + "]";
 	}
+	
+	public WakanderTribe getNextTribe() {
+		return this.wakander
+				.getTribes()
+				.stream()
+				.sorted((t1, t2) -> t1.getTribe().getId().compareTo(t2.getTribe().getId()))
+				.filter(t -> t.getTribeId() > this.getTribeId())
+				.findFirst()
+				.orElse(null);
+	}
+	
+	public WakanderTribeSkill getFirstSkill() {
+		return this.getWakanderTribeSkills()
+				.stream()
+				.sorted((sk1, sk2) -> sk1.getSkill().getTribeSequence().compareTo(sk2.getSkill().getTribeSequence()))
+				.findFirst()
+				.orElse(null);
+	}
+	
 }

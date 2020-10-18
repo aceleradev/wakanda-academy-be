@@ -52,7 +52,7 @@ public class WakanderTribeSkillLesson {
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 	
-	@Column(name = "unlocked_content", columnDefinition = "DEFAULT 0")
+	@Column(name = "unlocked_content")
 	private boolean unlockedContent;
 	
 	public WakanderTribeSkillLesson() {
@@ -126,6 +126,21 @@ public class WakanderTribeSkillLesson {
 		return this.lesson.getName();
 	}
 	
+	public WakanderTribeSkillLesson getNextSkillLesson() {
+		return this.wakanderTribeSkill
+				.getWakanderTribeSkillLessons()
+				.stream()
+				.sorted((l1, l2) -> l1.getLesson().getSkillSequence().compareTo(l2.getLesson().getSkillSequence()))
+				.filter(lesson -> lesson.getLesson().getSkillSequence() > this.getLesson().getSkillSequence())
+				.findFirst()
+				.orElse(null);
+	}
+	
+	public void finalize() {
+		this.setStatus(Status.DONE);
+		this.setEndedAt(LocalDateTime.now());
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,14 +190,15 @@ public class WakanderTribeSkillLesson {
 
 	public void startsLesson() {
 		this.status = Status.DOING;
-		this.startedAt = LocalDateTime.now();
 	}
 
 	public boolean isUnlockedContent() {
 		return unlockedContent;
 	}
-	public void setUnlockedContent(boolean unlockedContent) {
-		this.unlockedContent = unlockedContent;
+	
+	public void unlockedContent() {
+		this.unlockedContent = true;
+		this.startedAt = LocalDateTime.now();
 	}
 	
 }
