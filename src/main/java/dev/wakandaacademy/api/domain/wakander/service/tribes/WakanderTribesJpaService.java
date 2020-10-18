@@ -1,6 +1,5 @@
 package dev.wakandaacademy.api.domain.wakander.service.tribes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,14 +31,9 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 		log.info("Starting listTribes in WakanderTribesJpaService");
 		log.info("searching for unlocked tribes");
 		List<WakanderTribeInfo> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
-		log.info("checking results");
-		if (wakanderTribes == null) {
-			log.info("no tribe was found");
-			return new ArrayList<WakanderTribeDTO>();
-		} else {
-			log.info("converting unchecked tribes to WakanderTribeDTO");
-			return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
-		}
+		
+		log.info("converting unchecked tribes to WakanderTribeDTO");
+		return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
 	}
 
 	@Override

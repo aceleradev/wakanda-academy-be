@@ -11,6 +11,7 @@ public class WakanderTribeSkillLessonDto {
 	private String lessonName;
 	private Status status;
 	private String link;
+	private boolean unlockedContent;
 
 	public WakanderTribeSkillLessonDto(WakanderTribeSkillLesson wakanderTribeSkillLesson) {
 
@@ -18,6 +19,7 @@ public class WakanderTribeSkillLessonDto {
 		this.lessonName = wakanderTribeSkillLesson.getLessonName();
 		this.status = wakanderTribeSkillLesson.getStatus();
 		this.link = wakanderTribeSkillLesson.getLesson().getLink();
+		this.unlockedContent = wakanderTribeSkillLesson.isUnlockedContent();
 	}
 
 	public static List<WakanderTribeSkillLessonDto> convert(List<WakanderTribeSkillLesson> wakanderTribeSkillLessons) {
@@ -39,4 +41,9 @@ public class WakanderTribeSkillLessonDto {
 	public String getLink() {
 		return link;
 	}
+
+	public boolean isUnlockedContent() {
+		return unlockedContent;
+	}
+	
 }

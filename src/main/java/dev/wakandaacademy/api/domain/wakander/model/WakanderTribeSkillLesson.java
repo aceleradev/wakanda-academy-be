@@ -52,7 +52,7 @@ public class WakanderTribeSkillLesson {
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 	
-	@Column(name = "unlocked_content", columnDefinition = "DEFAULT 0")
+	@Column(name = "unlocked_content")
 	private boolean unlockedContent;
 	
 	public WakanderTribeSkillLesson() {
@@ -190,14 +190,15 @@ public class WakanderTribeSkillLesson {
 
 	public void startsLesson() {
 		this.status = Status.DOING;
-		this.startedAt = LocalDateTime.now();
 	}
 
 	public boolean isUnlockedContent() {
 		return unlockedContent;
 	}
-	public void setUnlockedContent(boolean unlockedContent) {
-		this.unlockedContent = unlockedContent;
+	
+	public void unlockedContent() {
+		this.unlockedContent = true;
+		this.startedAt = LocalDateTime.now();
 	}
 	
 }

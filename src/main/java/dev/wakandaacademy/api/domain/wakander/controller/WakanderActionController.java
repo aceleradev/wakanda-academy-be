@@ -45,12 +45,6 @@ public class WakanderActionController implements WakanderActionAPI {
         log.info("returning the nextLesson");
         return ResponseEntity.ok(nextWakanderLessonDTO);
     }
-    
-    @Override
-	public ResponseEntity<?> unlockTribe(String wakanderCode, String tribeCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	@GetMapping("/{wakanderCode}/{tribeCode}/{skillCode}/{lessonCode}")
