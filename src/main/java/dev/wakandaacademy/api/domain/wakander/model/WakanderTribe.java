@@ -1,5 +1,6 @@
 package dev.wakandaacademy.api.domain.wakander.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Formula;
 
 import dev.wakandaacademy.api.domain.journey.domain.Skill;
 import dev.wakandaacademy.api.domain.journey.domain.Tribe;
@@ -56,7 +59,18 @@ public class WakanderTribe {
 
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
-
+	
+	@Formula("(SELECT SUM(l.difficulty) FROM wakander_tribes wt "
+			+ " INNER JOIN wakander_tribe_skill_lessons wtsl ON wtsl.wakander_user_id = wt.wakander_user_id AND wtsl.tribe_id = wt.tribe_id "
+			+ "	INNER JOIN lessons l ON l.id = wtsl.lesson_id "
+			+ "	WHERE wt.wakander_user_id = wakander_user_id AND wt.tribe_id = tribe_id AND wtsl.status = 2)"
+			+ "/(SELECT SUM(l.difficulty) FROM wakander_tribes wt "
+			+ " INNER JOIN wakander_tribe_skill_lessons wtsl ON wtsl.wakander_user_id = wt.wakander_user_id AND wtsl.tribe_id = wt.tribe_id "
+			+ "	INNER JOIN lessons l ON l.id = wtsl.lesson_id "
+			+ "	WHERE wt.wakander_user_id = wakander_user_id AND wt.tribe_id = tribe_id"
+			+ ")")
+	private BigDecimal completedPercentage;
+	
 	public WakanderTribe() {
 	}
 
@@ -141,6 +155,13 @@ public class WakanderTribe {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public BigDecimal getCompletedPercentage() {
+		return completedPercentage;
+	}
+	public void setCompletedPercentage(BigDecimal completedPercentage) {
+		this.completedPercentage = completedPercentage;
 	}
 
 	@Override

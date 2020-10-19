@@ -10,12 +10,14 @@ public class WakanderTribeSkillDto {
 	private String skillCode;
 	private String skillName;
 	private Status skillStatus;
+	private Integer tribeSequence;
 	private List<WakanderTribeSkillLessonDto> wakanderTribeSkillLessons;
 
 	public WakanderTribeSkillDto(WakanderTribeSkill wakanderTribeSkill) {
 		this.skillCode = wakanderTribeSkill.getSkillCode();
 		this.skillName = wakanderTribeSkill.getSkillName();
 		this.skillStatus = wakanderTribeSkill.getStatus();
+		this.tribeSequence = wakanderTribeSkill.getSkill().getTribeSequence();
 		this.wakanderTribeSkillLessons = WakanderTribeSkillLessonDto
 				.convert(wakanderTribeSkill.getWakanderTribeSkillLessons());
 	}
@@ -35,6 +37,10 @@ public class WakanderTribeSkillDto {
 
 	public Status getSkillStatus() {
 		return skillStatus;
+	}
+	
+	public Integer getTribeSequence() {
+		return tribeSequence;
 	}
 
 	public List<WakanderTribeSkillLessonDto> getWakanderTribeSkillLessons() {

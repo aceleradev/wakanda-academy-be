@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDetailDTO;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribeService;
 import dev.wakandaacademy.api.domain.wakander.service.tribes.WakanderTribesJpaService;
 import dev.wakandaacademy.api.exception.NotFoundException;
@@ -51,7 +51,7 @@ public class WakanderTribeController implements WakanderTribeAPI {
 			@PathVariable String tribeCode) throws NotFoundException {
 		log.info("Starting findWakanderTribeDetailByWakanderCodeAndTribeCode in WakanderTribesService");
 		log.info("Parameters: wakanderCode = {} and tribeCode = {}", wakanderCode, tribeCode);
-		Optional<WakanderTribeInfo> wakanderTribeDetail = wakanderTribesService
+		Optional<WakanderTribe> wakanderTribeDetail = wakanderTribesService
 				.findWakanderTribeDetailByWakanderCodeAndTribeCode(wakanderCode, tribeCode);
 		return WakanderTribeDetailDTO.buildResponse(wakanderCode, tribeCode, wakanderTribeDetail);
 	}

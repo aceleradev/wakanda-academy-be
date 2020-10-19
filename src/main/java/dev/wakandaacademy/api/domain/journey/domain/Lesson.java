@@ -1,5 +1,7 @@
 package dev.wakandaacademy.api.domain.journey.domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +26,7 @@ public class Lesson {
 	private String link;
 	@Column(name = "file_id")
 	private String fileId;
-	private Float difficulty;
+	private BigDecimal difficulty;
 	private Integer skillSequence;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "skill_id", referencedColumnName = "id")
@@ -62,11 +64,11 @@ public class Lesson {
 		this.link = link;
 	}
 
-	public Float getDifficulty() {
+	public BigDecimal getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(Float difficulty) {
+	public void setDifficulty(BigDecimal difficulty) {
 		this.difficulty = difficulty;
 	}
 
