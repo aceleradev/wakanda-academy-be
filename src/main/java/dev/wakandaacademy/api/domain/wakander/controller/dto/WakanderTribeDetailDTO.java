@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 import dev.wakandaacademy.api.exception.NotFoundException;
 
 public class WakanderTribeDetailDTO {
@@ -17,10 +17,10 @@ public class WakanderTribeDetailDTO {
 	private List<WakanderTribeSkillDto> wakanderTribeSkills;
 	private BigDecimal completedPercentageTribe;
 
-	public WakanderTribeDetailDTO(WakanderTribeInfo wakanderTribe) {
+	public WakanderTribeDetailDTO(WakanderTribe wakanderTribe) {
 		this.nameTribe = wakanderTribe.getNameTribe();
 		this.tribeCode = wakanderTribe.getTribe().getCode();
-		this.completedPercentageTribe = wakanderTribe.getcompletedPercentageTribe();
+		this.completedPercentageTribe = wakanderTribe.getCompletedPercentage();
 		this.wakanderTribeSkills = WakanderTribeSkillDto.convert(wakanderTribe.getWakanderTribeSkills());
 	}
 	
@@ -41,7 +41,7 @@ public class WakanderTribeDetailDTO {
 	}
 
 	public static WakanderTribeDetailDTO buildResponse(String wakanderCode, String tribeCode,
-			Optional<WakanderTribeInfo> optWakanderTribeDetail) throws NotFoundException {
+			Optional<WakanderTribe> optWakanderTribeDetail) throws NotFoundException {
 		WakanderTribeDetailDTO wakanderTribeDetailDTO = optWakanderTribeDetail.map(WakanderTribeDetailDTO::new)
 																			.orElseThrow(() -> throwNotfoundException(wakanderCode, tribeCode));
 		log.info("returning WakanderTribeDetailDTO {}", wakanderCode);

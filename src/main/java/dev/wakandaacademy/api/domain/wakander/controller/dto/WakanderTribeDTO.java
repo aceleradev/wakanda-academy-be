@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dev.wakandaacademy.api.domain.wakander.model.Status;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
+import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
 
 public class WakanderTribeDTO {
 	private String tribeCode;
@@ -15,16 +15,16 @@ public class WakanderTribeDTO {
 	private Status status;
 	private BigDecimal completedPercentageTribe;
 
-	public WakanderTribeDTO(WakanderTribeInfo wktribe) {
+	public WakanderTribeDTO(WakanderTribe wktribe) {
 		this.tribeCode = wktribe.getTribe().getCode();
 		this.name = wktribe.getTribe().getName();
 		this.description = wktribe.getTribe().getDescription();
 		this.iconUrl = wktribe.getTribe().getIconURL();
 		this.status = wktribe.getStatus();
-		this.completedPercentageTribe=wktribe.getcompletedPercentageTribe();
+		this.completedPercentageTribe=wktribe.getCompletedPercentage();
 	}
 
-	public static List<WakanderTribeDTO> convert(List<WakanderTribeInfo> wakanderTribe) {
+	public static List<WakanderTribeDTO> convert(List<WakanderTribe> wakanderTribe) {
 		return wakanderTribe.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
 	}
 

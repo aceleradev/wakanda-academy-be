@@ -7,19 +7,21 @@ import dev.wakandaacademy.api.domain.wakander.model.Status;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeSkillLesson;
 
 public class WakanderTribeSkillLessonDto {
+	
 	private String lessonCode;
 	private String lessonName;
 	private Status status;
 	private String link;
+	private Integer skillSequence;
 	private boolean unlockedContent;
 
 	public WakanderTribeSkillLessonDto(WakanderTribeSkillLesson wakanderTribeSkillLesson) {
-
 		this.lessonCode = wakanderTribeSkillLesson.getLessonCode();
 		this.lessonName = wakanderTribeSkillLesson.getLessonName();
 		this.status = wakanderTribeSkillLesson.getStatus();
 		this.link = wakanderTribeSkillLesson.getLesson().getLink();
 		this.unlockedContent = wakanderTribeSkillLesson.isUnlockedContent();
+		this.skillSequence = wakanderTribeSkillLesson.getLesson().getSkillSequence();
 	}
 
 	public static List<WakanderTribeSkillLessonDto> convert(List<WakanderTribeSkillLesson> wakanderTribeSkillLessons) {
@@ -40,6 +42,10 @@ public class WakanderTribeSkillLessonDto {
 
 	public String getLink() {
 		return link;
+	}
+	
+	public Integer getSkillSequence() {
+		return skillSequence;
 	}
 
 	public boolean isUnlockedContent() {

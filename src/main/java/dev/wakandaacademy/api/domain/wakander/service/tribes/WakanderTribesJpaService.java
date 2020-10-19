@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import dev.wakandaacademy.api.domain.wakander.controller.dto.WakanderTribeDTO;
 import dev.wakandaacademy.api.domain.wakander.model.WakanderTribe;
-import dev.wakandaacademy.api.domain.wakander.model.WakanderTribeInfo;
 import dev.wakandaacademy.api.domain.wakander.repository.WakanderTribeRepository;
 
 @Service
@@ -30,14 +29,14 @@ public class WakanderTribesJpaService implements WakanderTribeService {
 	public List<WakanderTribeDTO> listTribes(String wakanderCode) {
 		log.info("Starting listTribes in WakanderTribesJpaService");
 		log.info("searching for unlocked tribes");
-		List<WakanderTribeInfo> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
+		List<WakanderTribe> wakanderTribes = wakanderTribeRepository.listUnlockedTribes(wakanderCode);
 		
 		log.info("converting unchecked tribes to WakanderTribeDTO");
 		return wakanderTribes.stream().map(WakanderTribeDTO::new).collect(Collectors.toList());
 	}
 
 	@Override
-	public Optional<WakanderTribeInfo> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode,
+	public Optional<WakanderTribe> findWakanderTribeDetailByWakanderCodeAndTribeCode(String wakanderCode,
 			String tribeCode) {
 		return  wakanderTribeRepository.findWakanderByCodeAndTribeByCode(wakanderCode, tribeCode);
 	}
