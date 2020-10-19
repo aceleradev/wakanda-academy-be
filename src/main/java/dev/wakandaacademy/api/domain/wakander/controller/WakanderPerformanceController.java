@@ -1,5 +1,7 @@
 package dev.wakandaacademy.api.domain.wakander.controller;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 			throws ApiException {
 		log.info("Start controller");
 		log.info("Parameters WakanderCode = {}", wakanderCode);
+		log.info("Start getJourneyPerformance");
 		JourneyPerformance totalTribesCompletedVSTotalTribesJourney = wakanderPerformaceService
 																			.getJourneyPerformance(wakanderCode);
 		return ResponseEntity.ok(totalTribesCompletedVSTotalTribesJourney);
@@ -35,16 +38,19 @@ public class WakanderPerformanceController implements WakanderPerformanceApi {
 	@Override
 	public ResponseEntity<WakanderWeeklyPerfomanceDTO> getWakanderWeeklyPerformance(String wakanderCode) throws BusinessException {
 		WakanderWeeklyPerfomanceDTO dto = this.wakanderPerformaceService.getWakanderWeeklyPerformance(wakanderCode);
+		log.info("Start getWakanderWeeklyPerformance");
+		
 		return ResponseEntity.ok(dto);
 	}
 
 	@Override
 	public ResponseEntity<GoalPerformance> getWakanderGoalPerformance(String wakanderCode)
 			throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Start controller");
+		
+		GoalPerformance goalPerformance = wakanderPerformaceService.getGoalPerformance(wakanderCode);
+		log.info("Start getWakanderGoalPerformance");
+		return ResponseEntity.ok(goalPerformance);
 	}
 	
-	
-
 }
