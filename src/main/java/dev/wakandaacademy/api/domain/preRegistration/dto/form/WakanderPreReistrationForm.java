@@ -1,12 +1,16 @@
-package dev.wakandaacademy.api.domain.preRegistration.api.dto.form;
+package dev.wakandaacademy.api.domain.preRegistration.dto.form;
+
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import dev.wakandaacademy.api.domain.preRegistration.dto.WakanderPreRegistrationDetailDTO;
+
 @Valid
 public class WakanderPreReistrationForm {
+
 	@NotBlank(message = "Name Empty")
 	@Pattern(regexp = "^[A-Z][a-z]*\\s.*[A-Z][a-z]*$", message = "Fullname Not Valid")
 	private String fullName;
@@ -43,5 +47,9 @@ public class WakanderPreReistrationForm {
 	public String toString() {
 		return "WakanderPreReistrationForm [fullName=" + fullName + ", email=" + email + ", cellPhoneNumber="
 				+ cellPhoneNumber + "]";
+	}
+	
+	public WakanderPreRegistrationDetailDTO convertToDTO() {
+		return new WakanderPreRegistrationDetailDTO(this.fullName, this.cellPhoneNumber, this.email);	
 	}
 }
